@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<Template author="Sascha-Christian Hensel" version="1.0">
+	
+	<Config
+		  name        = "${res:Templates.File.Module.Name}"
+		  icon        = "VB.File.NewClass"
+		  category    = "VB6"
+		  defaultname = "Module${Number}.bas"
+		  language    = "VB6"/>
+	 
+	<Description>${res:Templates.File.Module.Description}</Description>
+	
+	<!-- 
+	Special new file templates:
+		${StandardNamespace}        -> Standardnamespace of the current project or FileNameWithoutExtension
+		${FullName}                 -> Full generated path name
+		${FileName}                 -> File name with extension
+		${FileNameWithoutExtension} -> File name without extension
+		${Extension}                -> Extension in the form ".bas"
+		${Path}                     -> Full path of the file
+	 -->
+	<Files>
+		<File name="${FullName}" language="VB6"><![CDATA[Attribute VB_Name = "${FileNameWithoutExtension}"
+
+]]></File>
+	</Files>
+	
+	<AdditionalOptions/>
+</Template>
+
+

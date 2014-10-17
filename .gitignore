@@ -181,3 +181,12 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+
+# VB6 files
+*.vbw
+*.exp
+*.lib
+*.obj
+
+# Folders
+*.userprefs

@@ -1,0 +1,104 @@
+﻿<SyntaxDefinition name="VB6" extensions=".frm;.bas;.cls" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+  <Color name="Comment" foreground="Green" exampleText="' Comment" />
+  <Color name="String" foreground="Red" exampleText="&quot;Hello, World!&quot;" />
+  <Color name="Instructions" foreground="Blue" exampleText="Call" />
+  <Color name="Keywords" foreground="Blue" fontWeight="bold" exampleText="Exit Sub" />
+  <Color name="Directives" foreground="Blue" fontWeight="bold" exampleText="#If" />
+  <Color name="Internals" foreground="LightGray" fontWeight="bold" exampleText="Attribute" />
+
+  <RuleSet ignoreCase="true">
+
+    <Keywords color="Instructions">
+      <Word>Call</Word>
+      <Word>GoTo</Word>
+      <Word>On</Word>
+      <Word>Error</Word>
+      <Word>Resume</Word>
+    </Keywords>
+
+    <Keywords color="Keywords">
+      <Word>Private</Word>
+      <Word>Public</Word>
+      <Word>Dim</Word>
+      <Word>As</Word>
+      <Word>Function</Word>
+      <Word>Sub</Word>
+      <Word>Const</Word>
+
+      <Word>Set</Word>
+      <Word>Null</Word>
+      <Word>Nothing</Word>
+      
+      <Word>ReDim</Word>
+      <Word>Preserve</Word>
+
+      <Word>String</Word>
+      <Word>Integer</Word>
+      <Word>Single</Word>
+      <Word>Long</Word>
+      <Word>Variant</Word>
+      <Word>Object</Word>
+
+      <Word>Begin</Word>
+      <Word>End</Word>
+      <Word>Exit</Word>
+      <Word>Wend</Word>
+
+      <Word>For</Word>
+      <Word>To</Word>
+      <Word>Next</Word>
+      <Word>Do</Word>
+      <Word>While</Word>
+      <Word>Loop</Word>
+
+      <Word>If</Word>
+      <Word>Then</Word>
+      <Word>Else</Word>
+      <Word>Is</Word>
+      <Word>Not</Word>
+      <Word>TypeOf</Word>
+
+      <Word>ByVal</Word>
+      <Word>ByRef</Word>
+      <Word>Optional</Word>
+
+      <Word>Select</Word>
+      <Word>Case</Word>
+
+      <Word>AddressOf</Word>
+      <Word>Declare</Word>
+    </Keywords>
+
+    <Keywords color="Directives">
+      <Word>#If</Word>
+      <Word>#Else</Word>
+      <Word>#EndIf</Word>
+    </Keywords>
+
+    <Keywords color="Internals">
+      <Word>Attribute</Word>
+      <Word>Begin</Word>
+    </Keywords>
+
+    <Span color="Comment" ruleSet="CommentMarkerSet">
+      <Begin>'</Begin>
+    </Span>
+
+    <Span color="String">
+      <Begin>"</Begin>
+      <End>"</End>
+    </Span>
+
+  </RuleSet>
+
+  <RuleSet name="CommentMarkerSet" ignoreCase="false">
+    <Keywords foreground="#FFFF0000" fontWeight="bold">
+      <Word>TODO</Word>
+      <Word>FIXME</Word>
+    </Keywords>
+    <Keywords foreground="#EEE0E000" fontWeight="bold">
+      <Word>HACK</Word>
+      <Word>UNDONE</Word>
+    </Keywords>
+  </RuleSet>
+</SyntaxDefinition>

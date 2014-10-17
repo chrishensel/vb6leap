@@ -1,0 +1,88 @@
+﻿<AddIn name="VB6leap.SD" author="Sascha-Christian Hensel" url="" description="Attempt to aid programming of VB6 inside SharpDevelop.">
+  <Manifest>
+    <Identity name="VB6leap.SD" />
+  </Manifest>
+
+  <Runtime>
+    <Import assembly="VB6leap.Core.dll" />
+    <Import assembly="VB6leap.Vbp.dll" />
+    <Import assembly="VB6leap.VbpParser.dll" />
+    <Import assembly="VB6leap.SD.dll" />
+    <Import assembly=":ICSharpCode.SharpDevelop"/>
+  </Runtime>
+
+  <BitmapResources file="Resources\BitmapResources.resources" />
+  <StringResources file="Resources\StringResources.resources" />
+
+  <Path name="/SharpDevelop/Dialogs/OptionsDialog/ToolsOptions">
+    <OptionPanel id="VB6leapSDAddInOptions"
+           label="VB6"
+           class="VB6leap.SD.Options.VB6leapOptionPanel" />
+  </Path>
+
+  <Path path = "/SharpDevelop/BackendBindings/ProjectOptions/VB6">
+    <OptionPanel id    = "Options"
+		             label = "Project Options"
+		             class = "VB6leap.SD.Options.VB6leapProjectOptionsPanel"/>
+  </Path>
+
+  <Path name="/SharpDevelop/Workbench/Combine/FileFilter">
+    <FileFilter id="VB6Project"
+					insertbefore="AllFiles"
+					name="VB6 project files (*.vbp)"
+					extensions="*.vbp" />
+  </Path>
+
+  <Path name="/SharpDevelop/Workbench/FileFilter">
+    <FileFilter id="VB6"
+		            insertbefore="Resources"
+		            name="VB6 files (*.frm, *.bas, *.cls)"
+		            extensions="*.frm;*.bas;*.cls"
+		            mimeType = "text/plain"/>
+  </Path>
+
+  <Path name = "/SharpDevelop/ViewContent/AvalonEdit/SyntaxModes">
+    <SyntaxMode id         = "VB6 Syntax Mode"
+		            name       = "VB6"
+		            extensions = ".frm;.bas;.cls"
+		            resource   = "VB6leap.SD.Resources.VB6-Mode.xshd" />
+  </Path>
+
+  <Path name="/SharpDevelop/Workbench/ProjectBindings">
+    <ProjectBinding id="VB6"
+		                 guid="{BFDDE1D2-CFEE-4EA9-9108-F709EEBD945C}"
+		                 supportedextensions=".frm;.bas;.cls"
+		                 projectfileextension=".vbp"
+		                 class="VB6leap.SD.VbpProjectBinding" />
+  </Path>
+
+  <Path name="/SharpDevelop/Workbench/LanguageBindings">
+    <LanguageBinding
+	        id="VB6"
+	        class="VB6leap.SD.VbpLanguageBinding"
+	        extensions=".frm;.bas;.cls" />
+  </Path>
+
+  <Path name = "/Workspace/Icons">
+    <Icon id         = "VB6Prj"
+		      language   = "VB"
+		      resource   = "VB.ProjectIcon"/>
+
+    <Icon id         = "VB6File"
+		      extensions = ".frm;.bas;.cls"
+		      resource   = "VB.FileIcon"/>
+  </Path>
+
+  <Path name = "/SharpDevelop/BackendBindings/Templates">
+    <TemplateFile id = "VB6" resourceNamespace = "VB6leap.SD.Templates" />
+  </Path>
+  
+
+  <!--<Path name = "/Workspace/Parser">
+		<Parser
+			id = "VB6"
+			supportedextensions = ".frm;.bas;.cls"
+			projectfileextension = ".vbp"
+			class = "VB6leap.SD.VB6leapParser"/>
+	</Path>-->
+</AddIn>

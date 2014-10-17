@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Properties>
+  <Properties key="CSharpFormatting">
+    <SerializedObject key="IsBuiltIn">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="IndentNamespaceBody">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="IndentClassBody">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="IndentInterfaceBody">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="IndentStructBody">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="IndentEnumBody">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="IndentMethodBody">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="IndentPropertyBody">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="IndentEventBody">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="IndentBlocks">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="IndentSwitchBody">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="IndentCaseBody">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="IndentBreakStatements">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="AlignEmbeddedStatements">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="AlignElseInIfStatements">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="AutoPropertyFormatting">
+      <PropertyFormatting xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">AllowOneLine</PropertyFormatting>
+    </SerializedObject>
+    <SerializedObject key="SimplePropertyFormatting">
+      <PropertyFormatting xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">AllowOneLine</PropertyFormatting>
+    </SerializedObject>
+    <SerializedObject key="EmptyLineFormatting">
+      <EmptyLineFormatting xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">DoNotIndent</EmptyLineFormatting>
+    </SerializedObject>
+    <SerializedObject key="IndentPreprocessorDirectives">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="AlignToMemberReferenceDot">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="IndentBlocksInsideExpressions">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="NamespaceBraceStyle">
+      <BraceStyle xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NextLine</BraceStyle>
+    </SerializedObject>
+    <SerializedObject key="ClassBraceStyle">
+      <BraceStyle xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NextLine</BraceStyle>
+    </SerializedObject>
+    <SerializedObject key="InterfaceBraceStyle">
+      <BraceStyle xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NextLine</BraceStyle>
+    </SerializedObject>
+    <SerializedObject key="StructBraceStyle">
+      <BraceStyle xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NextLine</BraceStyle>
+    </SerializedObject>
+    <SerializedObject key="EnumBraceStyle">
+      <BraceStyle xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NextLine</BraceStyle>
+    </SerializedObject>
+    <SerializedObject key="MethodBraceStyle">
+      <BraceStyle xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NextLine</BraceStyle>
+    </SerializedObject>
+    <SerializedObject key="AnonymousMethodBraceStyle">
+      <BraceStyle xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NextLine</BraceStyle>
+    </SerializedObject>
+    <SerializedObject key="ConstructorBraceStyle">
+      <BraceStyle xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NextLine</BraceStyle>
+    </SerializedObject>
+    <SerializedObject key="DestructorBraceStyle">
+      <BraceStyle xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NextLine</BraceStyle>
+    </SerializedObject>
+    <SerializedObject key="PropertyBraceStyle">
+      <BraceStyle xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NextLine</BraceStyle>
+    </SerializedObject>
+    <SerializedObject key="PropertyGetBraceStyle">
+      <BraceStyle xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NextLine</BraceStyle>
+    </SerializedObject>
+    <SerializedObject key="PropertySetBraceStyle">
+      <BraceStyle xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NextLine</BraceStyle>
+    </SerializedObject>
+    <SerializedObject key="SimpleGetBlockFormatting">
+      <PropertyFormatting xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">AllowOneLine</PropertyFormatting>
+    </SerializedObject>
+    <SerializedObject key="SimpleSetBlockFormatting">
+      <PropertyFormatting xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">AllowOneLine</PropertyFormatting>
+    </SerializedObject>
+    <SerializedObject key="EventBraceStyle">
+      <BraceStyle xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NextLine</BraceStyle>
+    </SerializedObject>
+    <SerializedObject key="EventAddBraceStyle">
+      <BraceStyle xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NextLine</BraceStyle>
+    </SerializedObject>
+    <SerializedObject key="EventRemoveBraceStyle">
+      <BraceStyle xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NextLine</BraceStyle>
+    </SerializedObject>
+    <SerializedObject key="AllowEventAddBlockInline">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="AllowEventRemoveBlockInline">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="StatementBraceStyle">
+      <BraceStyle xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NextLine</BraceStyle>
+    </SerializedObject>
+    <SerializedObject key="AllowIfBlockInline">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="AllowOneLinedArrayInitialziers">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="ElseNewLinePlacement">
+      <NewLinePlacement xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NewLine</NewLinePlacement>
+    </SerializedObject>
+    <SerializedObject key="ElseIfNewLinePlacement">
+      <NewLinePlacement xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">SameLine</NewLinePlacement>
+    </SerializedObject>
+    <SerializedObject key="CatchNewLinePlacement">
+      <NewLinePlacement xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NewLine</NewLinePlacement>
+    </SerializedObject>
+    <SerializedObject key="FinallyNewLinePlacement">
+      <NewLinePlacement xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NewLine</NewLinePlacement>
+    </SerializedObject>
+    <SerializedObject key="WhileNewLinePlacement">
+      <NewLinePlacement xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">DoNotCare</NewLinePlacement>
+    </SerializedObject>
+    <SerializedObject key="EmbeddedStatementPlacement">
+      <NewLinePlacement xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NewLine</NewLinePlacement>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeMethodDeclarationParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBetweenEmptyMethodDeclarationParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeMethodDeclarationParameterComma">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAfterMethodDeclarationParameterComma">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceWithinMethodDeclarationParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeMethodCallParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBetweenEmptyMethodCallParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeMethodCallParameterComma">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAfterMethodCallParameterComma">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceWithinMethodCallParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeFieldDeclarationComma">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAfterFieldDeclarationComma">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeLocalVariableDeclarationComma">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAfterLocalVariableDeclarationComma">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeConstructorDeclarationParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBetweenEmptyConstructorDeclarationParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeConstructorDeclarationParameterComma">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAfterConstructorDeclarationParameterComma">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceWithinConstructorDeclarationParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="NewLineBeforeConstructorInitializerColon">
+      <NewLinePlacement xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NewLine</NewLinePlacement>
+    </SerializedObject>
+    <SerializedObject key="NewLineAfterConstructorInitializerColon">
+      <NewLinePlacement xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">SameLine</NewLinePlacement>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeIndexerDeclarationBracket">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceWithinIndexerDeclarationBracket">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeIndexerDeclarationParameterComma">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAfterIndexerDeclarationParameterComma">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeDelegateDeclarationParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBetweenEmptyDelegateDeclarationParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeDelegateDeclarationParameterComma">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAfterDelegateDeclarationParameterComma">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceWithinDelegateDeclarationParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeNewParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeIfParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeWhileParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeForParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeForeachParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeCatchParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeSwitchParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeLockParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeUsingParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAroundAssignment">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAroundLogicalOperator">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAroundEqualityOperator">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAroundRelationalOperator">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAroundBitwiseOperator">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAroundAdditiveOperator">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAroundMultiplicativeOperator">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAroundShiftOperator">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAroundNullCoalescingOperator">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAfterUnsafeAddressOfOperator">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAfterUnsafeAsteriskOfOperator">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAroundUnsafeArrowOperator">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpacesWithinParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpacesWithinIfParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpacesWithinWhileParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpacesWithinForParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpacesWithinForeachParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpacesWithinCatchParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpacesWithinSwitchParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpacesWithinLockParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpacesWithinUsingParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpacesWithinCastParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpacesWithinSizeOfParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeSizeOfParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpacesWithinTypeOfParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpacesWithinNewParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpacesBetweenEmptyNewParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeNewParameterComma">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAfterNewParameterComma">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeTypeOfParentheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpacesWithinCheckedExpressionParantheses">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeConditionalOperatorCondition">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAfterConditionalOperatorCondition">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeConditionalOperatorSeparator">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAfterConditionalOperatorSeparator">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpacesWithinBrackets">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpacesBeforeBrackets">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeBracketComma">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAfterBracketComma">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeForSemicolon">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAfterForSemicolon">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceAfterTypecast">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeArrayDeclarationBrackets">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceInNamedArgumentAfterDoubleColon">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="RemoveEndOfLineWhiteSpace">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="SpaceBeforeSemicolon">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="MinimumBlankLinesBeforeUsings">
+      <x:Int32 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">0</x:Int32>
+    </SerializedObject>
+    <SerializedObject key="MinimumBlankLinesAfterUsings">
+      <x:Int32 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">1</x:Int32>
+    </SerializedObject>
+    <SerializedObject key="MinimumBlankLinesBeforeFirstDeclaration">
+      <x:Int32 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">0</x:Int32>
+    </SerializedObject>
+    <SerializedObject key="MinimumBlankLinesBetweenTypes">
+      <x:Int32 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">1</x:Int32>
+    </SerializedObject>
+    <SerializedObject key="MinimumBlankLinesBetweenFields">
+      <x:Int32 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">0</x:Int32>
+    </SerializedObject>
+    <SerializedObject key="MinimumBlankLinesBetweenEventFields">
+      <x:Int32 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">0</x:Int32>
+    </SerializedObject>
+    <SerializedObject key="MinimumBlankLinesBetweenMembers">
+      <x:Int32 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">1</x:Int32>
+    </SerializedObject>
+    <SerializedObject key="MinimumBlankLinesAroundRegion">
+      <x:Int32 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">1</x:Int32>
+    </SerializedObject>
+    <SerializedObject key="MinimumBlankLinesInsideRegion">
+      <x:Int32 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">1</x:Int32>
+    </SerializedObject>
+    <SerializedObject key="KeepCommentsAtFirstColumn">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">True</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="ArrayInitializerWrapping">
+      <Wrapping xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">DoNotChange</Wrapping>
+    </SerializedObject>
+    <SerializedObject key="ArrayInitializerBraceStyle">
+      <BraceStyle xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NextLine</BraceStyle>
+    </SerializedObject>
+    <SerializedObject key="ChainedMethodCallWrapping">
+      <Wrapping xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">DoNotChange</Wrapping>
+    </SerializedObject>
+    <SerializedObject key="MethodCallArgumentWrapping">
+      <Wrapping xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">DoNotChange</Wrapping>
+    </SerializedObject>
+    <SerializedObject key="NewLineAferMethodCallOpenParentheses">
+      <NewLinePlacement xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">DoNotCare</NewLinePlacement>
+    </SerializedObject>
+    <SerializedObject key="MethodCallClosingParenthesesOnNewLine">
+      <NewLinePlacement xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">DoNotCare</NewLinePlacement>
+    </SerializedObject>
+    <SerializedObject key="IndexerArgumentWrapping">
+      <Wrapping xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">DoNotChange</Wrapping>
+    </SerializedObject>
+    <SerializedObject key="NewLineAferIndexerOpenBracket">
+      <NewLinePlacement xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">DoNotCare</NewLinePlacement>
+    </SerializedObject>
+    <SerializedObject key="IndexerClosingBracketOnNewLine">
+      <NewLinePlacement xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">DoNotCare</NewLinePlacement>
+    </SerializedObject>
+    <SerializedObject key="MethodDeclarationParameterWrapping">
+      <Wrapping xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">DoNotChange</Wrapping>
+    </SerializedObject>
+    <SerializedObject key="NewLineAferMethodDeclarationOpenParentheses">
+      <NewLinePlacement xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">DoNotCare</NewLinePlacement>
+    </SerializedObject>
+    <SerializedObject key="MethodDeclarationClosingParenthesesOnNewLine">
+      <NewLinePlacement xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">DoNotCare</NewLinePlacement>
+    </SerializedObject>
+    <SerializedObject key="IndexerDeclarationParameterWrapping">
+      <Wrapping xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">DoNotChange</Wrapping>
+    </SerializedObject>
+    <SerializedObject key="NewLineAferIndexerDeclarationOpenBracket">
+      <NewLinePlacement xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">DoNotCare</NewLinePlacement>
+    </SerializedObject>
+    <SerializedObject key="IndexerDeclarationClosingBracketOnNewLine">
+      <NewLinePlacement xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">DoNotCare</NewLinePlacement>
+    </SerializedObject>
+    <SerializedObject key="AlignToFirstIndexerArgument">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="AlignToFirstIndexerDeclarationParameter">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="AlignToFirstMethodCallArgument">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="AlignToFirstMethodDeclarationParameter">
+      <x:Boolean xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">False</x:Boolean>
+    </SerializedObject>
+    <SerializedObject key="NewLineBeforeNewQueryClause">
+      <NewLinePlacement xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">NewLine</NewLinePlacement>
+    </SerializedObject>
+    <SerializedObject key="UsingPlacement">
+      <UsingPlacement xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">TopOfFile</UsingPlacement>
+    </SerializedObject>
+  </Properties>
+</Properties>

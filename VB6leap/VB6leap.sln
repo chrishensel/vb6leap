@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VB6leap.Core", "VB6leap.Core\VB6leap.Core.csproj", "{3B3BFA9A-6265-4B04-B37F-2A6B5E3E06FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VB6leap.Vbp", "VB6leap.Vbp\VB6leap.Vbp.csproj", "{D1C7D6ED-CEC6-4DFA-9654-19030C244FC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VB6leap.VbpParser", "VB6leap.VbpParser\VB6leap.VbpParser.csproj", "{191CD650-2FE6-4465-8237-E6394C2C5BEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VB6leap.VbpExplorer", "VB6leap.VbpExplorer\VB6leap.VbpExplorer.csproj", "{2FC0758D-DC42-4A77-A5D2-7AF91A334922}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CaseStudyProject", "CaseStudyProject", "{96C380C2-3D8B-4A91-9943-5D0F3E7D8C7B}"
+	ProjectSection(SolutionItems) = preProject
+		..\CaseStudyProject\MyActiveXDLL\MyActiveXDLL.vbp = ..\CaseStudyProject\MyActiveXDLL\MyActiveXDLL.vbp
+		..\CaseStudyProject\StandardExe\StandardExe.vbp = ..\CaseStudyProject\StandardExe\StandardExe.vbp
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3B3BFA9A-6265-4B04-B37F-2A6B5E3E06FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B3BFA9A-6265-4B04-B37F-2A6B5E3E06FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B3BFA9A-6265-4B04-B37F-2A6B5E3E06FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B3BFA9A-6265-4B04-B37F-2A6B5E3E06FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1C7D6ED-CEC6-4DFA-9654-19030C244FC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1C7D6ED-CEC6-4DFA-9654-19030C244FC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1C7D6ED-CEC6-4DFA-9654-19030C244FC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1C7D6ED-CEC6-4DFA-9654-19030C244FC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{191CD650-2FE6-4465-8237-E6394C2C5BEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{191CD650-2FE6-4465-8237-E6394C2C5BEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{191CD650-2FE6-4465-8237-E6394C2C5BEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{191CD650-2FE6-4465-8237-E6394C2C5BEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FC0758D-DC42-4A77-A5D2-7AF91A334922}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FC0758D-DC42-4A77-A5D2-7AF91A334922}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FC0758D-DC42-4A77-A5D2-7AF91A334922}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FC0758D-DC42-4A77-A5D2-7AF91A334922}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
