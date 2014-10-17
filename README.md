@@ -1,7 +1,10 @@
 vb6leap
 =======
 
-An effort to ease maintenance, development and migration of legacy VB6-code where it is not possible to modernize it rapdily without too much effort.
+An effort to ease maintenance, development and migration of legacy VB6-code where it is not possible to modernize it rapidly without too much effort.
+
+This project aims to mainly aid maintaining VB6 legacy code. It is **NOT** intended to revive VB6 or encourage developers to start new projects with that language!
+VB6 has been discontinued and it seems that it will never ever be open-sourced by Microsoft or otherwise be made available free-of-charge, sadly.
 
 History
 =======
@@ -35,4 +38,17 @@ Building it
 
 The code should compile a 100% with SharpDevelop. So if you don't want to use Visual Studio, feel free to give that project a try!
 
-TODO - this is WIP. Explanation coming in the next commits.
+**Precondition:** You need to have SharpDevelop installed or have to download the portable version, because the SharpDevelop-Add-In requires some assemblies from there.
+You can find SharpDevelop here: http://www.icsharpcode.net/OpenSource/SD/Download/
+
+I recommend you to download the portable version, so you won't need an installation.
+
+Please see https://github.com/icsharpcode/SharpDevelop/wiki/AddIn-Developer-Quick-Start-Guide for how to setup SharpDevelop for add-in development.
+
+First you need to build the main solution. Just build "\VB6leap\vb6leap.sln".
+
+In order to build the *vb6leap add-in*, you have to perform the following steps:
+1. Download SharpDevelop, as mentioned
+2. Create a new folder called "Build" inside the "\AddIns\SharpDevelop" directory (next to the solution file)
+3. Copy the "ICSharpCode.*.dll" files into that directory
+4. Open the add-in solution and build it.

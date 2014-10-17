@@ -10,50 +10,62 @@
     <AssemblyName>VB6leap.SD</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <WarningLevel>4</WarningLevel>
+    <NoWin32Manifest>False</NoWin32Manifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <BaseAddress>4194304</BaseAddress>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Build</OutputPath>
     <DebugSymbols>True</DebugSymbols>
     <DebugType>Full</DebugType>
     <Optimize>False</Optimize>
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\Build</OutputPath>
     <DebugSymbols>False</DebugSymbols>
     <DebugType>None</DebugType>
     <Optimize>True</Optimize>
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
     <DefineConstants>TRACE</DefineConstants>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.AvalonEdit">
-      <HintPath>..\..\..\..\..\PortableApps\SharpDevelop\bin\ICSharpCode.AvalonEdit.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\Build\ICSharpCode.AvalonEdit.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ICSharpCode.Build.Tasks">
-      <HintPath>..\..\..\..\..\PortableApps\SharpDevelop\bin\ICSharpCode.Build.Tasks.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\Build\ICSharpCode.Build.Tasks.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ICSharpCode.Core">
-      <HintPath>..\..\..\..\..\PortableApps\SharpDevelop\bin\ICSharpCode.Core.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\Build\ICSharpCode.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ICSharpCode.Core.Presentation">
-      <HintPath>..\..\..\..\..\PortableApps\SharpDevelop\bin\ICSharpCode.Core.Presentation.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\Build\ICSharpCode.Core.Presentation.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ICSharpCode.NRefactory">
-      <HintPath>..\..\..\..\..\PortableApps\SharpDevelop\bin\ICSharpCode.NRefactory.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\Build\ICSharpCode.NRefactory.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ICSharpCode.SharpDevelop">
-      <HintPath>..\..\..\..\..\PortableApps\SharpDevelop\bin\ICSharpCode.SharpDevelop.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\Build\ICSharpCode.SharpDevelop.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
@@ -116,9 +128,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\BitmapResources.resx" />
     <EmbeddedResource Include="Resources\StringResources.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Options\VB6leapOptionPanel.xaml">
