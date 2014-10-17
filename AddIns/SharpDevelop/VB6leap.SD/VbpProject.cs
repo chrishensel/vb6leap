@@ -21,6 +21,7 @@ using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.SharpDevelop;
 using ICSharpCode.SharpDevelop.Dom;
 using ICSharpCode.SharpDevelop.Project;
+using VB6leap.SD.Utils;
 using VB6leap.Vbp.Project;
 using VB6leap.Vbp.Project.ObjectModel;
 using VB6leap.Vbp.Serialization;
@@ -104,20 +105,58 @@ namespace VB6leap.SD
 
         public override void Start(bool withDebugging)
         {
-            // TODO: Start VB6.EXE either with /run or just the EXE.
+            // TODO: This does currently not run. Need to create a command and do it the proper way.
 
-            base.Start(withDebugging);
+            if (!VB6Helper.GetIsVB6Available())
+            {
+                ICSharpCode.SharpDevelop.SD.MessageService.ShowError("Cannot locate VB6.EXE. Please make sure that you have entered the correct path to the VB6-directory under 'Tools -> VB6'.");
+            }
+            else
+            {
+                if (withDebugging)
+                {
+                    VB6Helper.RunProject(_vbProject);
+                }
+                else
+                {
+                    // TODO: Just run the EXE!
+                }
+            }
         }
 
         public override Task<bool> BuildAsync(ProjectBuildOptions options, IBuildFeedbackSink feedbackSink, IProgressMonitor progressMonitor)
         {
-            feedbackSink.ReportMessage(new RichText("TODO: Build the project using VB6.EXE..."));
+            bool success = false;
 
-            Thread.Sleep(1000);
+            if (!VB6Helper.GetIsVB6Available())
+            {
+                feedbackSink.ReportError(new BuildError("", "Cannot locate VB6.EXE. Please make sure that you have entered the correct path to the VB6-directory under 'Tools -> VB6'."));
+            }
+            else
+            {
+                feedbackSink.ReportMessage(new RichText("Building the project using VB6.EXE..."));
 
-            feedbackSink.ReportMessage(new RichText("Building with VB6.EXE has concluded!"));
+                var result = VB6Helper.MakeProject(_vbProject);
+                string[] errors = result.Results;
 
-            return Task.FromResult(true);
+                if (errors.Length == 0)
+                {
+                    feedbackSink.ReportMessage(new RichText("Building with VB6.EXE completed successfully!"));
+                    success = true;
+                }
+                else
+                {
+                    foreach (string error in errors)
+                    {
+                        if (!string.IsNullOrWhiteSpace(error))
+                        {
+                            feedbackSink.ReportError(new BuildError("", error));
+                        }
+                    }
+                }
+            }
+
+            return Task.FromResult(success);
         }
 
         #endregion
