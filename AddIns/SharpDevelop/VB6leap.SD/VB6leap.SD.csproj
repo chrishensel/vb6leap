@@ -109,6 +109,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\AssemblyInfo.cs" />
+    <Compile Include="FormsDesigner\FormsDesignerSecondaryDisplayBinding.cs" />
+    <Compile Include="FormsDesigner\VB6FormsDesignerControl.xaml.cs">
+      <DependentUpon>VB6FormsDesignerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FormsDesigner\VB6FormsDesignerViewContent.cs" />
     <Compile Include="IVbpProject.cs" />
     <Compile Include="Options\AddInOptions.cs" />
     <Compile Include="Options\VB6leapOptionPanel.xaml.cs">
@@ -118,8 +123,10 @@
       <DependentUpon>VB6leapProjectOptionsPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\VB6Helper.cs" />
-    <Compile Include="Utils\VbpProjectBehavior.cs" />
-    <Compile Include="Utils\VbpProjectItemsCollection.cs" />
+    <Compile Include="VbpFormattingStrategy.cs" />
+    <Compile Include="VbpProjectBehavior.cs" />
+    <Compile Include="VbpProjectItemsCollection.cs" />
+    <Compile Include="VbpTextEditorExtension.cs" />
     <Compile Include="VbpLanguageBinding.cs" />
     <Compile Include="VbpProject.cs" />
     <Compile Include="VbpProjectBinding.cs" />
@@ -132,6 +139,10 @@
     <EmbeddedResource Include="Resources\StringResources.resx" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="FormsDesigner\VB6FormsDesignerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Options\VB6leapOptionPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -141,5 +152,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

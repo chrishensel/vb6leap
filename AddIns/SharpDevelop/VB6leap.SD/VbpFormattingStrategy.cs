@@ -13,26 +13,17 @@
 // You should have received a copy of the GNU General Public License
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.IO;
-using VB6leap.Vbp.Project;
-using VB6leap.Vbp.Project.ObjectModel;
-using VB6leap.Vbp.Serialization;
+using ICSharpCode.SharpDevelop.Editor;
 
-namespace VB6leap.VbpParser.Serialization
+namespace VB6leap.SD
 {
-    public class Vb6FileReader : IVbFileReader
+    class VbpFormattingStrategy : DefaultFormattingStrategy
     {
-        #region IVbFileReader Members
+        #region Methods
 
-        Stream IVbFileReader.Read(ElementBase element, IVbProject parentProject)
+        public override void SurroundSelectionWithComment(ITextEditor editor)
         {
-            return File.OpenRead(element.GetAbsoluteFileName(parentProject));
-        }
-
-        VbPartitionedFile IVbFileReader.ReadPartitionedFile(ElementBase element, Stream stream)
-        {
-            StreamReader reader = new StreamReader(stream);
-            return VbPartitionedFile.GetPartitionedFile(reader.ReadToEnd());
+            SurroundSelectionWithSingleLineComment(editor, "'");
         }
 
         #endregion

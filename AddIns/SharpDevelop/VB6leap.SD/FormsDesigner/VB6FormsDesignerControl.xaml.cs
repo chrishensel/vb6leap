@@ -13,26 +13,20 @@
 // You should have received a copy of the GNU General Public License
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.IO;
-using VB6leap.Vbp.Project;
-using VB6leap.Vbp.Project.ObjectModel;
-using VB6leap.Vbp.Serialization;
+using System.Windows.Controls;
 
-namespace VB6leap.VbpParser.Serialization
+namespace VB6leap.SD.FormsDesigner
 {
-    public class Vb6FileReader : IVbFileReader
+    /// <summary>
+    /// Interaction logic for VB6FormsDesignerControl.xaml
+    /// </summary>
+    public partial class VB6FormsDesignerControl : UserControl
     {
-        #region IVbFileReader Members
+        #region Constructors
 
-        Stream IVbFileReader.Read(ElementBase element, IVbProject parentProject)
+        public VB6FormsDesignerControl()
         {
-            return File.OpenRead(element.GetAbsoluteFileName(parentProject));
-        }
-
-        VbPartitionedFile IVbFileReader.ReadPartitionedFile(ElementBase element, Stream stream)
-        {
-            StreamReader reader = new StreamReader(stream);
-            return VbPartitionedFile.GetPartitionedFile(reader.ReadToEnd());
+            InitializeComponent();
         }
 
         #endregion

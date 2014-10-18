@@ -65,7 +65,7 @@
 
   <Path name = "/Workspace/Icons">
     <Icon id         = "VB6Prj"
-		      language   = "VB"
+		      language   = "VB6"
 		      resource   = "VB.ProjectIcon"/>
 
     <Icon id         = "VB6File"
@@ -77,6 +77,20 @@
     <TemplateFile id = "VB6" resourceNamespace = "VB6leap.SD.Templates" />
   </Path>
   
+
+  <Path name="/SharpDevelop/ViewContent/TextEditor/Extensions">
+    <TextEditorExtension
+			id="VB6"
+			class="VB6leap.SD.VbpTextEditorExtension"
+			extensions=".frm;.bas;.cls" />
+  </Path>
+
+  <Path name = "/SharpDevelop/Workbench/DisplayBindings">
+    <DisplayBinding id    = "VB6FormsDesigner"
+		                type  = "Secondary"
+		                class = "VB6leap.SD.FormsDesigner.FormsDesignerSecondaryDisplayBinding"
+		                fileNamePattern = "\.frm$"/>
+  </Path>
 
   <!--<Path name = "/Workspace/Parser">
 		<Parser

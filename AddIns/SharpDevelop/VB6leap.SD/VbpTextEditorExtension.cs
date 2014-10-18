@@ -13,13 +13,23 @@
 // You should have received a copy of the GNU General Public License
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
-using ICSharpCode.SharpDevelop.Dom;
-using ICSharpCode.SharpDevelop.Project;
+using ICSharpCode.SharpDevelop.Editor;
+using VB6leap.Vbp.Serialization;
 
-namespace VB6leap.SD.Utils
+namespace VB6leap.SD
 {
-    class VbpProjectItemsCollection : SimpleModelCollection<ProjectItem>
+    class VbpTextEditorExtension : ITextEditorExtension
     {
+        #region ITextEditorExtension Members
 
+        void ITextEditorExtension.Attach(ITextEditor editor)
+        {
+        }
+
+        void ITextEditorExtension.Detach()
+        {
+        }
+
+        #endregion
     }
 }

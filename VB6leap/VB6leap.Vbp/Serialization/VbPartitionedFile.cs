@@ -13,6 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
+using System.IO;
 using System.Text;
 
 namespace VB6leap.Vbp.Serialization
@@ -50,6 +52,58 @@ namespace VB6leap.Vbp.Serialization
             sb.AppendLine(Source);
 
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"><paramref name="content"/> is null.</exception>
+        public static VbPartitionedFile GetPartitionedFile(string content)
+        {
+            if (content == null)
+            {
+                throw new ArgumentNullException("content");
+            }
+
+            VbPartitionedFile file = new VbPartitionedFile();
+
+            /* VB6-files are slightly odd. They don't really have a common file format (only a somewhat consistent layout).
+             */
+            StringBuilder sb = new StringBuilder();
+
+            // Keep the stream open for users to close.
+
+            string lineBefore = null;
+            string line = null;
+
+            using (StringReader reader = new StringReader(content))
+            {
+                while ((line = reader.ReadLine()) != null)
+                {
+                    /* If the last line was an Attribute and the current line represents user code, flush the current contents into the Preamble.
+                     * This is really basic here and should be refined if some files are different.
+                     */
+                    if (lineBefore != null && lineBefore.StartsWith("Attribute", StringComparison.OrdinalIgnoreCase))
+                    {
+                        if ((string.IsNullOrWhiteSpace(line) || !line.StartsWith("Attribute", StringComparison.OrdinalIgnoreCase))
+                            && file.Preamble == null)
+                        {
+                            file.Preamble = sb.ToString();
+                            sb.Clear();
+                        }
+                    }
+
+                    sb.AppendLine(line);
+
+                    lineBefore = line;
+                }
+            }
+
+            file.Source = sb.ToString();
+
+            return file;
         }
 
         #endregion

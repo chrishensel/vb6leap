@@ -13,26 +13,27 @@
 // You should have received a copy of the GNU General Public License
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.IO;
-using VB6leap.Vbp.Project;
-using VB6leap.Vbp.Project.ObjectModel;
-using VB6leap.Vbp.Serialization;
+using ICSharpCode.SharpDevelop.Workbench;
 
-namespace VB6leap.VbpParser.Serialization
+namespace VB6leap.SD.FormsDesigner
 {
-    public class Vb6FileReader : IVbFileReader
+    class VB6FormsDesignerViewContent : AbstractViewContent
     {
-        #region IVbFileReader Members
+        #region Properties
 
-        Stream IVbFileReader.Read(ElementBase element, IVbProject parentProject)
+        public override object Control
         {
-            return File.OpenRead(element.GetAbsoluteFileName(parentProject));
+            get { return new VB6FormsDesignerControl(); }
         }
 
-        VbPartitionedFile IVbFileReader.ReadPartitionedFile(ElementBase element, Stream stream)
+        #endregion
+
+        #region Constructors
+
+        public VB6FormsDesignerViewContent(OpenedFile file)
+            : base(file)
         {
-            StreamReader reader = new StreamReader(stream);
-            return VbPartitionedFile.GetPartitionedFile(reader.ReadToEnd());
+            this.TabPageText = "Designer";
         }
 
         #endregion

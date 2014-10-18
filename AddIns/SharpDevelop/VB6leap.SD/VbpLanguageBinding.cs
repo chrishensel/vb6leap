@@ -36,7 +36,7 @@ namespace VB6leap.SD
         public VbpLanguageBinding()
         {
             _bracketSearcher = new DefaultBracketSearcher();
-            _formattingStrategy = new DefaultFormattingStrategy();
+            _formattingStrategy = new VbpFormattingStrategy();
         }
 
         #endregion
