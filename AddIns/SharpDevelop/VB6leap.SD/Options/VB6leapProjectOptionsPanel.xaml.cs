@@ -13,7 +13,9 @@
 // You should have received a copy of the GNU General Public License
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
+using System.ComponentModel;
 using ICSharpCode.SharpDevelop.Gui;
+using VB6leap.Vbp.Project;
 
 namespace VB6leap.SD.Options
 {
@@ -25,7 +27,8 @@ namespace VB6leap.SD.Options
         #region Fields
 
         private IVbpProject _project;
-
+        private ViewModel _viewModel;
+        
         #endregion
 
         #region Constructors
@@ -43,12 +46,86 @@ namespace VB6leap.SD.Options
         {
             _project = (IVbpProject)this.Owner;
 
+            _viewModel = new ViewModel(_project.GetOwnedProject());
+            this.DataContext = _viewModel;
+
             base.LoadOptions();
         }
 
         public override bool SaveOptions()
         {
             return base.SaveOptions();
+        }
+
+        #endregion
+
+        #region Nested types
+
+        class ViewModel
+        {
+            #region Fields
+
+            private IVbProject _project;
+
+            #endregion
+
+            #region Properties
+
+            public string Type
+            {
+                get { return _project.Type.ToString(); }
+            }
+
+            public string Version
+            {
+                get
+                {
+                    string version = "";
+                    version += _project.Properties.Get("MajorVer", "1") + ".";
+                    version += _project.Properties.Get("MinorVer", "0") + ".";
+                    version += _project.Properties.Get("RevisionVer", "0");
+
+                    return version;
+                }
+                set
+                {
+                    string major = "1";
+                    string minor = "0";
+                    string rev = "0";
+
+                    if (!string.IsNullOrWhiteSpace(value))
+                    {
+                        string[] parts = value.Split('.');
+                        if (parts.Length >= 3)
+                        {
+                            major = parts[0];
+                            minor = parts[1];
+                            rev = parts[2];
+                        }
+                    }
+
+                    _project.Properties.Set("MajorVer", major);
+                    _project.Properties.Set("MinorVer", minor);
+                    _project.Properties.Set("RevisionVer", rev);
+                }
+            }
+
+            public bool AutoIncrementVer
+            {
+                get { return _project.Properties.Get("AutoIncrementVer", "0") == "1"; }
+            }
+
+            #endregion
+
+            #region Constructors
+
+            public ViewModel(IVbProject project)
+            {
+                _project = project;
+            }
+
+            #endregion
+
         }
 
         #endregion

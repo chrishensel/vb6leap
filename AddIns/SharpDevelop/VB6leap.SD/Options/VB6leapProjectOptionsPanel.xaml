@@ -6,7 +6,38 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Label Content="(Editing the VBP directly is currently not supported, but will be in a future version)" />
-    </Grid>
+    <TabControl Margin="2">
+
+        <!-- General stuff -->
+        <TabItem Header="General">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <!-- Project type, not yet editable -->
+                <Label Grid.Row="0" Grid.Column="0" Content="Project type:" FontWeight="Bold" />
+                <TextBlock Grid.Row="0" Grid.Column="1" Margin="2" Text="{Binding Type, Mode=OneWay}" VerticalAlignment="Center"  />
+
+                <!-- Version string and options -->
+                <Label Grid.Row="1" Grid.Column="0" Content="Version:" FontWeight="Bold" />
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Text="{Binding Version}" />
+                <CheckBox Grid.Row="2" Grid.Column="1" Margin="2" Content="Auto-increment version on build" IsEnabled="False" IsChecked="{Binding AutoIncrementVer, Mode=OneWay}" />
+                
+                
+            </Grid>
+        </TabItem>
+
+    </TabControl>
 </sd:OptionPanel>
