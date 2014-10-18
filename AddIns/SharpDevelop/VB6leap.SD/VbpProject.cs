@@ -15,7 +15,6 @@
 
 using System.Collections.Generic;
 using System.IO;
-using System.Threading;
 using System.Threading.Tasks;
 using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.SharpDevelop;
@@ -98,32 +97,6 @@ namespace VB6leap.SD
             }
         }
 
-        public override ItemType GetDefaultItemType(string fileName)
-        {
-            return ItemType.None;
-        }
-
-        public override void Start(bool withDebugging)
-        {
-            // TODO: This does currently not run. Need to create a command and do it the proper way.
-
-            if (!VB6Helper.GetIsVB6Available())
-            {
-                ICSharpCode.SharpDevelop.SD.MessageService.ShowError("Cannot locate VB6.EXE. Please make sure that you have entered the correct path to the VB6-directory under 'Tools -> VB6'.");
-            }
-            else
-            {
-                if (withDebugging)
-                {
-                    VB6Helper.RunProject(_vbProject);
-                }
-                else
-                {
-                    // TODO: Just run the EXE!
-                }
-            }
-        }
-
         public override Task<bool> BuildAsync(ProjectBuildOptions options, IBuildFeedbackSink feedbackSink, IProgressMonitor progressMonitor)
         {
             bool success = false;
@@ -159,6 +132,11 @@ namespace VB6leap.SD
             return Task.FromResult(success);
         }
 
+        protected override ProjectBehavior CreateDefaultBehavior()
+        {
+            return new VbpProjectBehavior(this);
+        }
+
         #endregion
 
         #region IVbpProject Members
@@ -169,10 +147,5 @@ namespace VB6leap.SD
         }
 
         #endregion
-    }
-
-    class VbpProjectItemsCollection : SimpleModelCollection<ProjectItem>
-    {
-
     }
 }

@@ -118,6 +118,8 @@
       <DependentUpon>VB6leapProjectOptionsPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\VB6Helper.cs" />
+    <Compile Include="Utils\VbpProjectBehavior.cs" />
+    <Compile Include="Utils\VbpProjectItemsCollection.cs" />
     <Compile Include="VbpLanguageBinding.cs" />
     <Compile Include="VbpProject.cs" />
     <Compile Include="VbpProjectBinding.cs" />
