@@ -1,6 +1,6 @@
 Type=Exe
 Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#C:\Windows\system32\stdole2.tlb#OLE Automation
-Reference=*\G{94888142-AF34-42AC-8736-D137DEBB9F94}#4.0#0#MyActiveXDLL.dll#
+Reference=*\G{E7F5EE52-2D1E-4312-83D5-6100A62EAA5A}#1.0#0#..\MyActiveXDLL\MyActiveXDLL.dll#
 Form=frmMain.frm
 Module=modGlobals; ..\Modules\modGlobals.bas
 UserControl=ctlSomeControl.ctl
