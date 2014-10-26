@@ -92,11 +92,11 @@
 		                fileNamePattern = "\.frm$"/>
   </Path>
 
-  <!--<Path name = "/Workspace/Parser">
+  <Path name = "/SharpDevelop/Parser">
 		<Parser
 			id = "VB6"
 			supportedextensions = ".frm;.bas;.cls"
 			projectfileextension = ".vbp"
-			class = "VB6leap.SD.VB6leapParser"/>
-	</Path>-->
+			class = "VB6leap.SD.Parser.VB6Parser"/>
+	</Path>
 </AddIn>

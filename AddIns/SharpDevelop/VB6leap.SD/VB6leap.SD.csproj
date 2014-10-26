@@ -122,6 +122,9 @@
     <Compile Include="Options\VB6leapProjectOptionsPanel.xaml.cs">
       <DependentUpon>VB6leapProjectOptionsPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Parser\VB6Parser.cs" />
+    <Compile Include="Parser\VB6UnresolvedFile.cs" />
+    <Compile Include="Parser\VB6UnresolvedTypeDefinition.cs" />
     <Compile Include="Utils\VB6Helper.cs" />
     <Compile Include="VbpFormattingStrategy.cs" />
     <Compile Include="VbpProjectBehavior.cs" />
