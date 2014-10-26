@@ -13,27 +13,34 @@
 // You should have received a copy of the GNU General Public License
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.IO;
-using System.Text;
-using VB6leap.Vbp.Project;
-using VB6leap.Vbp.Project.ObjectModel;
-using VB6leap.Vbp.Serialization;
+using System.Diagnostics;
+using VB6leap.Vbp.Reflection.Source;
 
-namespace VB6leap.VbpParser.Serialization
+namespace VB6leap.Vbp.Reflection.Members
 {
-    public class Vb6FileReader : IVbFileReader
+    [DebuggerDisplay("{ToVbDeclaration()}")]
+    class VbAttribute : IVbAttribute
     {
-        #region IVbFileReader Members
+        #region IVbAttributeMember Members
 
-        Stream IVbFileReader.Read(ElementBase element, IVbProject parentProject)
+        public string Value { get; set; }
+
+        #endregion
+
+        #region IVbMember Members
+
+        public string Name { get; set; }
+
+        public ISourceLocation Location { get; set; }
+
+        public MemberVisibility Visibility
         {
-            return File.OpenRead(element.GetAbsoluteFileName(parentProject));
+            get { return MemberVisibility.Public; }
         }
 
-        VbPartitionedFile IVbFileReader.ReadPartitionedFile(ElementBase element, Stream stream)
+        public string ToVbDeclaration()
         {
-            StreamReader reader = new StreamReader(stream, Encoding.Default);
-            return VbPartitionedFile.GetPartitionedFile(reader.ReadToEnd());
+            return string.Format("Attribute {0} = \"{1}\"", this.Name, this.Value);
         }
 
         #endregion

@@ -1,6 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
+# SharpDevelop 5.0
+VisualStudioVersion = 12.0.20827.3
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VB6leap.Core", "VB6leap.Core\VB6leap.Core.csproj", "{3B3BFA9A-6265-4B04-B37F-2A6B5E3E06FE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VB6leap.Vbp", "VB6leap.Vbp\VB6leap.Vbp.csproj", "{D1C7D6ED-CEC6-4DFA-9654-19030C244FC1}"

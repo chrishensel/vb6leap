@@ -1,0 +1,490 @@
+program:
+        class_file_header? declaration_or_statement*
+class_file_header:
+        "version" number "class" eol+ class_begin_block
+class_begin_block:
+        "begin" reference? IN class_begin_item* EX "end"
+class_begin_item:
+        assignment_statement
+        class_begin_block
+        eol
+declaration_or_statement:
+        declaration eol
+        statement eol
+        eol
+single_declaration_or_statement:
+        declaration colon_declaration_or_statement*
+        statement colon_declaration_or_statement*
+colon_declaration_or_statement:
+        ":" declaration_or_statement?
+declaration:
+        variable_declaration
+        implements_declaration
+        subprogram_declaration
+        constant_declaration
+        class_declaration
+        declare_subprogram_declaration
+        defletter_declaration
+        enum_declaration
+        type_declaration
+implements_declaration:
+        "implements" id
+enum_declaration:
+        access_modifier? "enum" id eol IN enum_member_definition* EX "end" "enum"
+enum_member_definition:
+        id "=" expn eol
+        eol
+type_declaration:
+        access_modifier? "type" id eol IN type_member_definition* EX "end" "type"
+type_member_definition:
+        id parens? as_type? eol
+        eol
+defletter_declaration:
+        def_keyword letterrange+
+letterrange:
+        id SPOFF "-" id SPON
+def_keyword:
+        "defbool"
+        "defbyte"
+        "defcur"
+        "defdate"
+        "defdbl"
+        "defdec"
+        "defint"
+        "deflng"
+        "defobj"
+        "defsng"
+        "defstr"
+        "defvar"
+variable_declaration:
+        variable_declaration_keyword variable_description+
+variable_declaration_keyword:
+        "dim"
+        "redim"
+        access_modifier
+access_modifier:
+        "public"
+        "private"
+        "friend"
+        "static"
+variable_description:
+        array_description
+        single_var_description
+single_var_description:
+        id initial_value? as_type?
+initial_value:
+        "=" expn
+array_description:
+        "withevents"? "preserve"? id "(" {subscript_expn ","}* ")" as_type?
+subscript_expn:
+        expn to_expn?
+constant_declaration:
+        access_modifier? "const" constant_description
+constant_description:
+        id as_type? initial_value
+declare_subprogram_declaration:
+        access_modifier? "declare" sub_or_function id lib_description alias_description? subprogram_argument_description? as_type?
+subprogram_declaration:
+        access_modifier? "static"? sub_or_function id lib_description? subprogram_argument_description? as_type? eol IN sub_scope EX "end" sub_or_function
+lib_description:
+        "lib" stringlit
+alias_description:
+        "alias" stringlit
+sub_scope:
+        declaration_or_statement*
+sub_or_function:
+        "sub"
+        "function"
+subprogram_argument_description:
+        "(" {subprogram_argument ","}* ")"
+subprogram_argument:
+        "optional"? byref_or_byval? id? parens? as_type? equals_expn?
+as_type:
+        "as" "new"? reference star_size?
+star_size:
+        "*" expn
+byref_or_byval:
+        "byref"
+        "byval"
+class_declaration:
+        "class" id eol IN sub_scope EX "end" "class"
+expn:
+        primary operator_primary*
+operator_primary:
+        op primary
+op:
+        "^"
+        "*"
+        "/"
+        "\"
+        "mod"
+        "+"
+        "-"
+        "&"
+        "="
+        "<>"
+        "<="
+        ">="
+        ":="
+        ">"
+        "<"
+        "!"
+        "is"
+        "not"
+        "and"
+        "or"
+        "xor"
+        "eqv"
+        "imp"
+        "like"
+primary:
+        reference
+        stringlit
+        number
+        hexnumber
+        octnumber
+        datelit
+        returncode
+        filenumber
+        prefix_op primary
+        "(" {expn ","}* ")"
+prefix_op:
+        "+"
+        "-"
+        "not"
+        "typeof"
+        "addressof"
+reference:
+        "."? "!"? id component_selector*
+        "." key component_selector*
+filenumber:
+        "#" primary
+component_selector:
+        "." id
+        "." key
+        subscript
+subscript:
+        "(" {optional_subscript ","}* ")"
+optional_subscript:
+        expn to_expn?
+        SP EPSILON
+statement:
+        label_statement
+        assignment_statement
+        app_activate_statement
+        attribute_statement
+        beep_statement
+        call_statement
+        chdir_statement
+        chdrive_statement
+        close_statement
+        date_statement
+        deletesetting_statement
+        do_statement
+        end_statement
+        erase_statement
+        error_statement
+        event_statement
+        exit_statement
+        filecopy_statement
+        for_each_statement
+        for_next_statement
+        get_statement
+        gosub_statement
+        return_statement
+        goto_statement
+        if_statement
+        input_statement
+        kill_statement
+        line_input_statement
+        load_statement
+        lock_statement
+        lset_statement
+        mid_statement
+        mkdir_statement
+        name_statement
+        on_error_statement
+        open_statement
+        option_statement
+        preprocessor_if_statement
+        print_statement
+        property_statement
+        put_statement
+        randomize_statement
+        reset_statement
+        resume_statement
+        rmdir_statement
+        rset_statement
+        savepicture_statement
+        savesetting_statement
+        select_case_statement
+        set_statement
+        stop_statement
+        time_statement
+        unload_statement
+        unlock_statement
+        while_statement
+        with_statement
+        width_statement
+        write_statement
+assignment_statement:
+        "let"? reference "=" expn
+app_activate_statement:
+        "appactivate" expn comma_expn?
+comma_expn:
+        "," expn
+beep_statement:
+        "beep"
+chdir_statement:
+        "chdir" filepath
+mkdir_statement:
+        "mkdir" filepath
+rmdir_statement:
+        "rmdir" filepath
+mid_statement:
+        "mid" reference "=" stringlit
+name_statement:
+        "name" filepath "as" filepath
+filepath:
+        drive? id slash_id*
+        stringlit
+slash_id:
+        "\" id
+        "/" id
+chdrive_statement:
+        "chdrive" drive
+drive:
+        id ":"
+open_statement:
+        "open" filepath "for" mode access_spec? lock? "as" filenumber length_spec?
+mode:
+        "append"
+        "binary"
+        "input"
+        "output"
+        "random"
+access_spec:
+        "access" access_mode
+access_mode:
+        "read"
+        "write"
+        "read" "write"
+lock:
+        "shared"
+        "lock" "read"
+        "lock" "write"
+        "lock" "read" "write"
+length_spec:
+        "len" "=" expn
+close_statement:
+        "close" {filenumber ","}*
+seek_statement:
+        "seek" filenumber "," expn
+unlock_statement:
+        "unlock" filenumber comma_recordrange?
+get_statement:
+        "get" filenumber comma_recordnumber? "," reference
+comma_recordnumber:
+        "," expn
+input_statement:
+        "input" filenumber "," {reference ","}*
+line_input_statement:
+        "line" "input" filenumber "," reference
+width_statement:
+        "width" filenumber "," expn
+write_statement:
+        "write" filenumber "," {print_item ","}*
+print_statement:
+        "print" filenumber "," {print_item ","}*
+print_item:
+        spc_tab? expn charpos?
+        spc_tab
+spc_tab:
+        "spc" "(" expn? ")"
+        "tab" "(" expn? ")"
+charpos:
+        expn
+        ";"
+put_statement:
+        "put" filenumber comma_expn? "," reference
+kill_statement:
+        "kill" filepath
+lock_statement:
+        "lock" filenumber comma_recordrange?
+comma_recordrange:
+        "," number to_number?
+to_number:
+        "to" number
+load_statement:
+        "load" expn
+lset_statement:
+        "lset" reference "=" expn
+rset_statement:
+        "rset" reference "=" expn
+date_statement:
+        "date" "=" expn
+time_statement:
+        "time" "=" expn
+deletesetting_statement:
+        "deletesetting" expn+
+end_statement:
+        "end"
+erase_statement:
+        "erase" {id ","}*
+error_statement:
+        "error" expn
+event_statement:
+        "public"? "event" id event_argument_list?
+event_argument_list:
+        "(" event_argument+ ")"
+event_argument:
+        byref_or_byval? id parens? as_type?
+parens:
+        "(" ")"
+filecopy_statement:
+        "filecopy" filepath "," filepath
+gosub_statement:
+        on_expn? "gosub" expn
+return_statement:
+        "return"
+goto_statement:
+        on_expn? "goto" expn
+on_expn:
+        "on" expn
+option_statement:
+        "option" "base" number
+        "option" "compare" compare_mode
+        "option" "explicit"
+        "option" "private" "module"
+compare_mode:
+        "binary"
+        "text"
+        "database"
+attribute_statement:
+        "attribute" attribute_definition+
+attribute_definition:
+        reference "=" expn+
+if_statement:
+        full_if_statement
+        short_if_statement
+full_if_statement:
+        "if" expn "then" eol IN sub_scope EX elsif_clause* else_clause? "end" "if"
+elsif_clause:
+        "elseif" expn "then" eol IN sub_scope EX
+else_clause:
+        "else" eol IN sub_scope EX
+short_if_statement:
+        "if" expn "then" single_declaration_or_statement short_else_clause?
+short_else_clause:
+        "else" single_declaration_or_statement
+select_case_statement:
+        "select" "case" expn eol IN case_alternative* last_case_alternative? EX "end" "select"
+eol:
+        tab_vbcomment? newline
+        ":"
+tab_vbcomment:
+        TAB vbcomment
+case_alternative:
+        eol* "case" is_operator? case_expn+ eol IN sub_scope EX
+is_operator:
+        "is" op?
+case_expn:
+        expn to_expn?
+to_expn:
+        "to" expn
+last_case_alternative:
+        eol* "case" "else" eol IN sub_scope EX
+for_next_statement:
+        full_for_next_statement
+        short_for_next_statement
+short_for_next_statement:
+        "for" id "=" expn to_or_downto expn step_clause? colon_declaration_or_statement* ":" "next" id?
+full_for_next_statement:
+        "for" id "=" expn to_or_downto expn step_clause? eol IN sub_scope EX "next" id?
+to_or_downto:
+        "to"
+        "downto"
+step_clause:
+        "step" expn
+for_each_statement:
+        full_for_each_statement
+        short_for_each_statement
+short_for_each_statement:
+        "for" "each" id "in" expn eol colon_declaration_or_statement* ":" "next" id?
+full_for_each_statement:
+        "for" "each" id "in" expn eol IN sub_scope EX "next" id?
+do_statement:
+        "do" while_or_until_clause? eol IN sub_scope EX "loop" while_or_until_clause?
+while_or_until_clause:
+        while_clause
+        until_clause
+while_clause:
+        "while" expn
+until_clause:
+        "until" expn
+while_statement:
+        "while" expn eol IN sub_scope EX "wend"
+call_statement:
+        "call"? reference subroutine_bracketless_params?
+subroutine_bracketless_params:
+        expn {optional_expn ","}*
+optional_expn:
+        expn
+        EPSILON SP
+set_statement:
+        "set" reference "=" set_object_expn
+set_object_expn:
+        "new"? expn
+        "nothing"
+setattr_statement:
+        "setattr" filepath "," expn
+exit_statement:
+        "exit" exit_what_indicator
+exit_what_indicator:
+        "do"
+        "for"
+        "function"
+        "property"
+        "sub"
+on_error_statement:
+        "on" "local"? "error" on_error_action
+on_error_action:
+        "resume" "next"
+        "goto" expn
+with_statement:
+        "with" reference eol IN sub_scope EX "end" "with"
+property_statement:
+        access_modifier? "static"? "property" get_let_set id property_argument_list? as_type? eol IN sub_scope EX "end" "property"
+get_let_set:
+        "get"
+        "let"
+        "set"
+property_argument_list:
+        "(" {property_argument ","}* ")"
+property_argument:
+        "optional"? byref_or_byval? "paramarray"? id parens? as_type? equals_expn?
+equals_expn:
+        "=" expn
+randomize_statement:
+        "randomize" number?
+reset_statement:
+        "reset"
+resume_statement:
+        "resume" "next"
+        "resume" number?
+savepicture_statement:
+        "savepicture" expn "," expn
+savesetting_statement:
+        "savesetting" {expn ","}*
+stop_statement:
+        "stop"
+unload_statement:
+        "unload" expn
+label_statement:
+        EX id ":" IN
+preprocessor_if_statement:
+        "#if" expn "then" eol IN sub_scope EX preprocessor_elsif_clause* preprocessor_else_clause? "#end" "if"
+preprocessor_elsif_clause:
+        "#elseif" expn "then" eol IN sub_scope EX
+preprocessor_else_clause:
+        "#else" eol IN sub_scope EX

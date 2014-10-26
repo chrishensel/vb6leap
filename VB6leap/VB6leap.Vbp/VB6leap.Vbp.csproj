@@ -44,6 +44,43 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Reflection\Analyzers\AnalyzerConstants.cs" />
+    <Compile Include="Reflection\Analyzers\AnalyzerFactory.cs" />
+    <Compile Include="Reflection\Analyzers\AnalyzerTools.cs" />
+    <Compile Include="Reflection\Analyzers\ClassModuleAnalyzer.cs" />
+    <Compile Include="Reflection\Analyzers\GlobalModuleAnalyzer.cs" />
+    <Compile Include="Reflection\Analyzers\IAnalyzer.cs" />
+    <Compile Include="Reflection\Members\IVbMember.cs" />
+    <Compile Include="Reflection\Members\IVbMethod.cs" />
+    <Compile Include="Reflection\Members\IVbParameter.cs" />
+    <Compile Include="Reflection\Members\IVbProperty.cs" />
+    <Compile Include="Reflection\Members\VbMethod.cs" />
+    <Compile Include="Reflection\Members\VbMethodType.cs" />
+    <Compile Include="Reflection\Members\VbParameter.cs" />
+    <Compile Include="Reflection\Members\VbParameterAccess.cs" />
+    <Compile Include="Reflection\Members\VbProperty.cs" />
+    <Compile Include="Reflection\Members\VbPropertyAccessor.cs" />
+    <Compile Include="Reflection\Modules\ClassModule.cs" />
+    <Compile Include="Reflection\Modules\IVbModule.cs" />
+    <Compile Include="Reflection\Members\IVbAttribute.cs" />
+    <Compile Include="Reflection\Members\VbAttribute.cs" />
+    <Compile Include="Reflection\Members\MemberVisibility.cs" />
+    <Compile Include="Reflection\Modules\ModuleBase.cs" />
+    <Compile Include="Reflection\ModuleReflector.cs" />
+    <Compile Include="Reflection\Modules\GlobalModule.cs" />
+    <Compile Include="Reflection\Source\ISourceLocation.cs" />
+    <Compile Include="Reflection\Source\IToken.cs" />
+    <Compile Include="Reflection\Source\ITokenizer.cs" />
+    <Compile Include="Reflection\Source\SourceLocation.cs" />
+    <Compile Include="Reflection\Source\TokenStreamReader.cs" />
+    <Compile Include="Reflection\Source\TokenType.cs" />
+    <Compile Include="Reflection\Source\VbPartitionedFileSegment.cs" />
+    <Compile Include="Reflection\Types\IVbType.cs" />
+    <Compile Include="Reflection\Types\IVbVoidType.cs" />
+    <Compile Include="Reflection\Types\VbType.cs" />
+    <Compile Include="Reflection\Types\VbTypes.cs" />
+    <Compile Include="Reflection\Types\VbVariantType.cs" />
+    <Compile Include="Reflection\Types\VbVoidType.cs" />
     <Compile Include="Serialization\IVbFileReader.cs" />
     <Compile Include="Serialization\IVbFileWriter.cs" />
     <Compile Include="Serialization\IVbProjectReader.cs" />
@@ -71,6 +108,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

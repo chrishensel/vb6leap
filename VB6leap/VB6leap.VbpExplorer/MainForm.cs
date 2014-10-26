@@ -20,7 +20,12 @@ using System.Linq;
 using System.Windows.Forms;
 using VB6leap.Vbp.Project;
 using VB6leap.Vbp.Project.ObjectModel;
+using VB6leap.Vbp.Reflection;
+using VB6leap.Vbp.Reflection.Analyzers;
+using VB6leap.Vbp.Reflection.Members;
+using VB6leap.Vbp.Reflection.Modules;
 using VB6leap.Vbp.Serialization;
+using VB6leap.VbpParser.Reflection.Source;
 using VB6leap.VbpParser.Serialization;
 
 namespace VB6leap.VbpExplorer
@@ -41,6 +46,8 @@ namespace VB6leap.VbpExplorer
             InitializeComponent();
 
             _fileReader = new Vb6FileReader();
+
+            AnalyzerFactory.Tokenizer = new Tokenizer();
         }
 
         #endregion
@@ -86,23 +93,26 @@ namespace VB6leap.VbpExplorer
                         }
 
                         itemNode.Tag = item;
+                        ExtendNode(item, itemNode);
                         node.Nodes.Add(itemNode);
                     }
                 }
 
-
-                trvProject.ExpandAll();
+                trvProject.Nodes[0].Nodes["MODULES"].Expand();
+                trvProject.Nodes[0].Nodes["CLASSES"].Expand();
+                trvProject.Nodes[0].Nodes["FORMS"].Expand();
             }
         }
-
-        #endregion
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             trvProject.ExpandAll();
+
+            btnOpenProject_Click(sender, e);
+            this.Activate();
         }
 
-        private async void trvProject_AfterSelect(object sender, TreeViewEventArgs e)
+        private void trvProject_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (_project == null)
             {
@@ -113,31 +123,160 @@ namespace VB6leap.VbpExplorer
 
             if (e.Node.Name == "PROPERTIES")
             {
-                foreach (var item in _project.Properties)
+                DisplayProjectProperties();
+            }
+            else
+            {
+                DisplayElementProperties(e.Node.Tag);
+            }
+        }
+
+        private void DisplayProjectProperties()
+        {
+            foreach (var item in _project.Properties)
+            {
+                ListViewItem lvi = new ListViewItem(item);
+                lvi.SubItems.Add(_project.Properties.Get<object>(item, null).ToString());
+                this.lsvProperties.Items.Add(lvi);
+            }
+        }
+
+        private void DisplayElementProperties(object tag)
+        {
+            if (tag == null)
+            {
+                return;
+            }
+
+            if (tag is ClassElement || tag is ModuleElement || tag is FormElement)
+            {
+                try
                 {
-                    ListViewItem lvi = new ListViewItem(item);
-                    lvi.SubItems.Add(_project.Properties.Get<object>(item, null).ToString());
-                    this.lsvProperties.Items.Add(lvi);
+                    ElementBase element = (ElementBase)tag;
+
+                    using (Stream stream = _fileReader.Read(element, _project))
+                    {
+                        VbPartitionedFile content = _fileReader.ReadPartitionedFile(element, stream);
+                        txtEdit.Text = content.Source;
+                    }
+                }
+                catch (Exception)
+                {
                 }
             }
             else
             {
-                txtEdit.Clear();
-                txtEdit.ClearUndo();
-
-                ElementBase tag = e.Node.Tag as ElementBase;
-                if (tag != null)
+                IVbMember member = tag as IVbMember;
+                if (member != null)
                 {
-                    if (tag is ClassElement || tag is FormElement || tag is ModuleElement)
+                    AddPropertyListViewItem("(Declaration)", member.ToVbDeclaration());
+                    AddPropertyListViewItem("(Member type)", member.GetType().Name);
+
+                    AddPropertyListViewItem("Name", member.Name);
+                    AddPropertyListViewItem("Line", member.Location.Line);
+                    AddPropertyListViewItem("Column", member.Location.Column);
+                    AddPropertyListViewItem("Visibility", member.Visibility);
+
+                    IVbMethod method = member as IVbMethod;
+                    if (method != null)
                     {
-                        using (Stream stream = _fileReader.Read(tag, _project))
+                        AddPropertyListViewItem("Kind", method.MethodKind);
+                        AddPropertyListViewItem("Return type", method.ReturnType.TypeName);
+
+                        AddPropertyListViewItem("(Parameter count)", method.Parameters.Count);
+                        for (int i = 0; i < method.Parameters.Count; i++)
                         {
-                            VbPartitionedFile content = _fileReader.ReadPartitionedFile(tag, stream);
-                            txtEdit.Text = content.Source;
+                            IVbParameter parameter = method.Parameters[i];
+
+                            AddPropertyListViewItem(string.Format("Param {0} (Declaration)", i), parameter.ToVbDeclaration());
+                            AddPropertyListViewItem(string.Format("Param {0}: Access", i), parameter.Access);
+                            AddPropertyListViewItem(string.Format("Param {0}: Name", i), parameter.Name);
+                            AddPropertyListViewItem(string.Format("Param {0}: Line", i), parameter.Location.Line);
+                            AddPropertyListViewItem(string.Format("Param {0}: Column", i), parameter.Location.Column);
+                            AddPropertyListViewItem(string.Format("Param {0}: Type", i), parameter.Type.TypeName);
+
+                            if (parameter.IsOptional)
+                            {
+                                AddPropertyListViewItem(string.Format("Param {0}: Is optional", i), true);
+                                AddPropertyListViewItem(string.Format("Param {0}: Default value", i), parameter.OptionalDefaultValue);
+                            }
                         }
                     }
+
+                    IVbAttribute attribute = member as IVbAttribute;
+                    if (attribute != null)
+                    {
+                        AddPropertyListViewItem("Value", attribute.Value);
+                    }
+                }
+                else
+                {
+                    txtEdit.Clear();
                 }
             }
         }
+
+        private void AddPropertyListViewItem(string name, object value)
+        {
+            ListViewItem item = new ListViewItem(name);
+            item.SubItems.Add(value.ToString());
+            lsvProperties.Items.Add(item);
+        }
+
+        private IVbModule AnalyzeElement(ElementBase element)
+        {
+            try
+            {
+                using (Stream stream = _fileReader.Read(element, _project))
+                {
+                    VbPartitionedFile content = _fileReader.ReadPartitionedFile(element, stream);
+
+                    return ModuleReflector.GetReflectedModule(content);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+            return null;
+        }
+
+        private void ExtendNode(ElementBase item, TreeNode itemNode)
+        {
+            if (item is ClassElement || item is ModuleElement || item is FormElement)
+            {
+                IVbModule reflectedModule = AnalyzeElement(item);
+                if (reflectedModule == null)
+                {
+                    return;
+                }
+
+                foreach (IVbMember member in reflectedModule.Members)
+                {
+                    TreeNode node = new TreeNode();
+                    node.Tag = member;
+
+                    if (member is IVbAttribute)
+                    {
+                        node.Text = string.Format("(A) {0}", ((IVbAttribute)member).Name);
+                    }
+                    else if (member is IVbProperty)
+                    {
+                        IVbProperty property = (IVbProperty)member;
+                        node.Text = string.Format("(P) {0} {1}", property.Accessor, property.Name);
+                    }
+                    else if (member is IVbMethod)
+                    {
+                        node.Text = string.Format("(M) {0}", ((IVbMethod)member).Name);
+                    }
+
+                    itemNode.Nodes.Add(node);
+                }
+            }
+        }
+
+        #endregion
+
     }
 }

@@ -13,27 +13,18 @@
 // You should have received a copy of the GNU General Public License
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.IO;
-using System.Text;
-using VB6leap.Vbp.Project;
-using VB6leap.Vbp.Project.ObjectModel;
-using VB6leap.Vbp.Serialization;
-
-namespace VB6leap.VbpParser.Serialization
+namespace VB6leap.Vbp.Reflection.Types
 {
-    public class Vb6FileReader : IVbFileReader
+    /// <summary>
+    /// Represents the VB6 "Variant" type.
+    /// </summary>
+    public class VbVariantType : IVbType
     {
-        #region IVbFileReader Members
+        #region IVbType Members
 
-        Stream IVbFileReader.Read(ElementBase element, IVbProject parentProject)
+        string IVbType.TypeName
         {
-            return File.OpenRead(element.GetAbsoluteFileName(parentProject));
-        }
-
-        VbPartitionedFile IVbFileReader.ReadPartitionedFile(ElementBase element, Stream stream)
-        {
-            StreamReader reader = new StreamReader(stream, Encoding.Default);
-            return VbPartitionedFile.GetPartitionedFile(reader.ReadToEnd());
+            get { return "Variant"; }
         }
 
         #endregion

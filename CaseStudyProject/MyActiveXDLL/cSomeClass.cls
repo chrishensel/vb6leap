@@ -11,6 +11,14 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = True
+Option Explicit
+
+Public Property Let Value(RHS As Integer)
+End Property
+
+Public Property Get Value() As Integer
+End Property
+
 Public Function GiveMeRandomness() As Integer
     ' Chosen by fair dice roll... guaranteed to be random.
     GiveMeRandomness = 4

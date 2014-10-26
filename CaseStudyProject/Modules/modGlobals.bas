@@ -1,7 +1,7 @@
 Attribute VB_Name = "modGlobals"
 Public Const g_strHello As String = "World"
 
-Private Function Asdf() As Variant
+Private Function Asdf() As Variant		' I'm a comment and I should be ignored! Test 1 2 3 
 '---------------------------------------
 ' This is a comment.
 '---------------------------------------
@@ -30,3 +30,17 @@ Private Function Asdf() As Variant
 ErrHandler:
 	Exit Function
 End Function
+
+Function ThisFunctionIsMultiline(ByVal iFoo As Integer, _
+								 ByRef bBar As Boolean)
+
+	' Comment
+	ThisFunctionIsMultiline = 42
+								 
+End Function
+
+Public Sub MethodWithOptionalParameter(_
+			iHello As Integer, _
+			Optional ByVal iNumber As Integer = 2, Optional str = "Hello This is an optional string")
+
+End Sub

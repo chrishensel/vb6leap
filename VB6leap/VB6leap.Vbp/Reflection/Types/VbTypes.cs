@@ -13,27 +13,34 @@
 // You should have received a copy of the GNU General Public License
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.IO;
-using System.Text;
-using VB6leap.Vbp.Project;
-using VB6leap.Vbp.Project.ObjectModel;
-using VB6leap.Vbp.Serialization;
-
-namespace VB6leap.VbpParser.Serialization
+namespace VB6leap.Vbp.Reflection.Types
 {
-    public class Vb6FileReader : IVbFileReader
+    /// <summary>
+    /// Contains static definitions of most VB6 types.
+    /// </summary>
+    public static class VbTypes
     {
-        #region IVbFileReader Members
+        #region Properties
 
-        Stream IVbFileReader.Read(ElementBase element, IVbProject parentProject)
-        {
-            return File.OpenRead(element.GetAbsoluteFileName(parentProject));
-        }
+        /// <summary>
+        /// Gets the implicit "void" type. This is only used for a Sub.
+        /// </summary>
+        internal static IVbType Void { get; private set; }
 
-        VbPartitionedFile IVbFileReader.ReadPartitionedFile(ElementBase element, Stream stream)
+        /// <summary>
+        /// Gets the "Variant" type.
+        /// </summary>
+        public static IVbType Variant { get; private set; }
+
+        #endregion
+
+        #region Constructors
+
+        static VbTypes()
         {
-            StreamReader reader = new StreamReader(stream, Encoding.Default);
-            return VbPartitionedFile.GetPartitionedFile(reader.ReadToEnd());
+            Void = new VbVoidType();
+
+            Variant = new VbVariantType();
         }
 
         #endregion
