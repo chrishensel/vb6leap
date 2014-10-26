@@ -15,10 +15,22 @@
 
 namespace VB6leap.Vbp.Project
 {
+    /// <summary>
+    /// Specifies the different kinds of project types VB6 supports.
+    /// </summary>
     public enum ProjectType
     {
+        /// <summary>
+        /// Represents a "standard" executable (no ActiveX EXE).
+        /// </summary>
         StandardExe = 0,
+        /// <summary>
+        /// Represents an ActiveX DLL.
+        /// </summary>
         OleDll,
+        /// <summary>
+        /// Represents a project that exposes user controls.
+        /// </summary>
         Control,
     }
 }

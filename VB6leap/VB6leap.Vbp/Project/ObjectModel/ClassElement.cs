@@ -15,10 +15,14 @@
 
 namespace VB6leap.Vbp.Project.ObjectModel
 {
+    /// <summary>
+    /// Represents a class module element (cls).
+    /// </summary>
     public class ClassElement : ElementBase
     {
         #region Properties
 
+        /// <inheritdoc />
         public override string ParentDirectoryName
         {
             get { return "Class Modules"; }

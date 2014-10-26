@@ -27,7 +27,7 @@ namespace VB6leap.Vbp.Reflection.Modules
     {
         #region Fields
 
-        private List<IVbMember> _membersInternal;
+        private readonly List<IVbMember> _membersInternal;
 
         #endregion
 
@@ -61,6 +61,9 @@ namespace VB6leap.Vbp.Reflection.Modules
 
         #region Constructors
 
+        /// <summary>
+        /// Protected instance constructor.
+        /// </summary>
         protected ModuleBase()
         {
             _membersInternal = new List<IVbMember>();
@@ -92,6 +95,10 @@ namespace VB6leap.Vbp.Reflection.Modules
 
         #region Methods
 
+        /// <summary>
+        /// Adds the given member to the list of members.
+        /// </summary>
+        /// <param name="member">The member to add. The member is only added if it does not yet exist in the collection.</param>
         protected internal void AddMember(IVbMember member)
         {
             if (member == null)

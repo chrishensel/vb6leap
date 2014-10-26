@@ -74,7 +74,6 @@
     <Compile Include="Reflection\Source\SourceLocation.cs" />
     <Compile Include="Reflection\Source\TokenStreamReader.cs" />
     <Compile Include="Reflection\Source\TokenType.cs" />
-    <Compile Include="Reflection\Source\VbPartitionedFileSegment.cs" />
     <Compile Include="Reflection\Types\IVbType.cs" />
     <Compile Include="Reflection\Types\IVbVoidType.cs" />
     <Compile Include="Reflection\Types\VbType.cs" />
@@ -95,6 +94,7 @@
     <Compile Include="Project\ObjectModel\ElementBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\VbPartitionedFile.cs" />
+    <Compile Include="Serialization\VbPartitionedFileSegment.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VB6leap.Core\VB6leap.Core.csproj">

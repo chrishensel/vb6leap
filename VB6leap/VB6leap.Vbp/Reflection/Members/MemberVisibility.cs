@@ -24,15 +24,22 @@ namespace VB6leap.Vbp.Reflection.Members
 	{
         /// <summary>
         /// Specifies the default visibility.
+        /// This value is used whenever the exact visibility is not explicitly specified in code.
+        /// See documentation for further information.
         /// </summary>
+        /// <remarks>The following declaration will result in a "Default" visibility. 'Sub Foo()'.</remarks>
         Default = 0,
 		/// <summary>
 		/// Specifies that the member is not publicly visible.
-		/// </summary>
+        /// See documentation for further information.
+        /// </summary>
+        /// <remarks>The following declaration will result in a "Private" visibility. 'Private Sub Foo()'.</remarks>
 		Private = 1,
 		/// <summary>
 		/// Specifies that the member is publicly visible and callable.
-		/// </summary>
+        /// See documentation for further information.
+        /// </summary>
+        /// <remarks>The following declaration will result in a "Public" visibility. 'Public Sub Foo()'.</remarks>
 		Public = 2
 	}
 }

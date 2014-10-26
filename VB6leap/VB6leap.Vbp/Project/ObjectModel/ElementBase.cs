@@ -13,6 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.IO;
 
 namespace VB6leap.Vbp.Project.ObjectModel
@@ -24,7 +25,15 @@ namespace VB6leap.Vbp.Project.ObjectModel
     {
         #region Properties
 
+        /// <summary>
+        /// Gets/sets the display name of this element.
+        /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// Gets/sets the file path as read from the project file.
+        /// See documentation for further information.
+        /// </summary>
+        /// <remarks>Usually this lies in the same directory as the VBP, but can also be relative to the project directory.</remarks>
         public string FileName { get; set; }
 
         /// <summary>
@@ -40,8 +49,18 @@ namespace VB6leap.Vbp.Project.ObjectModel
 
         #region Methods
 
+        /// <summary>
+        /// Returns the absolute path to the underlying file.
+        /// </summary>
+        /// <param name="project">The <see cref="IVbProject"/> instance used for retrieving the full path (if the file path is relative).</param>
+        /// <returns>The absolute path to the underlying file.</returns>
         public string GetAbsoluteFileName(IVbProject project)
         {
+            if (project == null)
+            {
+                throw new ArgumentNullException("project");
+            }
+            
             if (Path.IsPathRooted(this.FileName))
             {
                 return this.FileName;

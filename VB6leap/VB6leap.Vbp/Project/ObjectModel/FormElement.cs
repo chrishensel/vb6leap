@@ -15,10 +15,14 @@
 
 namespace VB6leap.Vbp.Project.ObjectModel
 {
+    /// <summary>
+    /// Represents a form element (frm).
+    /// </summary>
     public class FormElement : ElementBase
     {
         #region Properties
 
+        /// <inheritdoc />
         public override string ParentDirectoryName
         {
             get { return "Forms"; }

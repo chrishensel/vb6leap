@@ -46,6 +46,7 @@ namespace VB6leap.Vbp.Project.ObjectModel
         /// <remarks>Example: "C:\MyFile.dll\3"</remarks>
         public string FileNameTrailer { get; set; }
 
+        /// <inheritdoc />
         public override string ToString()
         {
             return string.Format("*\\G{{{0}}}#{1}#{2}#{3}{4}#{5}", Guid, Version, Reserved, FileName, FileNameTrailer, Name);

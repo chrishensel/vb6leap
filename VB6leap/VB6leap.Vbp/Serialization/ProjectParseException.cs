@@ -25,18 +25,21 @@ namespace VB6leap.Vbp.Serialization
     {
         #region Constructors
 
+        /// <inheritdoc />
         public ProjectParseException()
             : this("Parsing failed!")
         {
 
         }
 
+        /// <inheritdoc />
         public ProjectParseException(string message)
             : base(message)
         {
 
         }
 
+        /// <inheritdoc />
         public ProjectParseException(string message, Exception innerException)
             : base(message, innerException)
         {

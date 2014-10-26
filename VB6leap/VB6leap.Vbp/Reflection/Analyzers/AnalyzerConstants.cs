@@ -16,22 +16,58 @@
 
 namespace VB6leap.Vbp.Reflection.Analyzers
 {
+    /// <summary>
+    /// Defines constants that are useful for analyzing VB6 files.
+    /// </summary>
     public static class AnalyzerConstants
     {
+        /// <summary>
+        /// Specifies the value of the "Attribute" token.
+        /// </summary>
         public const string Attribute_TokenName = "Attribute";
+        /// <summary>
+        /// Specifies the value of the "VB_Name" attribute token, representing the actual name of a VB6 module.
+        /// </summary>
         public const string AttributeName_Name = "VB_Name";
 
+        /// <summary>
+        /// Specifies the value of the "Private" token.
+        /// </summary>
         public const string Visibility_Private = "Private";
+        /// <summary>
+        /// Specifies the value of the "Public" token.
+        /// </summary>
         public const string Visibility_Public = "Public";
 
+        /// <summary>
+        /// Specifies the value of the "Sub" token.
+        /// </summary>
         public const string Method_Sub = "Sub";
+        /// <summary>
+        /// Specifies the value of the "Function" token.
+        /// </summary>
         public const string Method_Function = "Function";
+        /// <summary>
+        /// Specifies the value of the "Property" token.
+        /// </summary>
         public const string Method_Property = "Property";
 
+        /// <summary>
+        /// Specifies the value of the "End" token.
+        /// </summary>
         public const string End = "End";
 
+        /// <summary>
+        /// Specifies the value of the "ByVal" token.
+        /// </summary>
         public const string Parameter_ByVal = "ByVal";
+        /// <summary>
+        /// Specifies the value of the "ByRef" token.
+        /// </summary>
         public const string Parameter_ByRef = "ByRef";
+        /// <summary>
+        /// Specifies the value of the "Optional" token.
+        /// </summary>
         public const string Parameter_Optional = "Optional";
 
     }

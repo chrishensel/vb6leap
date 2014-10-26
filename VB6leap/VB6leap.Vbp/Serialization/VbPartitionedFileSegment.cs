@@ -15,7 +15,7 @@
 
 using System;
 
-namespace VB6leap.Vbp.Reflection.Source
+namespace VB6leap.Vbp.Serialization
 {
     /// <summary>
     /// Specifies the segment of a <see cref="VbPartitionedFile"/>.

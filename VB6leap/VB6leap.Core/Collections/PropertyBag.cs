@@ -25,21 +25,13 @@ namespace VB6leap.Core.Collections
     {
         #region Fields
 
-        private IDictionary<string, object> _bag = new Dictionary<string, object>();
-
-        #endregion
-
-        #region Constructors
-
-        public PropertyBag()
-        {
-
-        }
+        private readonly IDictionary<string, object> _bag = new Dictionary<string, object>();
 
         #endregion
 
         #region IPropertyBag Members
 
+        /// <inheritdoc />
         public T Get<T>(string key, T defaultValue)
         {
             if (_bag.ContainsKey(key))
@@ -50,6 +42,7 @@ namespace VB6leap.Core.Collections
             return defaultValue;
         }
 
+        /// <inheritdoc />
         public void Set(string key, object value)
         {
             bool isDifferent = false;
@@ -74,8 +67,15 @@ namespace VB6leap.Core.Collections
 
         #region INotifyPropertyChanged Members
 
+        /// <summary>
+        /// Raised when the value of an item changes.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// Raises the PropertyChanged event.
+        /// </summary>
+        /// <param name="propertyName">The name of the item that has changed.</param>
         protected virtual void OnPropertyChanged(string propertyName)
         {
             var copy = PropertyChanged;

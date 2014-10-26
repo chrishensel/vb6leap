@@ -26,16 +26,16 @@ namespace VB6leap.Core.Collections
         /// <summary>
         /// Retrieves a value by its key, or returns a default value if the key wasn't found.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="key"></param>
-        /// <param name="defaultValue"></param>
+        /// <typeparam name="T">The desired type of the item to get.</typeparam>
+        /// <param name="key">The name of the item to get.</param>
+        /// <param name="defaultValue">The value to return if the item doesn't exist.</param>
         /// <returns></returns>
         T Get<T>(string key, T defaultValue);
         /// <summary>
         /// Sets the value of a key.
         /// </summary>
-        /// <param name="key"></param>
-        /// <param name="value"></param>
+        /// <param name="key">The name of the item to set.</param>
+        /// <param name="value">The value to set.</param>
         void Set(string key, object value);
     }
 }

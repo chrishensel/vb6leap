@@ -19,8 +19,17 @@ using VB6leap.Vbp.Project.ObjectModel;
 
 namespace VB6leap.Vbp.Serialization
 {
+    /// <summary>
+    /// Defines members for writing a project element to a stream.
+    /// </summary>
     public interface IVbFileWriter
     {
+        /// <summary>
+        /// Writes the given project element to a stream.
+        /// </summary>
+        /// <param name="element">The element to write.</param>
+        /// <param name="parentProject">The project the element belongs to.</param>
+        /// <param name="stream">The stream to write to.</param>
         void Write(ElementBase element, IVbProject parentProject, Stream stream);
     }
 }

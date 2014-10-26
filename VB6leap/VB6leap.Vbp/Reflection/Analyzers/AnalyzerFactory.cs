@@ -18,17 +18,11 @@ using VB6leap.Vbp.Reflection.Source;
 
 namespace VB6leap.Vbp.Reflection.Analyzers
 {
-    public static class AnalyzerFactory
+    static class AnalyzerFactory
     {
         #region Fields
 
         private static readonly IAnalyzer[] _analyzers;
-
-        #endregion
-
-        #region Properties
-
-        public static ITokenizer Tokenizer { get; set; }
 
         #endregion
 

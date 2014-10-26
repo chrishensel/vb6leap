@@ -24,10 +24,19 @@ using VB6leap.Vbp.Serialization;
 namespace VB6leap.Vbp.Reflection
 {
 	/// <summary>
-	/// Provides access to functionality that reflects a text file into a VB module.
+	/// Provides access to functionality that reflects a text file into a VB6 module.
 	/// </summary>
 	public static class ModuleReflector
 	{
+        #region Properties
+
+        /// <summary>
+        /// Gets/sets the <see cref="ITokenizer"/> instance to use for tokenizing a string.
+        /// </summary>
+        public static ITokenizer Tokenizer { get; set; }
+
+        #endregion
+        
 		#region	Constructors
 		
 		static ModuleReflector()
@@ -45,6 +54,7 @@ namespace VB6leap.Vbp.Reflection
 		/// <param name="partitionedFile">An instance of <see cref="VbPartitionedFile"/> representing the VB Classic module to reflect.</param>
 		/// <returns></returns>
 		/// <exception cref="ArgumentNullException"><paramref name="partitionedFile"/> was null.</exception>
+		/// <exception cref="InvalidOperationException">There was no analyzer considered fitting for the underlying file.</exception>
 		public static IVbModule GetReflectedModule(VbPartitionedFile partitionedFile)
 		{
 			if (partitionedFile == null)
@@ -52,13 +62,12 @@ namespace VB6leap.Vbp.Reflection
 				throw new ArgumentNullException("partitionedFile");
 			}
 
-            // TODO: Feature-Envy? Property should be in this class?
-            if (AnalyzerFactory.Tokenizer == null)
+            if (Tokenizer == null)
             {
                 throw new InvalidOperationException("No tokenizer defined for analyzing the file!");
             }
 
-            IReadOnlyList<IToken> tokens = AnalyzerFactory.Tokenizer.GetTokens(partitionedFile.GetMergedContent());
+            IReadOnlyList<IToken> tokens = Tokenizer.GetTokens(partitionedFile.GetMergedContent());
 
             IReadOnlyList<IToken> cleanedTokens = tokens.SkipComments().ToList();
             TokenStreamReader reader = new TokenStreamReader(cleanedTokens);

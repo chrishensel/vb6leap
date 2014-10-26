@@ -25,8 +25,10 @@ namespace VB6leap.Vbp.Reflection.Source
 	{
 		#region ISourceLocation implementation
 		
-		public int Line { get; set; }
-		public int Column { get; set; }
+        /// <inheritdoc />
+        public int Line { get; set; }
+		/// <inheritdoc />
+        public int Column { get; set; }
 		
 		#endregion
 		

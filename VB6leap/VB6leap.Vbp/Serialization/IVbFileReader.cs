@@ -19,8 +19,17 @@ using VB6leap.Vbp.Project.ObjectModel;
 
 namespace VB6leap.Vbp.Serialization
 {
+    /// <summary>
+    /// Defines members for read a project element from a stream.
+    /// </summary>
     public interface IVbFileReader
     {
+        /// <summary>
+        /// Reads the specified project element into a stream.
+        /// </summary>
+        /// <param name="element">The element to read.</param>
+        /// <param name="parentProject">The project the element belongs to.</param>
+        /// <returns>A stream containing the contents of the specified project element.</returns>
         Stream Read(ElementBase element, IVbProject parentProject);
         /// <summary>
         /// Parses the given VB6 file and splits its contents for further usage.

@@ -21,7 +21,6 @@ using System.Windows.Forms;
 using VB6leap.Vbp.Project;
 using VB6leap.Vbp.Project.ObjectModel;
 using VB6leap.Vbp.Reflection;
-using VB6leap.Vbp.Reflection.Analyzers;
 using VB6leap.Vbp.Reflection.Members;
 using VB6leap.Vbp.Reflection.Modules;
 using VB6leap.Vbp.Serialization;
@@ -47,7 +46,7 @@ namespace VB6leap.VbpExplorer
 
             _fileReader = new Vb6FileReader();
 
-            AnalyzerFactory.Tokenizer = new Tokenizer();
+            ModuleReflector.Tokenizer = new Tokenizer();
         }
 
         #endregion
