@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Project\VbpProjectProperties.cs" />
     <Compile Include="Reflection\Source\Ader.Text\StringTokenizer.cs" />
     <Compile Include="Reflection\Source\Ader.Text\Token.cs" />
     <Compile Include="Reflection\Source\TokenImpl.cs" />

@@ -69,8 +69,7 @@ namespace VB6leap.Vbp.Reflection
 
             IReadOnlyList<IToken> tokens = Tokenizer.GetTokens(partitionedFile.GetMergedContent());
 
-            IReadOnlyList<IToken> cleanedTokens = tokens.SkipComments().ToList();
-            TokenStreamReader reader = new TokenStreamReader(cleanedTokens);
+            TokenStreamReader reader = new TokenStreamReader(tokens);
 			
 			IAnalyzer analyzer = null;
 			if (!AnalyzerFactory.TryGetAnalyzerForFile(reader, out analyzer))

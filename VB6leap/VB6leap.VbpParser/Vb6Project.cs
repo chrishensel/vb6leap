@@ -15,9 +15,10 @@
 
 using System.Collections.Generic;
 using System.IO;
-using VB6leap.Core.Collections;
 using VB6leap.Vbp.Project;
 using VB6leap.Vbp.Project.ObjectModel;
+using VB6leap.Vbp.Project.Properties;
+using VB6leap.VbpParser.Project;
 
 namespace VB6leap.VbpParser
 {
@@ -26,7 +27,7 @@ namespace VB6leap.VbpParser
         #region IVbProject Members
 
         public FileInfo Source { get; private set; }
-        public IPropertyBag Properties { get; private set; }
+        public IVbpProjectProperties Properties { get; private set; }
 
         public ProjectType Type { get; set; }
         public IList<ReferenceElement> References { get; private set; }
@@ -42,8 +43,8 @@ namespace VB6leap.VbpParser
         public Vb6Project(FileInfo source)
         {
             this.Source = source;
-            
-            Properties = new PropertyBag();
+
+            Properties = new VbpProjectProperties();
 
             References = new List<ReferenceElement>();
             Modules = new List<ModuleElement>();

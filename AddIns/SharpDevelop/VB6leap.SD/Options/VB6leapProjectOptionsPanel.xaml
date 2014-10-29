@@ -31,11 +31,22 @@
                     <Label Grid.Row="0" Grid.Column="0" Content="Project type:" FontWeight="Bold" />
                     <TextBlock Grid.Row="0" Grid.Column="1" Margin="2" Text="{Binding Type, Mode=OneWay}" VerticalAlignment="Center"  />
 
-                    <!-- Version string and options -->
-                    <Label Grid.Row="1" Grid.Column="0" Content="Version:" FontWeight="Bold" />
-                    <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Text="{Binding Version}" />
-                    <CheckBox Grid.Row="2" Grid.Column="1" Margin="2" Content="Auto-increment version on build" IsEnabled="False" IsChecked="{Binding AutoIncrementVer, Mode=OneWay}" />
+                    <!-- Name and title -->
+                    <Label Grid.Row="1" Grid.Column="0" Content="Name:" FontWeight="Bold" />
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Text="{Binding Name}" />
 
+                    <Label Grid.Row="2" Grid.Column="0" Content="Title:" FontWeight="Bold" />
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding Title}" />
+
+                    <!-- Version string and options -->
+                    <Label Grid.Row="3" Grid.Column="0" Content="Version:" FontWeight="Bold" />
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="2" Text="{Binding Version}" />
+                    <CheckBox Grid.Row="4" Grid.Column="1" Margin="2" Content="Auto-increment version on build" IsEnabled="False" IsChecked="{Binding AutoIncrementVer, Mode=OneWay}" />
+
+                    <!-- Startup object -->
+                    <Label Grid.Row="5" Grid.Column="0" Content="Startup object:" FontWeight="Bold" />
+                    <ComboBox Grid.Row="5" Grid.Column="1" Margin="2" Text="{Binding Startup}" IsEditable="True" />
+                    
 
                 </Grid>
             </GroupBox>

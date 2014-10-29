@@ -50,12 +50,19 @@ namespace VB6leap.Vbp.Reflection.Source
             get { return _position >= _tokens.Count; }
         }
 
+        /// <summary>
+        /// Gets/sets whether or not calls that involve reading tokens will skip over comments.
+        /// </summary>
+        public bool SkipOverComments { get; set; }
+
         #endregion
 
         #region Constructors
 
         public TokenStreamReader(IReadOnlyList<IToken> tokens)
         {
+            this.SkipOverComments = true;
+
             _tokens = tokens;
         }
 
@@ -163,21 +170,55 @@ namespace VB6leap.Vbp.Reflection.Source
                 throw new InvalidOperationException("At end of file!");
             }
 
-            IToken token = _tokens[_position];
+            int offset = 0;
+            IToken token = null;
 
-            _position++;
+            Peek(out token, out offset);
+
+            _position += offset;
 
             return token;
         }
 
         public IToken Peek()
         {
+            int offset = 0;
+            IToken token = null;
+
+            Peek(out token, out offset);
+
+            return token;
+        }
+
+        private void Peek(out IToken token, out int offset)
+        {
             if (IsEOF)
             {
                 throw new InvalidOperationException("At end of file!");
             }
 
-            return _tokens[_position];
+            int posTemp = _position;
+
+            IToken tokenTemp = _tokens[posTemp];
+
+            if (SkipOverComments)
+            {
+                bool isInComment = (tokenTemp.Content == "'");
+                while (isInComment)
+                {
+                    if (tokenTemp.Type == TokenType.EOF ||
+                        tokenTemp.Type == TokenType.EOL)
+                    {
+                        break;
+                    }
+
+                    posTemp++;
+                    tokenTemp = _tokens[posTemp];
+                }
+            }
+
+            token = tokenTemp;
+            offset = 1 + (posTemp - _position);
         }
 
         public TokenStreamReader Rewind()

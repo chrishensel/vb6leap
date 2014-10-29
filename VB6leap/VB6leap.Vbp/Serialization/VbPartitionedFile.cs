@@ -47,9 +47,8 @@ namespace VB6leap.Vbp.Serialization
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine(Preamble);
-            sb.AppendLine();
-            sb.AppendLine(Source);
+            sb.Append(Preamble);
+            sb.Append(Source);
 
             return sb.ToString();
         }

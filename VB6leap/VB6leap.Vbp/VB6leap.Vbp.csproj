@@ -38,6 +38,8 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Project\Properties\CompatibleModeKind.cs" />
+    <Compile Include="Project\Properties\IVbpProjectProperties.cs" />
     <Compile Include="Project\IVbProject.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -48,6 +50,7 @@
     <Compile Include="Reflection\Analyzers\AnalyzerFactory.cs" />
     <Compile Include="Reflection\Analyzers\AnalyzerTools.cs" />
     <Compile Include="Reflection\Analyzers\ClassModuleAnalyzer.cs" />
+    <Compile Include="Reflection\Analyzers\FormsModuleAnalyzer.cs" />
     <Compile Include="Reflection\Analyzers\GlobalModuleAnalyzer.cs" />
     <Compile Include="Reflection\Analyzers\IAnalyzer.cs" />
     <Compile Include="Reflection\Members\IVbMember.cs" />
@@ -61,6 +64,7 @@
     <Compile Include="Reflection\Members\VbProperty.cs" />
     <Compile Include="Reflection\Members\VbPropertyAccessor.cs" />
     <Compile Include="Reflection\Modules\ClassModule.cs" />
+    <Compile Include="Reflection\Modules\FormsModule.cs" />
     <Compile Include="Reflection\Modules\IVbModule.cs" />
     <Compile Include="Reflection\Members\IVbAttribute.cs" />
     <Compile Include="Reflection\Members\VbAttribute.cs" />

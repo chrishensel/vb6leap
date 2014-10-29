@@ -15,8 +15,8 @@
 
 using System.Collections.Generic;
 using System.IO;
-using VB6leap.Core.Collections;
 using VB6leap.Vbp.Project.ObjectModel;
+using VB6leap.Vbp.Project.Properties;
 
 namespace VB6leap.Vbp.Project
 {
@@ -30,9 +30,9 @@ namespace VB6leap.Vbp.Project
         /// </summary>
         FileInfo Source { get; }
         /// <summary>
-        /// Gets an instance of <see cref="IPropertyBag"/> holding all options that were found in the project.
+        /// Gets an instance of <see cref="IVbpProjectProperties"/> holding all options that were found in the project.
         /// </summary>
-        IPropertyBag Properties { get; }
+        IVbpProjectProperties Properties { get; }
 
         /// <summary>
         /// Gets the VB6-project type.

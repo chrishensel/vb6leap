@@ -77,51 +77,6 @@ namespace VB6leap.Vbp.Reflection.Analyzers
             }
         }
 
-        internal static IEnumerable<IToken> SkipComments(this IEnumerable<IToken> tokens)
-        {
-            bool isInComment = false;
-            foreach (var item in tokens)
-            {
-                if (item.Content == "'")
-                {
-                    isInComment = true;
-                    continue;
-                }
-
-                if (isInComment)
-                {
-                    /* Check if we can reset our flag.
-                     * In VB - luckily for us - comments can't go over multiple lines.
-                     */
-                    if (item.Type == TokenType.EOL ||
-                        item.Type == TokenType.EOF)
-                    {
-                        isInComment = false;
-                        continue;
-                    }
-                }
-
-                if (!isInComment)
-                {
-                    yield return item;
-                }
-            }
-        }
-
-        internal static IEnumerable<IToken> SkipNewlines(this IEnumerable<IToken> tokens)
-        {
-            foreach (var item in tokens)
-            {
-                if (item.Type == TokenType.EOL ||
-                    item.Type == TokenType.EOF)
-                {
-                    continue;
-                }
-
-                yield return item;
-            }
-        }
-
         internal static bool EqualsStringInvariant(this IToken token, string other)
         {
             if (token == null)
@@ -210,8 +165,21 @@ namespace VB6leap.Vbp.Reflection.Analyzers
 
                         signatureTokens.AddRange(reader.GetUntilEOL());
 
-                        ParseSignatureIntoMethod(method, signatureTokens);
-                        yield return method;
+                        bool success = false;
+                        try
+                        {
+                            ParseSignatureIntoMethod(method, signatureTokens);
+                            success = true;
+                        }
+                        catch (Exception)
+                        {
+                            // FIXME: The parser may peek() too far beyond EOF. Need to handle that!
+                        }
+
+                        if (success)
+                        {
+                            yield return method;
+                        }
 
                         signatureTokens.Clear();
                     }

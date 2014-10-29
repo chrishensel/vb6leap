@@ -15,6 +15,8 @@
 
 using System;
 using ICSharpCode.SharpDevelop.Project;
+using VB6leap.Vbp.Reflection;
+using VB6leap.VbpParser.Reflection.Source;
 
 namespace VB6leap.SD
 {
@@ -27,6 +29,11 @@ namespace VB6leap.SD
         #endregion
 
         #region Constructors
+
+        static VbpProjectBinding()
+        {
+            ModuleReflector.Tokenizer = new Tokenizer();
+        }
 
         public VbpProjectBinding()
         {

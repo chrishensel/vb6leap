@@ -13,7 +13,6 @@
 // You should have received a copy of the GNU General Public License
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.ComponentModel;
 using ICSharpCode.SharpDevelop.Gui;
 using VB6leap.Vbp.Project;
 
@@ -76,6 +75,18 @@ namespace VB6leap.SD.Options
                 get { return _project.Type.ToString(); }
             }
 
+            public string Name
+            {
+                get { return _project.Properties.Name; }
+                set { _project.Properties.Name = value; }
+            }
+
+            public string Title
+            {
+                get { return _project.Properties.Title; }
+                set { _project.Properties.Title = value; }
+            }
+
             public string Version
             {
                 get
@@ -113,6 +124,12 @@ namespace VB6leap.SD.Options
             public bool AutoIncrementVer
             {
                 get { return _project.Properties.Get("AutoIncrementVer", "0") == "1"; }
+            }
+
+            public string Startup
+            {
+                get { return _project.Properties.Startup; }
+                set { _project.Properties.Startup = value; }
             }
 
             #endregion

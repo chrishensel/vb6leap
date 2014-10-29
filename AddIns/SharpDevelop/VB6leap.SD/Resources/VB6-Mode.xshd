@@ -3,8 +3,9 @@
   <Color name="String" foreground="Red" exampleText="&quot;Hello, World!&quot;" />
   <Color name="Instructions" foreground="Blue" exampleText="Call" />
   <Color name="Keywords" foreground="Blue" fontWeight="bold" exampleText="Exit Sub" />
-  <Color name="Directives" foreground="Blue" fontWeight="bold" exampleText="#If" />
+  <Color name="Directives" foreground="Blue" background="yellow" fontWeight="bold" exampleText="#If" />
   <Color name="Internals" foreground="LightGray" fontWeight="bold" exampleText="Attribute" />
+  <Color name="KnownTokens" foreground="Gray" exampleText="vbCrLf" />
 
   <RuleSet ignoreCase="true">
 
@@ -25,8 +26,15 @@
       <Word>Sub</Word>
       <Word>Const</Word>
 
+      <Word>Property</Word>
+      <Word>Get</Word>
+      <Word>Let</Word>
+
+      <Word>New</Word>
       <Word>Set</Word>
       <Word>Null</Word>
+      <Word>True</Word>
+      <Word>False</Word>
       <Word>Nothing</Word>
       
       <Word>ReDim</Word>
@@ -35,7 +43,9 @@
       <Word>String</Word>
       <Word>Integer</Word>
       <Word>Single</Word>
+      <Word>Double</Word>
       <Word>Long</Word>
+      <Word>Boolean</Word>
       <Word>Variant</Word>
       <Word>Object</Word>
 
@@ -67,12 +77,25 @@
 
       <Word>AddressOf</Word>
       <Word>Declare</Word>
+      <Word>Alias</Word>
+      <Word>Lib</Word>
+    </Keywords>
+
+    <Keywords color="KnownTokens">
+      <Word>&amp;</Word>
+      <Word>vbCrLf</Word>
     </Keywords>
 
     <Keywords color="Directives">
       <Word>#If</Word>
       <Word>#Else</Word>
       <Word>#EndIf</Word>
+
+      <Word>Option</Word>
+      <Word>Explicit</Word>
+      <Word>Strict</Word>
+      <Word>Base</Word>
+      <Word>On</Word>
     </Keywords>
 
     <Keywords color="Internals">

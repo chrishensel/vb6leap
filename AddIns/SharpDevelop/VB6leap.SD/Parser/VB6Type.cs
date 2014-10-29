@@ -13,48 +13,56 @@
 // You should have received a copy of the GNU General Public License
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using VB6leap.Vbp.Reflection.Source;
+using System.Text;
+using System.Threading.Tasks;
+using ICSharpCode.NRefactory.TypeSystem;
+using ICSharpCode.NRefactory.TypeSystem.Implementation;
 
-namespace VB6leap.Vbp.Reflection.Analyzers
+namespace VB6leap.SD.Parser
 {
-    static class AnalyzerFactory
+    class VB6Type : AbstractType
     {
         #region Fields
 
-        private static readonly IAnalyzer[] _analyzers;
+        private string _name;
 
         #endregion
 
         #region Constructors
 
-        static AnalyzerFactory()
+        public VB6Type(string name)
         {
-            _analyzers = new IAnalyzer[]
-            {
-                new GlobalModuleAnalyzer(),
-                new ClassModuleAnalyzer(),
-                new FormsModuleAnalyzer(),
-            };
+            _name = name;
         }
 
         #endregion
 
         #region Methods
 
-        internal static bool TryGetAnalyzerForFile(TokenStreamReader reader, out IAnalyzer analyzer)
+        public override bool? IsReferenceType
         {
-            var best = _analyzers.FirstOrDefault(_ => _.CanAnalyze(reader.Rewind()));
-            if (best != null)
-            {
-                analyzer = best;
-                return true;
-            }
+            get { return true; }
+        }
 
-            analyzer = null;
-            return false;
+        public override TypeKind Kind
+        {
+            get { return TypeKind.Class; }
+        }
+
+        public override string Name
+        {
+            get { return _name; }
+        }
+
+        public override ITypeReference ToTypeReference()
+        {
+            return new VB6TypeReference();
         }
 
         #endregion
+
     }
 }
