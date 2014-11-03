@@ -44,13 +44,13 @@ namespace VB6leap.VbpParser.Project
                 int minorVer = int.Parse(GetValue(this.Get("MinorVer", 0)));
                 int revisionVer = int.Parse(GetValue(this.Get("RevisionVer", 0)));
 
-                return new Version(majorVer, minorVer, 0, revisionVer);
+                return new Version(majorVer, minorVer, revisionVer, 0);
             }
             set
             {
                 this.Set("MajorVer", value.Major);
                 this.Set("MinorVer", value.Minor);
-                this.Set("RevisionVer", value.Revision);
+                this.Set("RevisionVer", value.Build);
             }
         }
 
