@@ -135,7 +135,7 @@ namespace VB6leap.VbpExplorer
             foreach (var item in _project.Properties)
             {
                 ListViewItem lvi = new ListViewItem(item);
-                lvi.SubItems.Add(_project.Properties.Get<object>(item, null).ToString());
+                lvi.SubItems.Add(_project.Properties.Get(item, null).ToString());
                 this.lsvProperties.Items.Add(lvi);
             }
         }

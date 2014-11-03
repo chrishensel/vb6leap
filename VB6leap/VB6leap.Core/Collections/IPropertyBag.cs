@@ -26,11 +26,10 @@ namespace VB6leap.Core.Collections
         /// <summary>
         /// Retrieves a value by its key, or returns a default value if the key wasn't found.
         /// </summary>
-        /// <typeparam name="T">The desired type of the item to get.</typeparam>
         /// <param name="key">The name of the item to get.</param>
-        /// <param name="defaultValue">The value to return if the item doesn't exist.</param>
-        /// <returns></returns>
-        T Get<T>(string key, T defaultValue);
+        /// <param name="defaultValue">The value to return if the item doesn't exist. ToString() is called on this value (object is just for convenience).</param>
+        /// <returns>A string representing the value of the property.</returns>
+        string Get(string key, object defaultValue);
         /// <summary>
         /// Sets the value of a key.
         /// </summary>

@@ -32,14 +32,14 @@ namespace VB6leap.Core.Collections
         #region IPropertyBag Members
 
         /// <inheritdoc />
-        public T Get<T>(string key, T defaultValue)
+        public string Get(string key, object defaultValue)
         {
             if (_bag.ContainsKey(key))
             {
-                return (T)_bag[key];
+                return _bag[key].ToString();
             }
 
-            return defaultValue;
+            return defaultValue.ToString();
         }
 
         /// <inheritdoc />

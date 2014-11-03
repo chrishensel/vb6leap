@@ -27,22 +27,22 @@ namespace VB6leap.VbpParser.Project
         public string Title
         {
             get { return GetValue(this.Get("Title", "")); }
-            set { this.Set("Title", GetString(value, true)); }
+            set { this.Set("Title", GetAsQuotedString(value)); }
         }
 
         public string Name
         {
             get { return GetValue(this.Get("Name", "")); }
-            set { this.Set("Name", GetString(value, true)); }
+            set { this.Set("Name", GetAsQuotedString(value)); }
         }
 
         public Version Version
         {
             get
             {
-                int majorVer = int.Parse(GetValue(this.Get("MajorVer", "1")));
-                int minorVer = int.Parse(GetValue(this.Get("MinorVer", "0")));
-                int revisionVer = int.Parse(GetValue(this.Get("RevisionVer", "0")));
+                int majorVer = int.Parse(GetValue(this.Get("MajorVer", 1)));
+                int minorVer = int.Parse(GetValue(this.Get("MinorVer", 0)));
+                int revisionVer = int.Parse(GetValue(this.Get("RevisionVer", 0)));
 
                 return new Version(majorVer, minorVer, 0, revisionVer);
             }
@@ -57,43 +57,43 @@ namespace VB6leap.VbpParser.Project
         public string Startup
         {
             get { return GetValue(this.Get("Startup", "(None)")); }
-            set { this.Set("Startup", GetString(value, true)); }
+            set { this.Set("Startup", GetAsQuotedString(value)); }
         }
 
         public string HelpFile
         {
             get { return GetValue(this.Get("HelpFile", "")); }
-            set { this.Set("HelpFile", GetString(value, true)); }
+            set { this.Set("HelpFile", GetAsQuotedString(value)); }
         }
 
         public string HelpContextID
         {
             get { return GetValue(this.Get("HelpContextID", "")); }
-            set { this.Set("HelpContextID", GetString(value, true)); }
+            set { this.Set("HelpContextID", GetAsQuotedString(value)); }
         }
 
         public string ExeName32
         {
             get { return GetValue(this.Get("ExeName32", "")); }
-            set { this.Set("ExeName32", GetString(value, true)); }
+            set { this.Set("ExeName32", GetAsQuotedString(value)); }
         }
 
         public string Command32
         {
             get { return GetValue(this.Get("Command32", "")); }
-            set { this.Set("Command32", GetString(value, true)); }
+            set { this.Set("Command32", GetAsQuotedString(value)); }
         }
 
         public CompatibleModeKind CompatibleMode
         {
             get { return (CompatibleModeKind)int.Parse(GetValue(this.Get("CompatibleMode", "0"))); }
-            set { this.Set("CompatibleMode", GetString(value, true)); }
+            set { this.Set("CompatibleMode", GetAsQuotedString(value)); }
         }
 
         public string CompatibleEXE32
         {
             get { return GetValue(this.Get("CompatibleEXE32", "")); }
-            set { this.Set("CompatibleEXE32", GetString(value, true)); }
+            set { this.Set("CompatibleEXE32", GetAsQuotedString(value)); }
         }
 
         #endregion
@@ -116,23 +116,17 @@ namespace VB6leap.VbpParser.Project
             return v;
         }
 
-        private string GetString(object value, bool encloseInQuotes)
+        private string GetAsQuotedString(object value)
         {
-            string ret = "";
-            if (encloseInQuotes)
-            {
-                ret += "\"";
-            }
+
+            string ret = "\"";
 
             if (value != null)
             {
                 ret += value.ToString();
             }
 
-            if (encloseInQuotes)
-            {
-                ret += "\"";
-            }
+            ret += "\"";
 
             return ret;
         }
