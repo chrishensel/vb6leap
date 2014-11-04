@@ -180,6 +180,10 @@ namespace VB6leap.Vbp.Reflection.Source
             return token;
         }
 
+        /// <summary>
+        /// Peeks at the next token and returns it, without advancing the position.
+        /// </summary>
+        /// <returns>The next token. -or- null, if at EOF.</returns>
         public IToken Peek()
         {
             int offset = 0;
@@ -194,7 +198,9 @@ namespace VB6leap.Vbp.Reflection.Source
         {
             if (IsEOF)
             {
-                throw new InvalidOperationException("At end of file!");
+                token = null;
+                offset = -1;
+                return;
             }
 
             int posTemp = _position;
