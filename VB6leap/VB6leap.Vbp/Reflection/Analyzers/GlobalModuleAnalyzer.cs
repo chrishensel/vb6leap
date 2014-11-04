@@ -47,7 +47,11 @@ namespace VB6leap.Vbp.Reflection.Analyzers
             {
                 mod.AddMember(attribute);
             }
-            foreach (IVbMethod method in AnalyzerTools.GetMethods(reader))
+            foreach (IVbField field in AnalyzerTools.GetFields(reader.Rewind()))
+            {
+                mod.AddMember(field);
+            }
+            foreach (IVbMethod method in AnalyzerTools.GetMethods(reader.Rewind()))
             {
                 mod.AddMember(method);
             }

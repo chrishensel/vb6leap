@@ -91,6 +91,11 @@ namespace VB6leap.SDAddin.Parser
                 }
             }
 
+            foreach (IVbField field in this.Module.Members.OfType<IVbField>())
+            {
+                _fields.Add(new VB6UnresolvedField(field, this.UnresolvedFile, this, this.DeclaringTypeDefinition));
+            }
+
             _members.AddRange(_events);
             _members.AddRange(_fields);
             _members.AddRange(_properties);

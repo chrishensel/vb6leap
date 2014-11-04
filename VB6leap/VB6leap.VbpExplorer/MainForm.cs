@@ -272,6 +272,10 @@ namespace VB6leap.VbpExplorer
                     {
                         node.Text = string.Format("(M) {0}", ((IVbMethod)member).Name);
                     }
+                    else if (member is IVbField)
+                    {
+                        node.Text = string.Format("(F) {0}", ((IVbField)member).Name);
+                    }
 
                     itemNode.Nodes.Add(node);
                 }

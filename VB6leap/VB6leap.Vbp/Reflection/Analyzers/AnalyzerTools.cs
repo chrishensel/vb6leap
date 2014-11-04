@@ -148,12 +148,13 @@ namespace VB6leap.Vbp.Reflection.Analyzers
                         /* Check if there was a visibility-modifier preceeding this method. If so, add it to our signature and correct source location to point to that token.
                          */
                         MemberVisibility visibility = MemberVisibility.Default;
-                        if (IsMemberVisibilityToken(previous, out visibility))
+                        if (TryGetMemberVisibility(previous, out visibility))
                         {
-                            method.Visibility = visibility;
+                            // Set method location to the previous token (start of line).
                             method.Location = previous.Location;
                         }
 
+                        method.Visibility = visibility;
                         method.Name = reader.Read().Content;
 
                         signatureTokens.AddRange(reader.GetUntilEOL());
@@ -178,6 +179,24 @@ namespace VB6leap.Vbp.Reflection.Analyzers
                     }
                 }
             }
+        }
+
+        private static bool TryGetMemberVisibility(IToken token, out MemberVisibility visibility)
+        {
+            if (token.EqualsStringInvariant(AnalyzerConstants.Visibility_Private))
+            {
+                visibility = MemberVisibility.Private;
+                return true;
+            }
+
+            if (token.EqualsStringInvariant(AnalyzerConstants.Visibility_Public))
+            {
+                visibility = MemberVisibility.Public;
+                return true;
+            }
+
+            visibility = MemberVisibility.Default;
+            return false;
         }
 
         private static void ParseSignatureIntoMethod(VbMethod method, IReadOnlyList<IToken> signatureTokens)
@@ -222,7 +241,7 @@ namespace VB6leap.Vbp.Reflection.Analyzers
                 {
                     break;
                 }
-                
+
                 if (peek.EqualsStringInvariant("As") ||
                     peek.Type == TokenType.Symbol)
                 {
@@ -329,24 +348,138 @@ namespace VB6leap.Vbp.Reflection.Analyzers
             access = VbParameterAccess.ByVal;
             return false;
         }
-        
-        private static bool IsMemberVisibilityToken(IToken token, out MemberVisibility visibility)
+
+        private static Tuple<int, IToken> Find(this IEnumerable<IToken> tokens, string content)
         {
-            if (token.EqualsStringInvariant(AnalyzerConstants.Visibility_Public))
+            int i = 0;
+            foreach (IToken token in tokens)
             {
-                visibility = MemberVisibility.Public;
-                return true;
+                if (token.EqualsStringInvariant(content))
+                {
+                    return Tuple.Create(i, token);
+                }
+
+                i++;
             }
-            
-            if (token.EqualsStringInvariant(AnalyzerConstants.Visibility_Private))
+
+            return null;
+        }
+
+        private static bool ContainsAny(this IEnumerable<IToken> tokens, params string[] contents)
+        {
+            foreach (IToken token in tokens)
             {
-                visibility = MemberVisibility.Private;
-                return true;
+                if (contents.Contains(token.Content, StringComparer.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
             }
-            
-            visibility = MemberVisibility.Default;
+
             return false;
         }
-        
+
+        internal static IEnumerable<IVbField> GetFields(TokenStreamReader reader)
+        {
+            /* TODO: Field declarations á la "Var1, Var2, Var3 As Integer" are not supported right now.
+             */
+
+            while (!reader.IsEOF)
+            {
+                List<IToken> tokens = reader.GetUntilEOL().ToList();
+                if (tokens.Count < 2)
+                {
+                    continue;
+                }
+
+                IVbField field = null;
+
+                if (TryParseFieldDeclaration(tokens, out field))
+                {
+                    yield return field;
+                }
+            }
+        }
+
+        private static bool TryParseFieldDeclaration(IReadOnlyList<IToken> tokens, out IVbField field)
+        {
+            field = null;
+
+            MemberVisibility vis = MemberVisibility.Default;
+            bool isConst = false;
+            bool isStatic = false;
+
+            bool hasVisibility = TryGetMemberVisibility(tokens.First(), out vis);
+
+            var tConst = tokens.Find(AnalyzerConstants.Constant);
+            var tShared = tokens.Find(AnalyzerConstants.Shared);
+            var tAs = tokens.Find("As");
+            var tAssign = tokens.Find("=");
+            var tIsWithEvents = tokens.Find("WithEvents");
+
+            /* Check whether the line qualifies as a field declaration.
+             */
+            if (tokens.ContainsAny(AnalyzerConstants.Method_Function, AnalyzerConstants.Method_Property, AnalyzerConstants.Method_Sub))
+            {
+                return false;
+            }
+
+            if (!hasVisibility)
+            {
+                if (tConst == null)
+                {
+                    return false;
+                }
+            }
+
+            if (tAs != null)
+            {
+                if (tokens[tAs.Item1 - 1].Type != TokenType.Word)
+                {
+                    return false;
+                }
+            }
+
+            IList<IToken> copy = tokens.ToList();
+            if (tConst != null)
+            {
+                isConst = true;
+                copy.RemoveAt(0);
+            }
+
+            if (tShared != null)
+            {
+                isStatic = true;
+                copy.RemoveAt(0);
+            }
+
+            if (tIsWithEvents != null)
+            {
+                // TODO: Actually make use of that keyword!
+                copy.RemoveAt(0);
+            }
+
+            if (hasVisibility)
+            {
+                copy.RemoveAt(0);
+            }
+
+            // Consume name, which is the next.
+            string name = copy.First().Content;
+            copy.RemoveAt(0);
+
+            // TODO: Parse the rest.
+
+            field = new VbField()
+            {
+                IsConstant = isConst,
+                IsStatic = isStatic,
+                Name = name,
+                Location = tokens.First().Location,
+                Visibility = vis,
+                Type = VbTypes.Variant,
+            };
+
+            return true;
+        }
     }
 }

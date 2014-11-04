@@ -48,6 +48,7 @@
     <Compile Include="Reflection\Source\Ader.Text\Token.cs" />
     <Compile Include="Reflection\Source\TokenImpl.cs" />
     <Compile Include="Reflection\Source\Tokenizer.cs" />
+    <Compile Include="Serialization\Helpers.cs" />
     <Compile Include="Serialization\Vb6FileReader.cs" />
     <Compile Include="Serialization\Vb6FileWriter.cs" />
     <Compile Include="Serialization\Vb6ProjectReader.cs" />

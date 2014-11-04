@@ -70,5 +70,8 @@ namespace VB6leap.Vbp.Reflection.Analyzers
         /// </summary>
         public const string Parameter_Optional = "Optional";
 
+        public const string Constant = "Const";
+        public const string Shared = "Shared";
+
     }
 }

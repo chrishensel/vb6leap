@@ -1,5 +1,7 @@
 Attribute VB_Name = "modGlobals"
 Public Const g_strHello As String = "World"
+Const g_varConst = 2
+Private g_varAnon
 
 Private Function Asdf() As Variant		' I'm a comment and I should be ignored! Test 1 2 3 
 '---------------------------------------

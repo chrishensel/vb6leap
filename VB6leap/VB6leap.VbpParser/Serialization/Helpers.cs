@@ -14,35 +14,25 @@
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.IO;
 using VB6leap.Vbp.Project;
-using VB6leap.Vbp.Serialization;
 
 namespace VB6leap.VbpParser.Serialization
 {
-    public class Vb6ProjectWriter : IVbProjectWriter
+    static class Helpers
     {
-        #region IVbProjectWriter Members
-
-        void IVbProjectWriter.Write(IVbProject project, Stream stream)
+        internal static string ToSerializableString(this ProjectType type)
         {
-            StreamWriter writer = new StreamWriter(stream);
-            writer.WriteLine(project.Type.ToSerializableString());
-
-            foreach (var item in project.References)
+            switch (type)
             {
-                writer.WriteLine(item.ToString());
-            }
-
-            // TODO: Objects
-            // TODO: Modules
-
-            foreach (string key in project.Properties)
-            {
-                writer.WriteLine("{0}={1}", key, project.Properties.Get(key, ""));
+                case ProjectType.StandardExe:
+                    return "Exe";
+                case ProjectType.OleDll:
+                    return "OleDll";
+                case ProjectType.Control:
+                    return "Control";
+                default:
+                    throw new ArgumentException("type");
             }
         }
-
-        #endregion
     }
 }

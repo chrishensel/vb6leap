@@ -129,6 +129,7 @@
     <Compile Include="Parser\VB6Type.cs" />
     <Compile Include="Parser\VB6TypeReference.cs" />
     <Compile Include="Parser\VB6UnresolvedEntityBase.cs" />
+    <Compile Include="Parser\VB6UnresolvedField.cs" />
     <Compile Include="Parser\VB6UnresolvedFile.cs" />
     <Compile Include="Parser\VB6UnresolvedMemberBase.cs" />
     <Compile Include="Parser\VB6UnresolvedMethod.cs" />

@@ -39,6 +39,14 @@ namespace VB6leap.Vbp.Reflection.Modules
         public IEnumerable<IVbAttribute> Attributes
         {
             get { return _membersInternal.OfType<IVbAttribute>(); }
+        }        
+
+        /// <summary>
+        /// Gets all fields of this module.
+        /// </summary>
+        public IEnumerable<IVbField> Fields
+        {
+            get { return _membersInternal.OfType<IVbField>(); }
         }
 
         /// <summary>
