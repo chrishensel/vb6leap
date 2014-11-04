@@ -18,10 +18,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using VB6leap.SD.Options;
+using VB6leap.SDAddin.Options;
 using VB6leap.Vbp.Project;
 
-namespace VB6leap.SD.Utils
+namespace VB6leap.SDAddin.Utils
 {
     static class VB6Helper
     {

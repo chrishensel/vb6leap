@@ -18,7 +18,7 @@ using System.Collections.Generic;
 using ICSharpCode.NRefactory.TypeSystem;
 using VB6leap.Vbp.Reflection.Members;
 
-namespace VB6leap.SD.Parser
+namespace VB6leap.SDAddin.Parser
 {
     class VB6UnresolvedMethod : VB6UnresolvedMemberBase, IUnresolvedMethod
     {

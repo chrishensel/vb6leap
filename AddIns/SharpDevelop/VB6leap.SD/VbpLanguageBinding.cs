@@ -20,7 +20,7 @@ using ICSharpCode.SharpDevelop;
 using ICSharpCode.SharpDevelop.Editor;
 using ICSharpCode.SharpDevelop.Editor.CodeCompletion;
 
-namespace VB6leap.SD
+namespace VB6leap.SDAddin
 {
     public class VbpLanguageBinding : ILanguageBinding
     {

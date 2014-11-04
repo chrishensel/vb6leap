@@ -20,13 +20,13 @@ using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.SharpDevelop;
 using ICSharpCode.SharpDevelop.Dom;
 using ICSharpCode.SharpDevelop.Project;
-using VB6leap.SD.Utils;
+using VB6leap.SDAddin.Utils;
 using VB6leap.Vbp.Project;
 using VB6leap.Vbp.Project.ObjectModel;
 using VB6leap.Vbp.Serialization;
 using VB6leap.VbpParser.Serialization;
 
-namespace VB6leap.SD
+namespace VB6leap.SDAddin
 {
     public class VbpProject : AbstractProject, IVbpProject
     {

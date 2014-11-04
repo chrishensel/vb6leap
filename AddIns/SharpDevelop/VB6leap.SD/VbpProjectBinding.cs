@@ -18,7 +18,7 @@ using ICSharpCode.SharpDevelop.Project;
 using VB6leap.Vbp.Reflection;
 using VB6leap.VbpParser.Reflection.Source;
 
-namespace VB6leap.SD
+namespace VB6leap.SDAddin
 {
     public class VbpProjectBinding : IProjectBinding
     {

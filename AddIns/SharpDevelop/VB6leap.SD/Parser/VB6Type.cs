@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 using ICSharpCode.NRefactory.TypeSystem;
 using ICSharpCode.NRefactory.TypeSystem.Implementation;
 
-namespace VB6leap.SD.Parser
+namespace VB6leap.SDAddin.Parser
 {
     class VB6Type : AbstractType
     {

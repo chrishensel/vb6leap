@@ -15,7 +15,7 @@
 
 using VB6leap.Vbp.Project;
 
-namespace VB6leap.SD
+namespace VB6leap.SDAddin
 {
     interface IVbpProject
     {

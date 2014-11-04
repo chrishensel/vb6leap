@@ -20,7 +20,7 @@ using VB6leap.Vbp.Project;
 using VB6leap.Vbp.Reflection.Members;
 using VB6leap.Vbp.Reflection.Modules;
 
-namespace VB6leap.SD.Parser
+namespace VB6leap.SDAddin.Parser
 {
     class VB6UnresolvedTypeDefinition : VB6UnresolvedEntityBase, IUnresolvedTypeDefinition
     {

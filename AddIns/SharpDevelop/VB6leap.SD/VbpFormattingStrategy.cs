@@ -15,7 +15,7 @@
 
 using ICSharpCode.SharpDevelop.Editor;
 
-namespace VB6leap.SD
+namespace VB6leap.SDAddin
 {
     class VbpFormattingStrategy : DefaultFormattingStrategy
     {

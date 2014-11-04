@@ -16,7 +16,7 @@
 using ICSharpCode.SharpDevelop.Dom;
 using ICSharpCode.SharpDevelop.Project;
 
-namespace VB6leap.SD
+namespace VB6leap.SDAddin
 {
     class VbpProjectItemsCollection : SimpleModelCollection<ProjectItem>
     {

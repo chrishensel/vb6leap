@@ -6,8 +6,8 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <OutputType>Library</OutputType>
-    <RootNamespace>VB6leap.SD</RootNamespace>
-    <AssemblyName>VB6leap.SD</AssemblyName>
+    <RootNamespace>VB6leap.SDAddin</RootNamespace>
+    <AssemblyName>VB6leap.SDAddin</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
@@ -99,7 +99,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\VB6-Mode.xshd" />
+    <EmbeddedResource Include="Resources\VB6-Mode.xshd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Templates\VB6.Module.xft" />
     <None Include="VB6leap.SD.addin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

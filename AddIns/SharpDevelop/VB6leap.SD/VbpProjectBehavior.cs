@@ -14,10 +14,10 @@
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
 using ICSharpCode.SharpDevelop.Project;
-using VB6leap.SD.Utils;
+using VB6leap.SDAddin.Utils;
 using VB6leap.Vbp.Project;
 
-namespace VB6leap.SD
+namespace VB6leap.SDAddin
 {
     class VbpProjectBehavior : ProjectBehavior
     {

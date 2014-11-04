@@ -21,7 +21,7 @@ using VB6leap.Vbp.Reflection;
 using VB6leap.Vbp.Reflection.Modules;
 using VB6leap.Vbp.Serialization;
 
-namespace VB6leap.SD.Parser
+namespace VB6leap.SDAddin.Parser
 {
     class VB6UnresolvedFile : IUnresolvedFile
     {

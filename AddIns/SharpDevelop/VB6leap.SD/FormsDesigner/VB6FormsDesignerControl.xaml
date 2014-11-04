@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="VB6leap.SD.FormsDesigner.VB6FormsDesignerControl"
+﻿<UserControl x:Class="VB6leap.SDAddin.FormsDesigner.VB6FormsDesignerControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 

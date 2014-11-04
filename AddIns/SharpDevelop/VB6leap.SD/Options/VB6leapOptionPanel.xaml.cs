@@ -15,7 +15,7 @@
 
 using ICSharpCode.SharpDevelop.Gui;
 
-namespace VB6leap.SD.Options
+namespace VB6leap.SDAddin.Options
 {
     /// <summary>
     /// Interaction logic for VB6leapOptionPanel.xaml

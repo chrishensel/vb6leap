@@ -17,7 +17,7 @@ using System;
 using System.ComponentModel;
 using ICSharpCode.Core;
 
-namespace VB6leap.SD.Options
+namespace VB6leap.SDAddin.Options
 {
     public static class AddInOptions
     {

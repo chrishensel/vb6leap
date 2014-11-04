@@ -16,7 +16,7 @@
 using ICSharpCode.SharpDevelop.Editor;
 using VB6leap.Vbp.Serialization;
 
-namespace VB6leap.SD
+namespace VB6leap.SDAddin
 {
     class VbpTextEditorExtension : ITextEditorExtension
     {

@@ -15,7 +15,7 @@
 
 using ICSharpCode.SharpDevelop.Workbench;
 
-namespace VB6leap.SD.FormsDesigner
+namespace VB6leap.SDAddin.FormsDesigner
 {
     class VB6FormsDesignerViewContent : AbstractViewContent
     {

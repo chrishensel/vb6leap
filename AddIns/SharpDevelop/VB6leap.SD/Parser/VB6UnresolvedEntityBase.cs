@@ -17,7 +17,7 @@ using System;
 using System.Collections.Generic;
 using ICSharpCode.NRefactory.TypeSystem;
 
-namespace VB6leap.SD.Parser
+namespace VB6leap.SDAddin.Parser
 {
     abstract class VB6UnresolvedEntityBase : IUnresolvedEntity
     {

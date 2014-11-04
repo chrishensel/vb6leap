@@ -15,7 +15,7 @@
 
 using System.Windows.Controls;
 
-namespace VB6leap.SD.FormsDesigner
+namespace VB6leap.SDAddin.FormsDesigner
 {
     /// <summary>
     /// Interaction logic for VB6FormsDesignerControl.xaml

@@ -19,7 +19,7 @@ using VB6leap.Vbp.Reflection.Members;
 using VB6leap.Vbp.Reflection.Modules;
 using VB6leap.Vbp.Reflection.Source;
 
-namespace VB6leap.SD.Parser
+namespace VB6leap.SDAddin.Parser
 {
     static class Extensions
     {
