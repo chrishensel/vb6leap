@@ -96,6 +96,7 @@ namespace VB6leap.Vbp.Reflection.Analyzers
             List<IToken> signatureTokens = new List<IToken>();
 
             IToken previous = null;
+            VbMethod method = null;
 
             while (!reader.IsEOF)
             {
@@ -116,6 +117,7 @@ namespace VB6leap.Vbp.Reflection.Analyzers
                         {
                             if (previous.EqualsStringInvariant(AnalyzerConstants.End))
                             {
+                                method.EndStatementLocation = token.Location;
                                 isInMethod = false;
                             }
 
@@ -126,7 +128,7 @@ namespace VB6leap.Vbp.Reflection.Analyzers
 
                         methodType = (VbMethodType)Enum.Parse(typeof(VbMethodType), token.Content, true);
 
-                        VbMethod method = new VbMethod();
+                        method = new VbMethod();
 
                         // Properties have Let/Get/Set next... eat that and store it.
                         if (methodType == VbMethodType.Property)
@@ -143,21 +145,12 @@ namespace VB6leap.Vbp.Reflection.Analyzers
                         method.Location = token.Location;
                         method.MethodKind = methodType;
 
-                        /* Check if there was a visibility-modifier preceeding this method. If so, add it to our signature.
+                        /* Check if there was a visibility-modifier preceeding this method. If so, add it to our signature and correct source location to point to that token.
                          */
-                        if (previous.EqualsStringInvariant(AnalyzerConstants.Visibility_Private) ||
-                            previous.EqualsStringInvariant(AnalyzerConstants.Visibility_Public))
+                        MemberVisibility visibility = MemberVisibility.Default;
+                        if (IsMemberVisibilityToken(previous, out visibility))
                         {
-                            if (previous.EqualsStringInvariant(AnalyzerConstants.Visibility_Public))
-                            {
-                                method.Visibility = MemberVisibility.Public;
-                            }
-                            else
-                            {
-                                method.Visibility = MemberVisibility.Private;
-                            }
-
-                            // Set method location to the previous token (start of line).
+                            method.Visibility = visibility;
                             method.Location = previous.Location;
                         }
 
@@ -171,7 +164,7 @@ namespace VB6leap.Vbp.Reflection.Analyzers
                             ParseSignatureIntoMethod(method, signatureTokens);
                             success = true;
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
                             // FIXME: The parser may peek() too far beyond EOF. Need to handle that!
                         }
@@ -224,13 +217,19 @@ namespace VB6leap.Vbp.Reflection.Analyzers
                 /* Assume that if the next parameter is "As", then this is a parameter name.
                  * Also watch out for implicit parameters, which are parameters that don't declare a type (variant).
                  */
-                if (tokenReader.Peek().EqualsStringInvariant("As") ||
-                    tokenReader.Peek().Type == TokenType.Symbol)
+                IToken peek = tokenReader.Peek();
+                if (peek == null)
+                {
+                    break;
+                }
+                
+                if (peek.EqualsStringInvariant("As") ||
+                    peek.Type == TokenType.Symbol)
                 {
                     parameter.Name = token.Content;
                     parameter.Location = token.Location;
 
-                    if (tokenReader.Peek().Type == TokenType.Symbol)
+                    if (peek.Type == TokenType.Symbol)
                     {
                         parameter.Type = VbTypes.Variant;
 
@@ -330,5 +329,24 @@ namespace VB6leap.Vbp.Reflection.Analyzers
             access = VbParameterAccess.ByVal;
             return false;
         }
+        
+        private static bool IsMemberVisibilityToken(IToken token, out MemberVisibility visibility)
+        {
+            if (token.EqualsStringInvariant(AnalyzerConstants.Visibility_Public))
+            {
+                visibility = MemberVisibility.Public;
+                return true;
+            }
+            
+            if (token.EqualsStringInvariant(AnalyzerConstants.Visibility_Private))
+            {
+                visibility = MemberVisibility.Private;
+                return true;
+            }
+            
+            visibility = MemberVisibility.Default;
+            return false;
+        }
+        
     }
 }

@@ -181,6 +181,9 @@ namespace VB6leap.VbpExplorer
                     {
                         AddPropertyListViewItem("Kind", method.MethodKind);
                         AddPropertyListViewItem("Return type", method.ReturnType.TypeName);
+                        
+                        AddPropertyListViewItem("End Line", method.EndStatementLocation.Line);
+                        AddPropertyListViewItem("End Column", method.EndStatementLocation.Column);
 
                         AddPropertyListViewItem("(Parameter count)", method.Parameters.Count);
                         for (int i = 0; i < method.Parameters.Count; i++)
@@ -218,7 +221,7 @@ namespace VB6leap.VbpExplorer
         private void AddPropertyListViewItem(string name, object value)
         {
             ListViewItem item = new ListViewItem(name);
-            item.SubItems.Add(value.ToString());
+            item.SubItems.Add((value != null) ? value.ToString() : "(null)");
             lsvProperties.Items.Add(item);
         }
 

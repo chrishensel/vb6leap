@@ -14,6 +14,7 @@
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
+using VB6leap.Vbp.Reflection.Source;
 using VB6leap.Vbp.Reflection.Types;
 
 namespace VB6leap.Vbp.Reflection.Members
@@ -35,5 +36,10 @@ namespace VB6leap.Vbp.Reflection.Members
         /// Gets a list of all parameters this method has.
         /// </summary>
         IReadOnlyList<IVbParameter> Parameters { get; }
+        /// <summary>
+        /// Gets the location of the final, closing "End" statement.
+        /// This is where the method body ends.
+        /// </summary>
+        ISourceLocation EndStatementLocation { get; }
     }
 }

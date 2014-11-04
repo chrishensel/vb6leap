@@ -75,6 +75,8 @@ namespace VB6leap.Vbp.Reflection.Members
         public string Name { get; set; }
 
         public ISourceLocation Location { get; set; }
+        
+        public ISourceLocation EndStatementLocation { get; set; }
 
         public MemberVisibility Visibility { get; set; }
 

@@ -43,6 +43,13 @@ namespace VB6leap.SD.Parser
         #endregion
 
         #region Methods
+        
+        protected override DomRegion GetRegion()
+        {
+            IVbMethod method = (IVbMethod)this.Member;
+            
+            return new DomRegion(method.Location.Line, method.Location.Column, method.EndStatementLocation.Line, method.EndStatementLocation.Column);
+        }
 
         public override SymbolKind SymbolKind
         {
