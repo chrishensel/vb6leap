@@ -23,6 +23,13 @@ namespace VB6leap.SDAddin.Parser
     {
         #region Properties
 
+        protected override DomRegion GetRegion()
+        {
+            IVbMethod method = (IVbMethod)this.Member;
+
+            return new DomRegion(method.Location.Line, method.Location.Column, method.EndStatementLocation.Line, method.EndStatementLocation.Column);
+        }
+
         public override SymbolKind SymbolKind
         {
             get { return ICSharpCode.NRefactory.TypeSystem.SymbolKind.Property; }

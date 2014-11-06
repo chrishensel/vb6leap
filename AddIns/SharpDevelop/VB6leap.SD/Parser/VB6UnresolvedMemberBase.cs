@@ -67,7 +67,11 @@ namespace VB6leap.SDAddin.Parser
 
         public override DomRegion BodyRegion
         {
-            get { return GetRegion(); }
+            get
+            {
+                DomRegion region = GetRegion();
+                return new DomRegion(region.BeginLine + 1, region.BeginColumn, region.EndLine, region.EndColumn);
+            }
         }
 
         public override DomRegion Region
