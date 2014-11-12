@@ -15,8 +15,9 @@ Option Explicit
 
 Const m_myVariantConstant = 4711
 
-Public Shared m_mySharedField As Integer
+Public m_mySharedField As Integer
 Private m_myString As String
+Private m_myNumber As Integer
 
 Public Property Let Value(RHS As Integer)
 End Property
@@ -28,8 +29,6 @@ Public Function GiveMeRandomness() As Integer
     ' Chosen by fair dice roll... guaranteed to be random.
     GiveMeRandomness = 4
 End Function
-
-Private m_myNumber As Integer
 
 Public Sub MyNameIsSub(ByVal strInput As String, _
                         Optional ByVal iMode As Integer = 3)
