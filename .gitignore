@@ -159,6 +159,8 @@ ClientBin/
 *.publishsettings
 node_modules/
 
+*.dll
+
 # RIA/Silverlight projects
 Generated_Code/
 

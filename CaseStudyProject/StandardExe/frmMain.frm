@@ -23,6 +23,9 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Private WithEvents m_objEventSource As cEventSource
+Attribute m_objEventSource.VB_VarHelpID = -1
+
 Private Sub cmdButton_Click()
     Dim objSomeClass As cSomeClass
     Set objSomeClass = New cSomeClass
@@ -32,4 +35,8 @@ Private Sub cmdButton_Click()
     
     MsgBox "Result is: " & iResult
     
+End Sub
+
+Private Sub m_objEventSource_OnTestOccurred(vVariant As Variant, bBoolean As Boolean, objSomeObject As Object)
+    Debug.Print "OnTestOccurred: " & CStr(vVariant) & ", " & CStr(bBoolean) & ", " & CStr(objSomeObject)
 End Sub
