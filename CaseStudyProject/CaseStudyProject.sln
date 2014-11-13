@@ -6,6 +6,8 @@ Project("{BFDDE1D2-CFEE-4EA9-9108-F709EEBD945C}") = "StandardExe", "StandardExe\
 EndProject
 Project("{BFDDE1D2-CFEE-4EA9-9108-F709EEBD945C}") = "MyActiveXDLL", "MyActiveXDLL\MyActiveXDLL.vbp", "{D79C7DD0-5103-4402-B025-DDC45971F21A}"
 EndProject
+Project("{BFDDE1D2-CFEE-4EA9-9108-F709EEBD945C}") = "UserControlOCX", "UserControlOCX\UserControlOCX.vbp", "{7EE149B9-4451-44C5-A3E7-38ED77156F0B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,5 +22,9 @@ Global
 		{D79C7DD0-5103-4402-B025-DDC45971F21A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D79C7DD0-5103-4402-B025-DDC45971F21A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D79C7DD0-5103-4402-B025-DDC45971F21A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EE149B9-4451-44C5-A3E7-38ED77156F0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EE149B9-4451-44C5-A3E7-38ED77156F0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EE149B9-4451-44C5-A3E7-38ED77156F0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EE149B9-4451-44C5-A3E7-38ED77156F0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
