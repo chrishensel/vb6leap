@@ -23,7 +23,7 @@ using VB6leap.Vbp.Serialization;
 
 namespace VB6leap.SDAddin.Parser
 {
-    class VB6UnresolvedFile : IUnresolvedFile
+    class VB6UnresolvedFile : IUnresolvedFile, IVbModuleWrapper
     {
         #region Fields
 
@@ -119,6 +119,15 @@ namespace VB6leap.SDAddin.Parser
         IList<IUnresolvedTypeDefinition> IUnresolvedFile.TopLevelTypeDefinitions
         {
             get { return _topLevelTypeDefinitions; }
+        }
+
+        #endregion
+
+        #region IVbModuleWrapper Members
+
+        IVbModule IVbModuleWrapper.Module
+        {
+            get { return _module; }
         }
 
         #endregion

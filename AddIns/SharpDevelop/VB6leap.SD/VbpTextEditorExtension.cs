@@ -13,21 +13,38 @@
 // You should have received a copy of the GNU General Public License
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
+using ICSharpCode.AvalonEdit.Rendering;
 using ICSharpCode.SharpDevelop.Editor;
-using VB6leap.Vbp.Serialization;
+using ICSharpCode.SharpDevelop.Gui;
+using VB6leap.SDAddin.Gui;
 
 namespace VB6leap.SDAddin
 {
     class VbpTextEditorExtension : ITextEditorExtension
     {
+        #region Fields
+
+        private TextView _textView;
+        private ModuleOutlineControl _outlineContent;
+
+        #endregion
+
         #region ITextEditorExtension Members
 
         void ITextEditorExtension.Attach(ITextEditor editor)
         {
+            _outlineContent = new ModuleOutlineControl(editor);
+
+            _textView = editor.GetService(typeof(TextView)) as TextView;
+            _textView.Services.AddService(typeof(IOutlineContentHost), _outlineContent);
         }
 
         void ITextEditorExtension.Detach()
         {
+            _textView.Services.RemoveService(typeof(IOutlineContentHost));
+
+            _outlineContent.Dispose();
+            _outlineContent = null;
         }
 
         #endregion
