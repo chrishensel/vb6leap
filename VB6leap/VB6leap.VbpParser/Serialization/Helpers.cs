@@ -14,25 +14,57 @@
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 using VB6leap.Vbp.Project;
+using VB6leap.Vbp.Project.ObjectModel;
 
 namespace VB6leap.VbpParser.Serialization
 {
     static class Helpers
     {
-        internal static string ToSerializableString(this ProjectType type)
+        internal static ProjectType ToProjectType(string projectType)
+        {
+            switch (projectType.ToLowerInvariant())
+            {
+                case "exe":
+                    return ProjectType.StandardExe;
+                case "oleexe":
+                    return ProjectType.ActiveXExe;
+                case "oledll":
+                    return ProjectType.ActiveXDll;
+                case "control":
+                    return ProjectType.ActiveXControl;
+                default:
+                    throw new NotSupportedException(string.Format("Project type '{0}' not supported yet!", projectType));
+            }
+        }
+    	
+        internal static string ToSerializableString(ProjectType type)
         {
             switch (type)
             {
                 case ProjectType.StandardExe:
                     return "Exe";
-                case ProjectType.OleDll:
+                case ProjectType.ActiveXExe:
+                    return "OleExe";
+                case ProjectType.ActiveXDll:
                     return "OleDll";
-                case ProjectType.Control:
+                case ProjectType.ActiveXControl:
                     return "Control";
                 default:
                     throw new ArgumentException("type");
             }
+        }
+        
+        internal static IEnumerable<ElementBase> GetAllElements(this IVbProject project)
+        {
+            List<ElementBase> elements = new List<ElementBase>();
+            elements.AddRange(project.References);
+            elements.AddRange(project.Objects);
+            elements.AddRange(project.Classes);
+            elements.AddRange(project.Forms);
+            elements.AddRange(project.UserControls);
+            return elements;
         }
     }
 }

@@ -15,27 +15,40 @@
 
 using System;
 using System.IO;
+using System.Linq;
 using VB6leap.Vbp.Project;
+using VB6leap.Vbp.Project.ObjectModel;
 using VB6leap.Vbp.Serialization;
 
 namespace VB6leap.VbpParser.Serialization
 {
     public class Vb6ProjectWriter : IVbProjectWriter
     {
+        #region Fields
+        
+        private readonly IVbElementSerializer _serializer;
+        
+        #endregion
+        
+        #region Constructors
+        
+        public Vb6ProjectWriter()
+        {
+            _serializer = new VbElementSerializer();
+        }
+        
+        #endregion
+        
         #region IVbProjectWriter Members
 
         void IVbProjectWriter.Write(IVbProject project, Stream stream)
         {
             StreamWriter writer = new StreamWriter(stream);
-            writer.WriteLine(project.Type.ToSerializableString());
-
-            foreach (var item in project.References)
+            
+            foreach (ElementBase element in project.GetAllElements())
             {
-                writer.WriteLine(item.ToString());
+                writer.WriteLine(_serializer.Serialize(element));
             }
-
-            // TODO: Objects
-            // TODO: Modules
 
             foreach (string key in project.Properties)
             {

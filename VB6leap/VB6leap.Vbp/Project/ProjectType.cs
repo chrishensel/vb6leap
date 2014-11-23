@@ -25,12 +25,16 @@ namespace VB6leap.Vbp.Project
         /// </summary>
         StandardExe = 0,
         /// <summary>
+        /// Represents an ActiveX executable.
+        /// </summary>
+        ActiveXExe,
+        /// <summary>
         /// Represents an ActiveX DLL.
         /// </summary>
-        OleDll,
+        ActiveXDll,
         /// <summary>
         /// Represents a project that exposes user controls.
         /// </summary>
-        Control,
+        ActiveXControl,
     }
 }

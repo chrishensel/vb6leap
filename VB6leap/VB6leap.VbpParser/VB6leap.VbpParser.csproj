@@ -54,8 +54,9 @@
     <Compile Include="Serialization\Vb6FileWriter.cs" />
     <Compile Include="Serialization\Vb6ProjectReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SubParser\IReferenceParser.cs" />
-    <Compile Include="SubParser\ReferenceParser.cs" />
+    <Compile Include="Serialization\VbElementSerializer.cs" />
+    <Compile Include="Serialization\SubParser\IReferenceParser.cs" />
+    <Compile Include="Serialization\SubParser\ReferenceParser.cs" />
     <Compile Include="Vb6Project.cs" />
     <Compile Include="Serialization\Vb6ProjectWriter.cs" />
   </ItemGroup>

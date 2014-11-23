@@ -20,7 +20,7 @@ using VB6leap.Vbp.Project.ObjectModel;
 namespace VB6leap.Vbp.Serialization
 {
     /// <summary>
-    /// Defines members for read a project element from a stream.
+    /// Defines members for reading a project element from a stream.
     /// </summary>
     public interface IVbFileReader
     {

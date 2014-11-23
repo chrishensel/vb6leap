@@ -17,7 +17,7 @@ using System;
 using System.Linq;
 using VB6leap.Vbp.Project.ObjectModel;
 
-namespace VB6leap.VbpParser.SubParser
+namespace VB6leap.VbpParser.Serialization.SubParser
 {
     class ReferenceParser : IReferenceParser
     {

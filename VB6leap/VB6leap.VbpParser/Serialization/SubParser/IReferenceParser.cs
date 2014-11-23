@@ -15,7 +15,7 @@
 
 using VB6leap.Vbp.Project.ObjectModel;
 
-namespace VB6leap.VbpParser.SubParser
+namespace VB6leap.VbpParser.Serialization.SubParser
 {
     interface IReferenceParser
     {

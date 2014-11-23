@@ -20,7 +20,6 @@ using System.Linq;
 using VB6leap.Vbp.Project;
 using VB6leap.Vbp.Project.ObjectModel;
 using VB6leap.Vbp.Serialization;
-using VB6leap.VbpParser.SubParser;
 
 namespace VB6leap.VbpParser.Serialization
 {
@@ -37,8 +36,17 @@ namespace VB6leap.VbpParser.Serialization
         private IReadOnlyList<Tuple<string, string>> _bag;
         private Vb6Project _project;
 
-        private readonly IReferenceParser _referenceParser = new ReferenceParser();
+        private readonly IVbElementSerializer _serializer;
 
+        #endregion
+        
+        #region Constructors
+        
+        public Vb6ProjectReader()
+        {
+            _serializer = new VbElementSerializer();
+        }
+        
         #endregion
 
         #region IVbProjectReader Members
@@ -66,13 +74,38 @@ namespace VB6leap.VbpParser.Serialization
             _bag = ReadLinesIntoPairs(stream).ToList();
 
             ParseProjectType();
-            ParseReferences();
-            ParseModules();
-            ParseClasses();
-            ParseForms();
-            ParseObjects();
-
             FillProperties();
+
+            foreach (var item in _bag.Where(_ => NoPropertyKeys.Contains(_.Item1)))
+            {
+                string line = string.Format("{0}={1}", item.Item1, item.Item2);
+                
+                ElementBase element = _serializer.Deserialize(line, _project);
+                if (element is ReferenceElement)
+                {
+                    _project.References.Add((ReferenceElement)element);
+                }
+                else if (element is ObjectElement)
+                {
+                    _project.Objects.Add((ObjectElement)element);
+                }
+                else if (element is ModuleElement)
+                {
+                    _project.Modules.Add((ModuleElement)element);
+                }
+                else if (element is ClassElement)
+                {
+                    _project.Classes.Add((ClassElement)element);
+                }
+                else if (element is FormElement)
+                {
+                    _project.Forms.Add((FormElement)element);
+                }
+                else if (element is UserControlElement)
+                {
+                    _project.UserControls.Add((UserControlElement)element);
+                }
+            }
 
             return _project;
         }
@@ -85,106 +118,7 @@ namespace VB6leap.VbpParser.Serialization
                 throw new InvalidOperationException();
             }
 
-            ProjectType type = 0;
-            switch (projType)
-            {
-                case "Exe":
-                    type = ProjectType.StandardExe;
-                    break;
-                case "OleDll":
-                    type = ProjectType.OleDll;
-                    break;
-                case "Control":
-                    type = ProjectType.Control;
-                    break;
-                default:
-                    throw new InvalidOperationException();
-            }
-
-            _project.Type = type;
-        }
-
-        private void ParseReferences()
-        {
-            foreach (string item in GetAllValues(_bag, "Reference"))
-            {
-                _project.References.Add(_referenceParser.Parse(item));
-            }
-        }
-
-        private void ParseGeneric(ElementBase fileBase, string value)
-        {
-            string[] parts = value.Split(';');
-
-            fileBase.Name = parts[0].Trim();
-
-            if (parts.Length == 2)
-            {
-                fileBase.FileName = parts[1].Trim();
-            }
-        }
-
-        private void ParseModules()
-        {
-            foreach (string item in GetAllValues(_bag, "Module"))
-            {
-                ModuleElement mod = new ModuleElement();
-                ParseGeneric(mod, item);
-
-                _project.Modules.Add(mod);
-            }
-        }
-
-        private void ParseClasses()
-        {
-            foreach (string item in GetAllValues(_bag, "Class"))
-            {
-                ClassElement cls = new ClassElement();
-                ParseGeneric(cls, item);
-
-                _project.Classes.Add(cls);
-            }
-        }
-
-        private void ParseForms()
-        {
-            foreach (string item in GetAllValues(_bag, "Form"))
-            {
-                string[] parts = item.Split(';');
-                if (parts.Length == 1)
-                {
-                    FormElement cls = new FormElement();
-
-                    cls.FileName = parts[0];
-                    cls.Name = Path.GetFileName(cls.FileName);
-
-                    _project.Forms.Add(cls);
-                }
-            }
-        }
-
-        private void ParseObjects()
-        {
-            foreach (string item in GetAllValues(_bag, "Object"))
-            {
-                string[] parts = item.Split('#');
-                if (parts.Length == 3)
-                {
-                    ObjectElement obj = new ObjectElement();
-                    obj.Guid = Guid.Parse(parts[0]);
-                    obj.Version = parts[1];
-                    obj.Name = parts[2];
-
-                    int iSemicolon = obj.Name.IndexOf(';');
-                    if (iSemicolon > -1)
-                    {
-                        obj.Reserved = obj.Name.Substring(0, iSemicolon + 1);
-                        obj.Name = obj.Name.Remove(0, obj.Reserved.Length).Trim();
-                    }
-
-                    _project.Objects.Add(obj);
-                }
-            }
+            _project.Type = Helpers.ToProjectType(projType);
         }
 
         private void FillProperties()

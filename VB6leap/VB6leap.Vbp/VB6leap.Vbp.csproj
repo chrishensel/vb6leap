@@ -87,6 +87,7 @@
     <Compile Include="Reflection\Types\VbTypes.cs" />
     <Compile Include="Reflection\Types\VbVariantType.cs" />
     <Compile Include="Reflection\Types\VbVoidType.cs" />
+    <Compile Include="Serialization\IVbElementSerializer.cs" />
     <Compile Include="Serialization\IVbFileReader.cs" />
     <Compile Include="Serialization\IVbFileWriter.cs" />
     <Compile Include="Serialization\IVbProjectReader.cs" />
