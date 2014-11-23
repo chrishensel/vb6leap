@@ -55,6 +55,10 @@ namespace VB6leap.Vbp.Project
         /// </summary>
         IList<FormElement> Forms { get; }
         /// <summary>
+        /// Gets a list of all user control files.
+        /// </summary>
+        IList<UserControlElement> UserControls { get; }
+        /// <summary>
         /// Gets a list of all objects.
         /// </summary>
         IList<ObjectElement> Objects { get; }

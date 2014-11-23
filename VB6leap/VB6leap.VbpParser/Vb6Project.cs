@@ -34,6 +34,7 @@ namespace VB6leap.VbpParser
         public IList<ModuleElement> Modules { get; private set; }
         public IList<ClassElement> Classes { get; private set; }
         public IList<FormElement> Forms { get; private set; }
+        public IList<UserControlElement> UserControls { get; private set; }
         public IList<ObjectElement> Objects { get; private set; }
 
         #endregion
@@ -50,6 +51,7 @@ namespace VB6leap.VbpParser
             Modules = new List<ModuleElement>();
             Classes = new List<ClassElement>();
             Forms = new List<FormElement>();
+            UserControls = new List<UserControlElement>();
             Objects = new List<ObjectElement>();
         }
 

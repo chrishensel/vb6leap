@@ -38,6 +38,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Project\ObjectModel\UserControlElement.cs" />
     <Compile Include="Project\Properties\CompatibleModeKind.cs" />
     <Compile Include="Project\Properties\IVbpProjectProperties.cs" />
     <Compile Include="Project\IVbProject.cs" />
