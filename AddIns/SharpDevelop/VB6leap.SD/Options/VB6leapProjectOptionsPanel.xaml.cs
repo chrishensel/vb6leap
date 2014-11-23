@@ -14,6 +14,7 @@
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using ICSharpCode.SharpDevelop;
 using ICSharpCode.SharpDevelop.Gui;
 using VB6leap.Vbp.Project;
 
@@ -22,13 +23,13 @@ namespace VB6leap.SDAddin.Options
     /// <summary>
     /// Interaction logic for VB6leapProjectOptionsPanel.xaml
     /// </summary>
-    public partial class VB6leapProjectOptionsPanel : OptionPanel
+    public partial class VB6leapProjectOptionsPanel : OptionPanel, ICanBeDirty
     {
         #region Fields
 
         private IVbpProject _project;
         private ViewModel _viewModel;
-        
+
         #endregion
 
         #region Constructors
@@ -46,7 +47,7 @@ namespace VB6leap.SDAddin.Options
         {
             _project = (IVbpProject)this.Owner;
 
-            _viewModel = new ViewModel(_project.GetOwnedProject());
+            _viewModel = new ViewModel(_project.GetOwnedProject(), this);
             this.DataContext = _viewModel;
 
             base.LoadOptions();
@@ -66,6 +67,7 @@ namespace VB6leap.SDAddin.Options
             #region Fields
 
             private IVbProject _project;
+            private VB6leapProjectOptionsPanel _parent;
 
             #endregion
 
@@ -79,19 +81,41 @@ namespace VB6leap.SDAddin.Options
             public string Name
             {
                 get { return _project.Properties.Name; }
-                set { _project.Properties.Name = value; }
+                set
+                {
+                    if (value != _project.Properties.Name)
+                    {
+                        _project.Properties.Name = value;
+                        this._parent.MarkDirty();
+                    }
+                }
             }
 
             public string Title
             {
                 get { return _project.Properties.Title; }
-                set { _project.Properties.Title = value; }
+                set
+                {
+                    if (value != _project.Properties.Title)
+                    {
+                        _project.Properties.Title = value;
+                        this._parent.MarkDirty();
+                    }
+                }
             }
 
             public string Version
             {
                 get { return _project.Properties.Version.ToString(3); }
-                set { _project.Properties.Version = new Version(value); }
+                set
+                {
+                    Version v = new Version(value);
+                    if (v != _project.Properties.Version)
+                    {
+                        _project.Properties.Version = v;
+                        this._parent.MarkDirty();
+                    }
+                }
             }
 
             public bool AutoIncrementVer
@@ -102,21 +126,48 @@ namespace VB6leap.SDAddin.Options
             public string Startup
             {
                 get { return _project.Properties.Startup; }
-                set { _project.Properties.Startup = value; }
+                set
+                {
+                    if (value != _project.Properties.Startup)
+                    {
+                        _project.Properties.Startup = value;
+                        this._parent.MarkDirty();
+                    }
+                }
             }
 
             #endregion
 
             #region Constructors
 
-            public ViewModel(IVbProject project)
+            public ViewModel(IVbProject project, VB6leapProjectOptionsPanel parent)
             {
                 _project = project;
+                _parent = parent;
             }
 
             #endregion
 
         }
+
+        #endregion
+
+        #region ICanBeDirty Members
+
+        internal void MarkDirty(bool value = true)
+        {
+            IsDirty = value;
+
+            var copy = IsDirtyChanged;
+            if (copy != null)
+            {
+                copy(this, null);
+            }
+        }
+
+        public bool IsDirty { get; private set; }
+
+        public event EventHandler IsDirtyChanged;
 
         #endregion
     }
