@@ -165,7 +165,7 @@ namespace VB6leap.Vbp.Reflection.Analyzers
                             ParseSignatureIntoMethod(method, signatureTokens);
                             success = true;
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
                             // FIXME: The parser may peek() too far beyond EOF. Need to handle that!
                         }

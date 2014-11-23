@@ -54,10 +54,10 @@ namespace VB6leap.Vbp.Serialization
         }
 
         /// <summary>
-        /// 
+        /// Reads the provided content, which is assumed to be a VB6 module file, and splits it into a "header" and a "code" part.
         /// </summary>
-        /// <param name="content"></param>
-        /// <returns></returns>
+        /// <param name="content">The source code contents of a VB6 module file.</param>
+        /// <returns>An instance of <see cref="VbPartitionedFile"/> that contains the provided content.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="content"/> is null.</exception>
         public static VbPartitionedFile GetPartitionedFile(string content)
         {
