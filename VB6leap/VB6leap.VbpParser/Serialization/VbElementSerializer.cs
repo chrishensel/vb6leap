@@ -182,7 +182,7 @@ namespace VB6leap.VbpParser.Serialization
                     value = ParseFormOrUserControl(element);
                     break;
                 case "UserControlElement":
-                    key = "Control";
+                    key = "UserControl";
                     value = ParseFormOrUserControl(element);
                     break;
                 default:
@@ -209,7 +209,7 @@ namespace VB6leap.VbpParser.Serialization
                     return ParseClass(value);
                 case "Form":
                     return ParseForm(value);
-                case "Control":
+                case "UserControl":
                     return ParseUserControl(value);
             }
 
