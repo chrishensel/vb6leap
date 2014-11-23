@@ -496,5 +496,6 @@
     <SerializedObject key="UsingPlacement">
       <UsingPlacement xmlns="clr-namespace:ICSharpCode.NRefactory.CSharp;assembly=ICSharpCode.NRefactory.CSharp">TopOfFile</UsingPlacement>
     </SerializedObject>
+    <Property key="ConvertTabsToSpaces">True</Property>
   </Properties>
 </Properties>

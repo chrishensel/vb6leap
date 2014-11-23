@@ -14,7 +14,7 @@ using VB6leap.Vbp.Reflection.Source;
 
 namespace Ader.Text
 {
-    public enum TokenKind
+    enum TokenKind
     {
         Unknown,
         Word,
@@ -26,7 +26,7 @@ namespace Ader.Text
         EOF
     }
 
-    public class Token
+    class Token
     {
         int line;
         int column;

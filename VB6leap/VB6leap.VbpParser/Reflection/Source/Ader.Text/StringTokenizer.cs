@@ -18,7 +18,7 @@ namespace Ader.Text
     /// <summary>
     /// StringTokenizer tokenized string (or stream) into tokens.
     /// </summary>
-    public class StringTokenizer
+    class StringTokenizer
     {
         const char EOF = (char)0;
 
