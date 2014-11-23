@@ -21,6 +21,7 @@ using ICSharpCode.NRefactory;
 using ICSharpCode.NRefactory.Editor;
 using ICSharpCode.NRefactory.Semantics;
 using ICSharpCode.NRefactory.TypeSystem;
+using ICSharpCode.SharpDevelop;
 using ICSharpCode.SharpDevelop.Editor.Search;
 using ICSharpCode.SharpDevelop.Parser;
 using ICSharpCode.SharpDevelop.Project;
@@ -33,6 +34,9 @@ namespace VB6leap.SDAddin.Parser
 
         bool IParser.CanParse(string fileName)
         {
+            /* TODO: It seems that this parser gets called even on non-VB6 files, which seems wrong.
+             * This is annoying, since it can occur when you just try to open an XML file and then spams error dialogs!
+             */
             return true;
         }
 
@@ -47,15 +51,15 @@ namespace VB6leap.SDAddin.Parser
 
         ITextSource IParser.GetFileContent(FileName fileName)
         {
-            return ICSharpCode.SharpDevelop.SD.FileService.GetFileContent(fileName);
+            return SD.FileService.GetFileContent(fileName);
         }
 
         ParseInformation IParser.Parse(FileName fileName, ITextSource fileContent, bool fullParseInformationRequested, IProject parentProject, CancellationToken cancellationToken)
         {
-            IVbpProject project = ICSharpCode.SharpDevelop.SD.ProjectService.FindProjectContainingFile(fileName) as IVbpProject;
+            IVbpProject project = SD.ProjectService.FindProjectContainingFile(fileName) as IVbpProject;
             IUnresolvedFile file = new VB6UnresolvedFile(fileName, fileContent.Text, project);
 
-            return new ParseInformation(file, fileContent.Version, fullParseInformationRequested);
+            return new VB6ParseInformation(file, fileContent.Version, fullParseInformationRequested);
         }
 
         ResolveResult IParser.Resolve(ParseInformation parseInfo, TextLocation location, ICompilation compilation, CancellationToken cancellationToken)

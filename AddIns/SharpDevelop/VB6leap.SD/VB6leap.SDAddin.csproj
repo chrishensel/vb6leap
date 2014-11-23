@@ -129,7 +129,7 @@
     </Compile>
     <Compile Include="Parser\Extensions.cs" />
     <Compile Include="Parser\IVbModuleWrapper.cs" />
-    <Compile Include="Parser\VB6Parser.cs" />
+    <Compile Include="Parser\VB6ParseInformation.cs" />    <Compile Include="Parser\VB6Parser.cs" />
     <Compile Include="Parser\VB6Type.cs" />
     <Compile Include="Parser\VB6TypeReference.cs" />
     <Compile Include="Parser\VB6UnresolvedEntityBase.cs" />

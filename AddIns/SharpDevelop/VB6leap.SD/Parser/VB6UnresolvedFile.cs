@@ -37,6 +37,15 @@ namespace VB6leap.SDAddin.Parser
         private List<IUnresolvedTypeDefinition> _topLevelTypeDefinitions;
 
         #endregion
+        
+        #region Properties
+
+        /// <summary>
+        /// Gets the partitioned file that this class was created from.
+        /// </summary>
+        internal VbPartitionedFile PartitionedFile { get; private set;  }
+
+        #endregion
 
         #region Constructors
 
@@ -53,7 +62,9 @@ namespace VB6leap.SDAddin.Parser
             _fileName = fileName;
             _project = project;
 
-            _module = ParseModule(text);
+            this.PartitionedFile = VbPartitionedFile.GetPartitionedFile(text);
+
+            _module = ParseModule(this.PartitionedFile);
             ParseModuleIntoMembers();
         }
 
@@ -61,9 +72,9 @@ namespace VB6leap.SDAddin.Parser
 
         #region Methods
 
-        private IVbModule ParseModule(string content)
+        private IVbModule ParseModule(VbPartitionedFile partFile)
         {
-            return ModuleReflector.GetReflectedModule(VbPartitionedFile.GetPartitionedFile(content));
+            return ModuleReflector.GetReflectedModule(partFile);
         }
 
         private void ParseModuleIntoMembers()
