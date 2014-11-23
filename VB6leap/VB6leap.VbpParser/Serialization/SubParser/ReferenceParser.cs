@@ -66,6 +66,11 @@ namespace VB6leap.VbpParser.Serialization.SubParser
 
             return reference;
         }
+        
+        string IReferenceParser.Parse(ReferenceElement reference)
+        {
+            return reference.ToString();
+        }
 
         #endregion
 

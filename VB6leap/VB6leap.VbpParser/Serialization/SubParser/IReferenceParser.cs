@@ -20,5 +20,6 @@ namespace VB6leap.VbpParser.Serialization.SubParser
     interface IReferenceParser
     {
         ReferenceElement Parse(string raw);
+        string Parse(ReferenceElement reference);
     }
 }

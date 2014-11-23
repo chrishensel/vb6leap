@@ -54,6 +54,8 @@ namespace VB6leap.VbpParser.Serialization
             {
                 writer.WriteLine("{0}={1}", key, project.Properties.Get(key, ""));
             }
+
+            writer.Flush();
         }
 
         #endregion

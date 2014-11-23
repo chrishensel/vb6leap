@@ -56,7 +56,7 @@ namespace VB6leap.VbpExplorer
         private void btnOpenProject_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "VB6 project files (*.vbp)|*.vbp";
+            ofd.Filter = Properties.Resources.Vb6ProjectFileFilter;
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 FileInfo fileToParse = new FileInfo(ofd.FileName);
@@ -181,7 +181,7 @@ namespace VB6leap.VbpExplorer
                     {
                         AddPropertyListViewItem("Kind", method.MethodKind);
                         AddPropertyListViewItem("Return type", method.ReturnType.TypeName);
-                        
+
                         AddPropertyListViewItem("End Line", method.EndStatementLocation.Line);
                         AddPropertyListViewItem("End Column", method.EndStatementLocation.Column);
 
@@ -278,6 +278,25 @@ namespace VB6leap.VbpExplorer
                     }
 
                     itemNode.Nodes.Add(node);
+                }
+            }
+        }
+
+        private void tsbSaveProject_Click(object sender, EventArgs e)
+        {
+            if (_project == null)
+            {
+                return;
+            }
+
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = Properties.Resources.Vb6ProjectFileFilter;
+            if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                IVbProjectWriter writer = new Vb6ProjectWriter();
+                using (FileStream stream = File.Open(sfd.FileName, FileMode.Create, FileAccess.Write, FileShare.Read))
+                {
+                    writer.Write(_project, stream);
                 }
             }
         }

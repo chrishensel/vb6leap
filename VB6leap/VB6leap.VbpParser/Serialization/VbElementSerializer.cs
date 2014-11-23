@@ -25,20 +25,20 @@ namespace VB6leap.VbpParser.Serialization
     class VbElementSerializer : IVbElementSerializer
     {
         #region Fields
-        
+
         private readonly IReferenceParser _referenceParser;
-        
+
         #endregion
-        
+
         #region Constructors
-        
+
         internal VbElementSerializer()
         {
             _referenceParser = new ReferenceParser();
         }
-        
+
         #endregion
-        
+
         #region Methods
 
         private void ParseGeneric(ElementBase fileBase, string value)
@@ -51,6 +51,11 @@ namespace VB6leap.VbpParser.Serialization
             {
                 fileBase.FileName = parts[1].Trim();
             }
+        }
+
+        private string ParseGeneric(ElementBase element)
+        {
+            return string.Format("{0}; {1}", element.Name, element.FileName);
         }
 
         private ModuleElement ParseModule(string item)
@@ -81,8 +86,13 @@ namespace VB6leap.VbpParser.Serialization
 
                 return cls;
             }
-                
+
             return null;
+        }
+
+        private string ParseFormOrUserControl(ElementBase element)
+        {
+            return element.FileName;
         }
 
         private UserControlElement ParseUserControl(string item)
@@ -97,7 +107,7 @@ namespace VB6leap.VbpParser.Serialization
 
                 return ctl;
             }
-            
+
             return null;
         }
 
@@ -120,24 +130,73 @@ namespace VB6leap.VbpParser.Serialization
 
                 return obj;
             }
-            
+
             return null;
         }
-        
+
+        private string ParseObject(ElementBase element)
+        {
+            ObjectElement obj = (ObjectElement)element;
+
+            string r = "{" + obj.Guid.ToString() + "}";
+            r += "#" + obj.Version;
+            r += "#";
+            if (obj.Reserved != null)
+            {
+                r += obj.Reserved;
+            }
+            r += obj.Name;
+
+            return r;
+        }
+
         #endregion
-        
+
         #region IVbElementSerializer implementation
-        
+
         string IVbElementSerializer.Serialize(ElementBase element)
         {
-            throw new NotImplementedException();
+            string key = "";
+            string value = "";
+
+            switch (element.GetType().Name)
+            {
+                case "ReferenceElement":
+                    key = "Reference";
+                    value = _referenceParser.Parse((ReferenceElement)element);
+                    break;
+                case "ObjectElement":
+                    key = "Object";
+                    value = ParseObject(element);
+                    break;
+                case "ModuleElement":
+                    key = "Module";
+                    value = ParseGeneric(element);
+                    break;
+                case "ClassElement":
+                    key = "Class";
+                    value = ParseGeneric(element);
+                    break;
+                case "FormElement":
+                    key = "Form";
+                    value = ParseFormOrUserControl(element);
+                    break;
+                case "UserControlElement":
+                    key = "Control";
+                    value = ParseFormOrUserControl(element);
+                    break;
+                default:
+                    throw new NotSupportedException(string.Format("Element '{0}' is not supported!", element.GetType().Name));
+            }
+
+            return string.Format("{0}={1}", key, value);
         }
-        
+
         ElementBase IVbElementSerializer.Deserialize(string content, IVbProject project)
         {
             string kind = content.Substring(0, content.IndexOf('='));
             string value = content.Remove(0, kind.Length + 1);
-            
+
             switch (kind)
             {
                 case "Reference":
@@ -153,10 +212,10 @@ namespace VB6leap.VbpParser.Serialization
                 case "Control":
                     return ParseUserControl(value);
             }
-            
+
             throw new NotSupportedException(string.Format("Kind '{0}' is not supported!", kind));
         }
-        
+
         #endregion
     }
 }

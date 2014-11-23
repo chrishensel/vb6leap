@@ -60,6 +60,7 @@ namespace VB6leap.VbpParser.Serialization
         {
             List<ElementBase> elements = new List<ElementBase>();
             elements.AddRange(project.References);
+            elements.AddRange(project.Modules);
             elements.AddRange(project.Objects);
             elements.AddRange(project.Classes);
             elements.AddRange(project.Forms);
