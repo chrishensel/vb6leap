@@ -129,6 +129,8 @@
     <Compile Include="Parser\Cache\IVbpProjectSymbolCache.cs" />
     <Compile Include="Parser\Members\VB6Field.cs" />
     <Compile Include="Parser\Members\VB6Member.cs" />
+    <Compile Include="Parser\Members\VB6Method.cs" />
+    <Compile Include="Parser\Members\VB6Property.cs" />
     <Compile Include="Parser\Members\VB6TypeDefinition.cs" />
     <Compile Include="Parser\TypeSystem\VB6Assembly.cs" />
     <Compile Include="Parser\TypeSystem\VB6Compilation.cs" />
