@@ -14,11 +14,15 @@
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
 using VB6leap.Vbp.Project;
+using VB6leap.Vbp.Serialization;
 
 namespace VB6leap.SDAddin
 {
     interface IVbpProject
     {
         IVbProject GetOwnedProject();
+
+        IVbProjectReader GetReader();
+        IVbProjectWriter GetWriter();
     }
 }

@@ -33,7 +33,9 @@ namespace VB6leap.SDAddin
         #region Fields
 
         private VbpProjectItemsCollection _items = new VbpProjectItemsCollection();
-        private IVbProject _vbProject;
+        private readonly IVbProject _vbProject;
+        private readonly IVbProjectReader _projectReader;
+        private readonly IVbProjectWriter _projectWriter;
 
         #endregion
 
@@ -59,12 +61,13 @@ namespace VB6leap.SDAddin
         public VbpProject(ProjectLoadInformation info)
             : base(info)
         {
-            IVbProjectReader vbpParser = new Vb6ProjectReader();
+            _projectReader = new Vb6ProjectReader();
+            _projectWriter = new Vb6ProjectWriter();
 
             FileInfo file = new FileInfo(info.FileName);
             using (Stream stream = file.OpenRead())
             {
-                _vbProject = vbpParser.Read(file, stream);
+                _vbProject = _projectReader.Read(file, stream);
             }
 
             AddGenericItems();
@@ -144,6 +147,16 @@ namespace VB6leap.SDAddin
         IVbProject IVbpProject.GetOwnedProject()
         {
             return _vbProject;
+        }
+
+        IVbProjectReader IVbpProject.GetReader()
+        {
+            return _projectReader;
+        }
+
+        IVbProjectWriter IVbpProject.GetWriter()
+        {
+            return _projectWriter;
         }
 
         #endregion

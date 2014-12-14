@@ -14,6 +14,7 @@
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.IO;
 using ICSharpCode.SharpDevelop;
 using ICSharpCode.SharpDevelop.Gui;
 using VB6leap.Vbp.Project;
@@ -55,6 +56,20 @@ namespace VB6leap.SDAddin.Options
 
         public override bool SaveOptions()
         {
+            try
+            {
+                using (FileStream stream = _project.GetOwnedProject().Source.OpenWrite())
+                {
+                    _project.GetWriter().Write(_project.GetOwnedProject(), stream);
+                }
+
+                MarkDirty(false);
+            }
+            catch (Exception ex)
+            {
+                SD.MessageService.ShowException(ex);
+            }
+
             return base.SaveOptions();
         }
 
