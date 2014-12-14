@@ -13,19 +13,23 @@
 // You should have received a copy of the GNU General Public License
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
+using ICSharpCode.Core;
+using ICSharpCode.NRefactory.Editor;
 using ICSharpCode.NRefactory.TypeSystem;
+using ICSharpCode.SharpDevelop.Parser;
 
-namespace VB6leap.SDAddin.Parser
+namespace VB6leap.SDAddin.Parser.Cache
 {
-    class VB6TypeReference : ITypeReference
+    /// <summary>
+    /// Defines members for a type that represents an entire VBP project, to appear as an assembly.
+    /// </summary>
+    interface IVbpProjectSymbolCache : ICompilationProvider
     {
-        #region ITypeReference Members
+        IAssembly Assembly { get; }
+        INamespace Namespace { get; }
 
-        IType ITypeReference.Resolve(ITypeResolveContext context)
-        {
-            return null;
-        }
-
-        #endregion
+        ITypeResolveContext CreateResolveContext(ITypeResolveContext parentContext);
+        IType GetTypeByName(string name);
+        ParseInformation GetAndReparse(FileName fileName, ITextSource fileContent);
     }
 }

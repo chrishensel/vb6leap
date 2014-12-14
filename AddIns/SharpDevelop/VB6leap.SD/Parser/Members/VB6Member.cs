@@ -15,6 +15,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ICSharpCode.NRefactory.Documentation;
 using ICSharpCode.NRefactory.TypeSystem;
 
@@ -28,7 +29,7 @@ namespace VB6leap.SDAddin.Parser.Members
     {
         #region Properties
 
-        protected T UnderlyingEntity { get; private set; }
+        public T UnderlyingEntity { get; private set; }
 
         #endregion
 
@@ -70,12 +71,12 @@ namespace VB6leap.SDAddin.Parser.Members
 
         public IMember MemberDefinition
         {
-            get { return null; }
+            get { return this; }
         }
 
         public IType ReturnType
         {
-            get { return new VB6Type("Variant"); }
+            get { return VB6Type.Variant; }
         }
 
         public IMember Specialize(TypeParameterSubstitution substitution)
@@ -100,7 +101,7 @@ namespace VB6leap.SDAddin.Parser.Members
 
         public IUnresolvedMember UnresolvedMember
         {
-            get { return (IUnresolvedMember)this.UnderlyingEntity; }
+            get { return this.UnderlyingEntity as IUnresolvedMember; }
         }
 
         #endregion
@@ -119,12 +120,26 @@ namespace VB6leap.SDAddin.Parser.Members
 
         public IType DeclaringType
         {
-            get { return new VB6Type(this.UnresolvedMember.DeclaringTypeDefinition.Name); }
+            get
+            {
+                return GetVbpProject().SymbolCache.GetTypeByName(this.UnderlyingEntity.UnresolvedFile.GetAllTypeDefinitions().First().Name);
+            }
+        }
+
+        protected IVbpProject GetVbpProject()
+        {
+            VB6UnresolvedEntityBase source = this.UnderlyingEntity as VB6UnresolvedEntityBase;
+            if (source != null)
+            {
+                return source.VbpProject;
+            }
+
+            return null;
         }
 
         public ITypeDefinition DeclaringTypeDefinition
         {
-            get { return null; }
+            get { return this.DeclaringType.GetDefinition(); }
         }
 
         public DocumentationComment Documentation
@@ -150,7 +165,7 @@ namespace VB6leap.SDAddin.Parser.Members
 
         EntityType IEntity.EntityType
         {
-            get { throw new NotImplementedException(); }
+            get { return EntityType.None; }
         }
 
         public bool IsAbstract
@@ -180,7 +195,7 @@ namespace VB6leap.SDAddin.Parser.Members
 
         public string Name
         {
-            get { return this.UnresolvedMember.Name; }
+            get { return this.UnderlyingEntity.Name; }
         }
 
         public IAssembly ParentAssembly
@@ -213,7 +228,7 @@ namespace VB6leap.SDAddin.Parser.Members
 
         public ICompilation Compilation
         {
-            get { return null; }
+            get { return GetVbpProject().SymbolCache.Compilation; }
         }
 
         #endregion

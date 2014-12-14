@@ -20,6 +20,7 @@ using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.SharpDevelop;
 using ICSharpCode.SharpDevelop.Dom;
 using ICSharpCode.SharpDevelop.Project;
+using VB6leap.SDAddin.Parser.Cache;
 using VB6leap.SDAddin.Utils;
 using VB6leap.Vbp.Project;
 using VB6leap.Vbp.Project.ObjectModel;
@@ -33,6 +34,7 @@ namespace VB6leap.SDAddin
         #region Fields
 
         private VbpProjectItemsCollection _items = new VbpProjectItemsCollection();
+        private readonly IVbpProjectSymbolCache _symbolCache;
         private readonly IVbProject _vbProject;
         private readonly IVbProjectReader _projectReader;
         private readonly IVbProjectWriter _projectWriter;
@@ -72,6 +74,8 @@ namespace VB6leap.SDAddin
 
             AddGenericItems();
             AddReferences();
+
+            _symbolCache = VbpProjectSymbolCache.FromProject(this);
         }
 
         #endregion
@@ -143,6 +147,11 @@ namespace VB6leap.SDAddin
         #endregion
 
         #region IVbpProject Members
+
+        IVbpProjectSymbolCache IVbpProject.SymbolCache
+        {
+            get { return _symbolCache; }
+        }
 
         IVbProject IVbpProject.GetOwnedProject()
         {

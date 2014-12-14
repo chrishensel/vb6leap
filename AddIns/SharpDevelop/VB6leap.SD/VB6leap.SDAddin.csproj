@@ -123,10 +123,16 @@
     <Compile Include="Gui\ModuleOutlineControl.xaml.cs">
       <DependentUpon>ModuleOutlineControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Parser\Cache\VbpProjectSymbolCache.cs" />
     <Compile Include="Parser\Extensions.cs" />
     <Compile Include="Parser\IVbModuleWrapper.cs" />
+    <Compile Include="Parser\Cache\IVbpProjectSymbolCache.cs" />
     <Compile Include="Parser\Members\VB6Field.cs" />
     <Compile Include="Parser\Members\VB6Member.cs" />
+    <Compile Include="Parser\Members\VB6TypeDefinition.cs" />
+    <Compile Include="Parser\TypeSystem\VB6Assembly.cs" />
+    <Compile Include="Parser\TypeSystem\VB6Compilation.cs" />
+    <Compile Include="Parser\TypeSystem\VB6Namespace.cs" />
     <Compile Include="Parser\VB6ParseInformation.cs" />
     <Compile Include="Parser\VB6Parser.cs" />
     <Compile Include="Parser\VB6Type.cs" />

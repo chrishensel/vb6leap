@@ -13,14 +13,24 @@
 // You should have received a copy of the GNU General Public License
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using System.Collections.Generic;
 using ICSharpCode.NRefactory.TypeSystem;
+using VB6leap.Vbp.Project;
 
 namespace VB6leap.SDAddin.Parser
 {
     abstract class VB6UnresolvedEntityBase : IUnresolvedEntity
     {
+        #region Properties
+
+        internal IVbpProject VbpProject { get; private set; }
+        internal IVbProject Project
+        {
+            get { return VbpProject.GetOwnedProject(); }
+        }
+
+        #endregion
+
         #region Constructors
 
         private VB6UnresolvedEntityBase()
@@ -37,6 +47,10 @@ namespace VB6leap.SDAddin.Parser
             : this()
         {
             this.UnresolvedFile = file;
+
+            VB6UnresolvedFile vb6File = (VB6UnresolvedFile)file;
+            this.VbpProject = vb6File.Project;
+
 
             this.DeclaringTypeDefinition = typeDefinition;
         }

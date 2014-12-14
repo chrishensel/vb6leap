@@ -13,6 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
+using VB6leap.SDAddin.Parser.Cache;
 using VB6leap.Vbp.Project;
 using VB6leap.Vbp.Serialization;
 
@@ -20,8 +21,9 @@ namespace VB6leap.SDAddin
 {
     interface IVbpProject
     {
-        IVbProject GetOwnedProject();
+        IVbpProjectSymbolCache SymbolCache { get; }
 
+        IVbProject GetOwnedProject();
         IVbProjectReader GetReader();
         IVbProjectWriter GetWriter();
     }

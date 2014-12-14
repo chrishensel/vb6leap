@@ -36,7 +36,7 @@ End Function
 Function ThisFunctionIsMultiline(ByVal iFoo As Integer, _
                                  ByRef bBar As Boolean)
 
-    Comment
+    'Comment
     ThisFunctionIsMultiline = 42
     
 End Function

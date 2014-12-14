@@ -39,7 +39,8 @@ namespace VB6leap.SDAddin.Parser
         #region Properties
 
         protected IVbModule Module { get; private set; }
-        protected IVbProject Project { get; private set; }
+
+        public IType ResolvedType { get; private set; }
 
         #endregion
 
@@ -49,10 +50,6 @@ namespace VB6leap.SDAddin.Parser
             : base(file, null)
         {
             this.Module = module;
-            if (project != null)
-            {
-                this.Project = project.GetOwnedProject();
-            }
 
             _typeKind = this.Module.ToTypeKind();
 
@@ -100,6 +97,8 @@ namespace VB6leap.SDAddin.Parser
             _members.AddRange(_fields);
             _members.AddRange(_properties);
             _members.AddRange(_methods);
+
+            this.ResolvedType = VB6Type.GetResolved(this);
         }
 
         private string GetName(bool fullName)
@@ -128,7 +127,7 @@ namespace VB6leap.SDAddin.Parser
 
         ITypeResolveContext IUnresolvedTypeDefinition.CreateResolveContext(ITypeResolveContext parentContext)
         {
-            return parentContext;
+            return this.VbpProject.SymbolCache.CreateResolveContext(parentContext);
         }
 
         IEnumerable<IUnresolvedEvent> IUnresolvedTypeDefinition.Events
@@ -183,7 +182,7 @@ namespace VB6leap.SDAddin.Parser
 
         IType IUnresolvedTypeDefinition.Resolve(ITypeResolveContext context)
         {
-            return new VB6Type(this.Name);
+            return this.ResolvedType;
         }
 
         IList<IUnresolvedTypeParameter> IUnresolvedTypeDefinition.TypeParameters
@@ -197,7 +196,7 @@ namespace VB6leap.SDAddin.Parser
 
         IType ITypeReference.Resolve(ITypeResolveContext context)
         {
-            return null;
+            return this.ResolvedType;
         }
 
         #endregion

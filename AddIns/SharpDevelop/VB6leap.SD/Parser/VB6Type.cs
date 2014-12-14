@@ -16,10 +16,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ICSharpCode.NRefactory.TypeSystem;
 using ICSharpCode.NRefactory.TypeSystem.Implementation;
+using VB6leap.SDAddin.Parser.Members;
 
 namespace VB6leap.SDAddin.Parser
 {
@@ -28,19 +27,77 @@ namespace VB6leap.SDAddin.Parser
         #region Fields
 
         private string _name;
+        private IUnresolvedTypeDefinition _unresolvedTypeDefinition;
+        private List<IMember> _members;
+
+        #endregion
+
+        #region Properties
+
+        public static VB6Type Variant
+        {
+            get { return new VB6Type("Variant"); }
+        }
 
         #endregion
 
         #region Constructors
 
-        public VB6Type(string name)
+        private VB6Type(string name)
         {
             _name = name;
+            _members = new List<IMember>();
         }
 
+        private VB6Type(IUnresolvedTypeDefinition unresolvedTypeDefinition)
+            : this(unresolvedTypeDefinition.Name)
+        {
+            _unresolvedTypeDefinition = unresolvedTypeDefinition;
+        }
+        
         #endregion
 
         #region Methods
+
+        public static VB6Type GetResolved(IUnresolvedTypeDefinition typeDefinition)
+        {
+            VB6Type ret = new VB6Type(typeDefinition);
+
+            /* Create resolved members.
+             */
+            foreach (var item in typeDefinition.Members)
+            {
+                ret._members.Add(ConvertToMember(item));
+            }
+
+            return ret;
+        }
+
+        private static IMember ConvertToMember(IUnresolvedMember input)
+        {
+            IUnresolvedField field = input as IUnresolvedField;
+            if (field != null)
+            {
+                return new VB6Field(field);
+            }
+
+            return new VB6Member<IUnresolvedMember>(input);
+        }
+        
+        public override IEnumerable<IField> GetFields(Predicate<IUnresolvedField> filter = null, GetMemberOptions options = GetMemberOptions.None)
+        {
+            return _members.OfType<VB6Field>();
+        }
+
+        public override IType DeclaringType
+        {
+            get { return null; }
+        }
+
+        public override bool Equals(IType other)
+        {
+            return other.Name == this.Name;
+        }
 
         public override bool? IsReferenceType
         {
@@ -57,9 +114,24 @@ namespace VB6leap.SDAddin.Parser
             get { return _name; }
         }
 
+        public override string FullName
+        {
+            get { return _name; }
+        }
+
         public override ITypeReference ToTypeReference()
         {
             return new VB6TypeReference();
+        }
+
+        public override ITypeDefinition GetDefinition()
+        {
+            if (_unresolvedTypeDefinition != null)
+            {
+                return new VB6TypeDefinition(_unresolvedTypeDefinition);
+            }
+
+            return null;
         }
 
         #endregion

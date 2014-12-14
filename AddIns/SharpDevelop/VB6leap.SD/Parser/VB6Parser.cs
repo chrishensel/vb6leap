@@ -58,9 +58,7 @@ namespace VB6leap.SDAddin.Parser
         ParseInformation IParser.Parse(FileName fileName, ITextSource fileContent, bool fullParseInformationRequested, IProject parentProject, CancellationToken cancellationToken)
         {
             IVbpProject project = SD.ProjectService.FindProjectContainingFile(fileName) as IVbpProject;
-            IUnresolvedFile file = new VB6UnresolvedFile(fileName, fileContent.Text, project);
-
-            return new VB6ParseInformation(file, fileContent.Version, fullParseInformationRequested);
+            return project.SymbolCache.GetAndReparse(fileName, fileContent);
         }
 
         ResolveResult IParser.Resolve(ParseInformation parseInfo, TextLocation location, ICompilation compilation, CancellationToken cancellationToken)

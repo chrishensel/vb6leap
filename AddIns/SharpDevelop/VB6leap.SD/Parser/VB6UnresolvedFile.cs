@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ICSharpCode.NRefactory;
 using ICSharpCode.NRefactory.TypeSystem;
+using VB6leap.SDAddin.Parser.Members;
 using VB6leap.Vbp.Reflection;
 using VB6leap.Vbp.Reflection.Modules;
 using VB6leap.Vbp.Serialization;
@@ -29,7 +30,6 @@ namespace VB6leap.SDAddin.Parser
         #region Fields
 
         private string _fileName;
-        private readonly IVbpProject _project;
 
         private readonly IVbModule _module;
 
@@ -41,6 +41,7 @@ namespace VB6leap.SDAddin.Parser
 
         #region Properties
 
+        internal IVbpProject Project { get; private set; }
         /// <summary>
         /// Gets the partitioned file that this class was created from.
         /// </summary>
@@ -61,7 +62,7 @@ namespace VB6leap.SDAddin.Parser
             : this()
         {
             _fileName = fileName;
-            _project = project;
+            this.Project = project;
 
             this.PartitionedFile = VbPartitionedFile.GetPartitionedFile(text);
 
@@ -83,7 +84,7 @@ namespace VB6leap.SDAddin.Parser
             /* Add the one-and-only type definition.
              * Global Modules don't have a type, so lets create one.
              */
-            VB6UnresolvedTypeDefinition typeDef = new VB6UnresolvedTypeDefinition(this, _module, _project);
+            VB6UnresolvedTypeDefinition typeDef = new VB6UnresolvedTypeDefinition(this, _module, this.Project);
             _topLevelTypeDefinitions.Add(typeDef);
         }
 
@@ -145,7 +146,7 @@ namespace VB6leap.SDAddin.Parser
 
         IList<IUnresolvedAttribute> IUnresolvedFile.ModuleAttributes
         {
-            get { throw new NotImplementedException(); }
+            get { return new List<IUnresolvedAttribute>(); }
         }
 
         IList<IUnresolvedTypeDefinition> IUnresolvedFile.TopLevelTypeDefinitions
