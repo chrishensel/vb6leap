@@ -54,7 +54,7 @@ namespace VB6leap.SDAddin.Parser
         {
             _unresolvedTypeDefinition = unresolvedTypeDefinition;
         }
-        
+
         #endregion
 
         #region Methods
@@ -67,7 +67,11 @@ namespace VB6leap.SDAddin.Parser
              */
             foreach (var item in typeDefinition.Members)
             {
-                ret._members.Add(ConvertToMember(item));
+                IMember member = ConvertToMember(item);
+                if (member != null)
+                {
+                    ret._members.Add(member);
+                }
             }
 
             return ret;
@@ -81,17 +85,44 @@ namespace VB6leap.SDAddin.Parser
                 return new VB6Field(field);
             }
 
-            return new VB6Member<IUnresolvedMember>(input);
+            IUnresolvedMethod method = input as IUnresolvedMethod;
+            if (method != null)
+            {
+                return new VB6Method(method);
+            }
+
+            IUnresolvedProperty property = input as IUnresolvedProperty;
+            if (property != null)
+            {
+                return new VB6Property(property);
+            }
+
+            return null;
         }
-        
+
+        public override IEnumerable<IMember> GetMembers(Predicate<IUnresolvedMember> filter = null, GetMemberOptions options = GetMemberOptions.None)
+        {
+            return _members;
+        }
+
         public override IEnumerable<IField> GetFields(Predicate<IUnresolvedField> filter = null, GetMemberOptions options = GetMemberOptions.None)
         {
             return _members.OfType<VB6Field>();
         }
 
+        public override IEnumerable<IMethod> GetMethods(Predicate<IUnresolvedMethod> filter = null, GetMemberOptions options = GetMemberOptions.None)
+        {
+            return _members.OfType<VB6Method>();
+        }
+
+        public override IEnumerable<IProperty> GetProperties(Predicate<IUnresolvedProperty> filter = null, GetMemberOptions options = GetMemberOptions.None)
+        {
+            return _members.OfType<VB6Property>();
+        }
+
         public override IType DeclaringType
         {
-            get { return null; }
+            get { return this; }
         }
 
         public override bool Equals(IType other)
