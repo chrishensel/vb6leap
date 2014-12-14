@@ -54,6 +54,43 @@ namespace VB6leap.Vbp.Serialization
         }
 
         /// <summary>
+        /// Searches for a word within this file, by looking for VB-style delimiters around it.
+        /// </summary>
+        /// <param name="line">The line number (zero-based).</param>
+        /// <param name="column">The column number (zero-based).</param>
+        /// <param name="word">If the method returns true, then this parameter contains the word.</param>
+        /// <returns>Whether or not the word could be determined.</returns>
+        public bool TryGetWordAt(int line, int column, out string word)
+        {
+            string[] lines = this.GetMergedContent().Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            if (line < lines.Length)
+            {
+                string l = lines[line];
+                if (column < l.Length)
+                {
+                    char[] delimiters = new[] { ' ', '(', ')' };
+                    int from = l.LastIndexOfAny(delimiters, column);
+                    int to = l.IndexOfAny(delimiters, column);
+
+                    if (from == -1)
+                    {
+                        from = 0;
+                    }
+                    if (to == -1)
+                    {
+                        to = l.Length;
+                    }
+
+                    word = l.Substring(from, to - from).Trim();
+                    return true;
+                }
+            }
+
+            word = null;
+            return false;
+        }
+
+        /// <summary>
         /// Reads the provided content, which is assumed to be a VB6 module file, and splits it into a "header" and a "code" part.
         /// </summary>
         /// <param name="content">The source code contents of a VB6 module file.</param>

@@ -25,6 +25,7 @@ using ICSharpCode.SharpDevelop;
 using ICSharpCode.SharpDevelop.Editor.Search;
 using ICSharpCode.SharpDevelop.Parser;
 using ICSharpCode.SharpDevelop.Project;
+using VB6leap.SDAddin.Parser.Members;
 
 namespace VB6leap.SDAddin.Parser
 {
@@ -64,10 +65,32 @@ namespace VB6leap.SDAddin.Parser
 
         ResolveResult IParser.Resolve(ParseInformation parseInfo, TextLocation location, ICompilation compilation, CancellationToken cancellationToken)
         {
+            VB6ParseInformation vpi = (VB6ParseInformation)parseInfo;
+            IUnresolvedMember umember = vpi.UnresolvedFile.GetMember(location);
+            if (umember != null)
+            {
+                IMember member = ConvertToMember(umember);
+                if (member != null)
+                {
+                    return new MemberResolveResult(null, member);
+                }
+            }
+
             return null;
         }
 
-        ICodeContext IParser.ResolveContext(ParseInformation parseInfo, ICSharpCode.NRefactory.TextLocation location, ICompilation compilation, CancellationToken cancellationToken)
+        private IMember ConvertToMember(IUnresolvedMember input)
+        {
+            IUnresolvedField field = input as IUnresolvedField;
+            if (field != null)
+            {
+                return new VB6Field(field);
+            }
+
+            return new VB6Member<IUnresolvedMember>(input);
+        }
+
+        ICodeContext IParser.ResolveContext(ParseInformation parseInfo, TextLocation location, ICompilation compilation, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

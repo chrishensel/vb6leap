@@ -15,6 +15,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ICSharpCode.NRefactory;
 using ICSharpCode.NRefactory.TypeSystem;
 using VB6leap.Vbp.Reflection;
@@ -37,13 +38,13 @@ namespace VB6leap.SDAddin.Parser
         private List<IUnresolvedTypeDefinition> _topLevelTypeDefinitions;
 
         #endregion
-        
+
         #region Properties
 
         /// <summary>
         /// Gets the partitioned file that this class was created from.
         /// </summary>
-        internal VbPartitionedFile PartitionedFile { get; private set;  }
+        internal VbPartitionedFile PartitionedFile { get; private set; }
 
         #endregion
 
@@ -107,17 +108,37 @@ namespace VB6leap.SDAddin.Parser
 
         IUnresolvedTypeDefinition IUnresolvedFile.GetInnermostTypeDefinition(TextLocation location)
         {
-            throw new NotImplementedException();
+            /* Since VB6-modules only contain one type per file (which is good).
+             * Note that this doesn't consider Enums or custom "Type" declarations - for simplicity right now.
+             */
+            return _topLevelTypeDefinitions.FirstOrDefault();
         }
 
         IUnresolvedMember IUnresolvedFile.GetMember(TextLocation location)
         {
-            throw new NotImplementedException();
+            int iLine = location.Line - 1;
+            int iCol = location.Column - 1;
+            string word = null;
+
+            if (this.PartitionedFile.TryGetWordAt(iLine, iCol, out word))
+            {
+                foreach (IUnresolvedMember member in _topLevelTypeDefinitions[0].Members)
+                {
+                    if (member.Name.Equals(word, StringComparison.OrdinalIgnoreCase))
+                    {
+                        return member;
+                    }
+                }
+            }
+
+            return null;
         }
 
         IUnresolvedTypeDefinition IUnresolvedFile.GetTopLevelTypeDefinition(TextLocation location)
         {
-            throw new NotImplementedException();
+            /* Since VB6-modules only contain one type per file (which is good), we can do this.
+             */
+            return _topLevelTypeDefinitions.FirstOrDefault();
         }
 
         DateTime? IUnresolvedFile.LastWriteTime { get; set; }

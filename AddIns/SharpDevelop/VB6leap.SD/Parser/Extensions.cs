@@ -47,10 +47,5 @@ namespace VB6leap.SDAddin.Parser
 
             return Accessibility.Private;
         }
-
-        internal static IEnumerable<IUnresolvedMember> ToMembers(this IVbModule module)
-        {
-            yield break;
-        }
     }
 }

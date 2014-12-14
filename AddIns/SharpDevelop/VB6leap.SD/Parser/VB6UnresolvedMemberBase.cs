@@ -27,7 +27,7 @@ namespace VB6leap.SDAddin.Parser
     {
         #region Properties
 
-        protected IVbMember Member { get; private set; }
+        internal IVbMember Member { get; private set; }
 
         #endregion
 

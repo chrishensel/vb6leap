@@ -183,7 +183,7 @@ namespace VB6leap.SDAddin.Parser
 
         IType IUnresolvedTypeDefinition.Resolve(ITypeResolveContext context)
         {
-            return new VB6Type("");
+            return new VB6Type(this.Name);
         }
 
         IList<IUnresolvedTypeParameter> IUnresolvedTypeDefinition.TypeParameters

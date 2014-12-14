@@ -30,6 +30,11 @@ namespace VB6leap.SDAddin.Parser
             get { return true; }
         }
 
+        public VB6UnresolvedFile File
+        {
+            get { return (VB6UnresolvedFile)this.UnresolvedFile; }
+        }
+
         #endregion
 
         #region Constructors

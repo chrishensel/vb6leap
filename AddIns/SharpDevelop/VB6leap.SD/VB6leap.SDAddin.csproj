@@ -47,10 +47,6 @@
       <HintPath>..\Build\ICSharpCode.AvalonEdit.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="ICSharpCode.Build.Tasks">
-      <HintPath>..\Build\ICSharpCode.Build.Tasks.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="ICSharpCode.Core">
       <HintPath>..\Build\ICSharpCode.Core.dll</HintPath>
       <Private>False</Private>
@@ -129,7 +125,10 @@
     </Compile>
     <Compile Include="Parser\Extensions.cs" />
     <Compile Include="Parser\IVbModuleWrapper.cs" />
-    <Compile Include="Parser\VB6ParseInformation.cs" />    <Compile Include="Parser\VB6Parser.cs" />
+    <Compile Include="Parser\Members\VB6Field.cs" />
+    <Compile Include="Parser\Members\VB6Member.cs" />
+    <Compile Include="Parser\VB6ParseInformation.cs" />
+    <Compile Include="Parser\VB6Parser.cs" />
     <Compile Include="Parser\VB6Type.cs" />
     <Compile Include="Parser\VB6TypeReference.cs" />
     <Compile Include="Parser\VB6UnresolvedEntityBase.cs" />
