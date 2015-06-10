@@ -155,7 +155,7 @@ namespace VB6leap.Vbp.Reflection.Analyzers
                         }
 
                         method.Visibility = visibility;
-                        method.Name = reader.Read().Content;
+                        method.Name = reader.GetUntil(false, null, TokenType.Symbol).GetString();
 
                         signatureTokens.AddRange(reader.GetUntilEOL());
 

@@ -75,6 +75,7 @@
     <Compile Include="Reflection\Modules\ModuleBase.cs" />
     <Compile Include="Reflection\ModuleReflector.cs" />
     <Compile Include="Reflection\Modules\GlobalModule.cs" />
+    <Compile Include="Reflection\Source\Extensions.cs" />
     <Compile Include="Reflection\Source\ISourceLocation.cs" />
     <Compile Include="Reflection\Source\IToken.cs" />
     <Compile Include="Reflection\Source\ITokenizer.cs" />

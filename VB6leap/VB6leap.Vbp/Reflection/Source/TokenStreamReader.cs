@@ -13,9 +13,9 @@
 // You should have received a copy of the GNU General Public License
 // along with vb6leap.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Linq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace VB6leap.Vbp.Reflection.Source
 {
@@ -107,6 +107,18 @@ namespace VB6leap.Vbp.Reflection.Source
         /// <returns></returns>
         public IEnumerable<IToken> GetUntilEOL(bool ignoreComments, string[] tokenContents)
         {
+            return GetUntil(ignoreComments, tokenContents, null);
+        }
+
+        /// <summary>
+        /// Reads all tokens from the current position until an EOL, EOF or a custom token type is encountered, and honors the VB Classic line-continuation token (_).
+        /// </summary>
+        /// <param name="ignoreComments">Whether or not to ignore comments (regular ones or in-line comments).</param>
+        /// <param name="tokenContents">Custom token contents (text only) to read until. This is ignored if set to null.</param>
+        /// <param name="tokenType">The token type that may be encountered until the method stops processing (the token will be consumed). May be null.</param>
+        /// <returns></returns>
+        public IEnumerable<IToken> GetUntil(bool ignoreComments, string[] tokenContents, TokenType? tokenType)
+        {
             IToken previous = null;
             IToken current = null;
 
@@ -145,6 +157,15 @@ namespace VB6leap.Vbp.Reflection.Source
                     if (tokenContents != null)
                     {
                         if (tokenContents.Contains(current.Content))
+                        {
+                            yield break;
+                        }
+                    }
+
+                    if (tokenType.HasValue)
+                    {
+                        // FIXME: Known issue: This approach consumes the token!
+                        if (current.Type == tokenType.Value)
                         {
                             yield break;
                         }
