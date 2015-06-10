@@ -22,55 +22,54 @@
 
   <Path path = "/SharpDevelop/BackendBindings/ProjectOptions/VB6">
     <OptionPanel id    = "Options"
-		             label = "Project Options"
-		             class = "VB6leap.SDAddin.Options.VB6leapProjectOptionsPanel"/>
+                 label = "Project Options"
+                 class = "VB6leap.SDAddin.Options.VB6leapProjectOptionsPanel"/>
   </Path>
 
   <Path name="/SharpDevelop/Workbench/Combine/FileFilter">
     <FileFilter id="VB6Project"
-					insertbefore="AllFiles"
-					name="VB6 project files (*.vbp)"
-					extensions="*.vbp" />
+          insertbefore="AllFiles"
+          name="VB6 project files (*.vbp)"
+          extensions="*.vbp" />
   </Path>
 
   <Path name="/SharpDevelop/Workbench/FileFilter">
     <FileFilter id="VB6"
-		            insertbefore="Resources"
-		            name="VB6 files (*.frm, *.bas, *.cls)"
-		            extensions="*.frm;*.bas;*.cls"
-		            mimeType = "text/plain"/>
+                name="VB6 files (*.frm, *.bas, *.cls)"
+                extensions="*.frm;*.bas;*.cls"
+                mimeType = "text/plain"/>
   </Path>
 
   <Path name = "/SharpDevelop/ViewContent/AvalonEdit/SyntaxModes">
     <SyntaxMode id         = "VB6 Syntax Mode"
-		            name       = "VB6"
-		            extensions = ".frm;.bas;.cls"
-		            resource   = "VB6leap.SDAddin.Resources.VB6-Mode.xshd" />
+                name       = "VB6"
+                extensions = ".frm;.bas;.cls"
+                resource   = "VB6leap.SDAddin.Resources.VB6-Mode.xshd" />
   </Path>
 
   <Path name="/SharpDevelop/Workbench/ProjectBindings">
     <ProjectBinding id="VB6"
-		                 guid="{BFDDE1D2-CFEE-4EA9-9108-F709EEBD945C}"
-		                 supportedextensions=".frm;.bas;.cls"
-		                 projectfileextension=".vbp"
-		                 class="VB6leap.SDAddin.VbpProjectBinding" />
+                     guid="{BFDDE1D2-CFEE-4EA9-9108-F709EEBD945C}"
+                     supportedextensions=".frm;.bas;.cls"
+                     projectfileextension=".vbp"
+                     class="VB6leap.SDAddin.VbpProjectBinding" />
   </Path>
 
   <Path name="/SharpDevelop/Workbench/LanguageBindings">
     <LanguageBinding
-	        id="VB6"
-	        class="VB6leap.SDAddin.VbpLanguageBinding"
-	        extensions=".frm;.bas;.cls" />
+          id="VB6"
+          class="VB6leap.SDAddin.VbpLanguageBinding"
+          extensions=".frm;.bas;.cls" />
   </Path>
 
   <Path name = "/Workspace/Icons">
     <Icon id         = "VB6Prj"
-		      language   = "VB6"
-		      resource   = "VB.ProjectIcon"/>
+          language   = "VB6"
+          resource   = "VB.ProjectIcon"/>
 
     <Icon id         = "VB6File"
-		      extensions = ".frm;.bas;.cls"
-		      resource   = "VB.FileIcon"/>
+          extensions = ".frm;.bas;.cls"
+          resource   = "VB.FileIcon"/>
   </Path>
 
   <Path name = "/SharpDevelop/BackendBindings/Templates">
@@ -80,23 +79,23 @@
 
   <Path name="/SharpDevelop/ViewContent/TextEditor/Extensions">
     <TextEditorExtension
-			id="VB6"
-			class="VB6leap.SDAddin.VbpTextEditorExtension"
-			extensions=".frm;.bas;.cls" />
+      id="VB6"
+      class="VB6leap.SDAddin.VbpTextEditorExtension"
+      extensions=".frm;.bas;.cls" />
   </Path>
 
   <Path name = "/SharpDevelop/Workbench/DisplayBindings">
     <DisplayBinding id    = "VB6FormsDesigner"
-		                type  = "Secondary"
-		                class = "VB6leap.SDAddin.FormsDesigner.FormsDesignerSecondaryDisplayBinding"
-		                fileNamePattern = "\.frm$"/>
+                    type  = "Secondary"
+                    class = "VB6leap.SDAddin.FormsDesigner.FormsDesignerSecondaryDisplayBinding"
+                    fileNamePattern = "\.frm$"/>
   </Path>
 
   <Path name = "/SharpDevelop/Parser">
-		<Parser
-			id = "VB6"
-			supportedextensions = ".frm;.bas;.cls"
-			projectfileextension = ".vbp"
-			class = "VB6leap.SDAddin.Parser.VB6Parser"/>
-	</Path>
+    <Parser
+      id = "VB6"
+      supportedextensions = ".frm;.bas;.cls"
+      projectfileextension = ".vbp"
+      class = "VB6leap.SDAddin.Parser.VB6Parser"/>
+  </Path>
 </AddIn>

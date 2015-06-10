@@ -106,7 +106,6 @@
     <None Include="VB6leap.SD.nuspec" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\AssemblyInfo.cs" />
     <Compile Include="FormsDesigner\FormsDesignerSecondaryDisplayBinding.cs" />
     <Compile Include="FormsDesigner\VB6FormsDesignerControl.xaml.cs">
       <DependentUpon>VB6FormsDesignerControl.xaml</DependentUpon>
@@ -146,6 +145,7 @@
     <Compile Include="Parser\VB6UnresolvedMethod.cs" />
     <Compile Include="Parser\VB6UnresolvedProperty.cs" />
     <Compile Include="Parser\VB6UnresolvedTypeDefinition.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\VB6Helper.cs" />
     <Compile Include="VbpFormattingStrategy.cs" />
     <Compile Include="VbpProjectBehavior.cs" />
